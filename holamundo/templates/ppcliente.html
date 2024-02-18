@@ -9,24 +9,31 @@
     <title>CreApp-Clientes</title>
 </head>
 <body>
-    
+    <center>
+        <h1>Datos Cliente</h1>
+    </center>
+    <p align="right">
+        <a href="{% url 'ver_pcliente' %}" class="btn btn-primary">Regresar</a>
+       </p>
     <div class="container mt-4">
         <div class="card">
-            <div class="card-header">
-                <h1>Datos Posibles Clientes</h1>
-            </div>
-            <h3> {{cliente.nombre}} {{cliente.apellido}} </h3>
-            <h5>Telefono: {{cliente.telefono}} </h5>
-            <h5>Email: {{cliente.correo}} </h5>
-            <h5>Id: {{cliente.id}} </h5>
-
+            <h3>Nombre</h3>
+            <p> {{cliente.nombre}} {{cliente.apellido}} </p>
+            <h3>Telefono</h3>
+            <p>{{cliente.telefono}} </p>
+            <h3>Email</h3>
+            <p>{{cliente.correo}} </p>
+            <h3>Cedula</h3>
+            <p> {{cliente.cedula}} </p>
+            <h3>Observaciones</h3>
+            <p>{{cliente.observaciones}}</p>
         </div>
     </div>
 
     <div class="container mt-4">
         <div class="card">
             <div class="card-header">
-                <h1>Seguimiento Procesos</h1>
+                <h2>Seguimiento Procesos</h2>
             </div>
             {% for prop in propiedad %}
             <h3> {{prop.codigo}}  </h3>
@@ -34,23 +41,20 @@
             <h2> {{prop.proceso}} </h2>
             {%endfor%}
         </div>
+
     </div>
 
+<hr>
 
-    <div class="container mt-4">
+    <div class="container mt-4" style="text-align: center">
         <div class="card">
-            <table>
-                <tr>
-                    <h2>Observaciones</h2>
-                </tr>
-                <tr>
-                    <td> {{cliente.observaciones}} </td>
-                    
-                </tr>
+            <table >
                 <td>
                     <a type="button" href="{{ cliente.get_delete_url }}" class="btn btn-danger">Eliminar</a>
                     <a type="button" href="{{ cliente.get_edit_url }}" class="btn btn-warning">Editar</a> 
-                    <a href="{% url 'ver_pcliente' %}" class="btn btn-primary">Volver a Página de Clientes</a>
+                    <!-- 
+                        <a href="{% url 'ver_pcliente' %}" class="btn btn-primary">Volver a Página de Clientes</a>
+                    -->   
                 </td>
             </table>
         </div>
