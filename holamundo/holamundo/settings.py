@@ -11,6 +11,7 @@ https://docs.djangoproject.com/en/4.2/ref/settings/
 """
 import os
 from pathlib import Path
+from django.contrib.messages import constants as messages
 
 # Build paths inside the project like this: BASE_DIR / 'subdir'.
 BASE_DIR = Path(__file__).resolve().parent.parent
@@ -38,23 +39,32 @@ INSTALLED_APPS = [
     'django.contrib.messages',
     'django.contrib.staticfiles',
     'django_extensions',
+    'django.contrib.sites',
     
     # Veltrix Theme
-    'layouts',
+    'e_mail',
+    'components',
     'extra_pages',
+    'email_templates',
+    'layouts',
+    'authentication',
 
     "crispy_forms",
     'crispy_bootstrap5',
 
-    'django.contrib.sites',
+    
     'allauth',
     'allauth.account',
     'allauth.socialaccount',
+    'allauth.socialaccount.providers.google',
 
     'widget_tweaks',
     'imagekit',
     'rest_framework',
-    'Crea'
+    'Crea',
+    
+    
+    
 
 ]
 
@@ -64,7 +74,7 @@ MIDDLEWARE = [
     'django.middleware.common.CommonMiddleware',
     'django.middleware.csrf.CsrfViewMiddleware',
     'django.contrib.auth.middleware.AuthenticationMiddleware',
-    'allauth.account.middleware.AccountMiddleware',  # Middleware de allauth añadido aquí
+    "allauth.account.middleware.AccountMiddleware",  # Middleware de allauth añadido aquí
     'django.contrib.messages.middleware.MessageMiddleware',
     'django.middleware.clickjacking.XFrameOptionsMiddleware',
 ]
@@ -74,9 +84,7 @@ ROOT_URLCONF = 'holamundo.urls'
 TEMPLATES = [
     {
         'BACKEND': 'django.template.backends.django.DjangoTemplates',
-        'DIRS': [
-            'templates'
-                 ],
+        'DIRS': ['templates'],
         'APP_DIRS': True,
         'OPTIONS': {
             'context_processors': [
@@ -135,6 +143,8 @@ TIME_ZONE = 'America/Guayaquil'
 
 USE_I18N = True
 
+USE_L10N = True
+
 USE_TZ = True
 
 
@@ -159,7 +169,6 @@ AUTHENTICATION_BACKENDS = [
     'allauth.account.auth_backends.AuthenticationBackend',
 ]
 
-SITE_ID = 1
 
 # Otras configuraciones de allauth (opcional)
 # Puedes personalizar el comportamiento con las siguientes opciones:
@@ -213,6 +222,20 @@ SITE_ID = 1
 
 # Provider Configurations
 SOCIALACCOUNT_PROVIDERS = {
+    'google': {
+        'SCOPE': [
+            'profile',
+            'email',
+        ],
+        'AUTH_PARAMS': {
+            'access_type': 'online',
+        },
+        'APP': {
+            'client_id': '556542475411-atai04oepna72lf526enbkq3b5d6sod1.apps.googleusercontent.com',
+            'secret': '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',
+            'key': ''
+        }
+    }
     
 }
 

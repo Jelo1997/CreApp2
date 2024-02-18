@@ -16,22 +16,48 @@ Including another URLconf
 """
 from django.contrib import admin
 from django.urls import path, include
+from holamundo import views
+from django.contrib.auth.decorators import login_required
+from .views import MyPasswordChangeView, MyPasswordSetView
 
 
 from Crea.views import ver_propiedades_posible, ver_propiedad, index, captar_propiedad, ver_propiedades_disponibles, ver_propiedaddis, ver_pcliente, ver_pocliente, nueva_propiedad, editar_propiedad, eliminar_propiedad, nuevo_cliente, editar_cliente, eliminar_cliente
 
 urlpatterns = [
 
-    path('accounts/', include('allauth.urls')),
+    
 
 
     path('admin/', admin.site.urls),
     
-    path('',index, name='dashboard'),
+    path('', views.DashboardView.as_view(), name='dashboard'),
+    # calender
+    path('calendar', views.CalendarView.as_view(), name='calendar'),
+    # Email
+    path("email/", include("e_mail.urls")),
+    # Components
+    path("components/", include("components.urls")),
+    # Extra_Pages
+    path("extra_pages/", include("extra_pages.urls")),
+    # Extra_Pages
+    path("email_templates/", include("email_templates.urls")),
+    # layouts
+    path("layouts/", include("layouts.urls")),  
+    # Authentication
+    path("authentication/", include("authentication.urls")),  
+    
+    path(
+        "account/password/change/",
+        login_required(MyPasswordChangeView.as_view()),name="account_change_password",),
+    path(
+        "account/password/set/",
+        login_required(MyPasswordSetView.as_view()),name="account_set_password",),  
+ 
+    path('accounts/', include('allauth.urls')),
 
     #
     path('propiedades_posibles/', ver_propiedades_posible, name="ver_propiedades_posible"),
-    path('propiedades_disponibles/', ver_propiedades_disponibles),
+    path('propiedades_disponibles/', ver_propiedades_disponibles,name ="ver_propiedades_disponible"),
     path('propiedad/<int:codigo_propiedad>/', ver_propiedad ,name="detalle_propiedad"),
     path('propiedaddis/<int:codigo_propiedad>/', ver_propiedaddis ,name="detalle_propiedaddis"),
     path('captar_propiedad/<int:codigo_propiedad>/', captar_propiedad),
@@ -45,12 +71,7 @@ urlpatterns = [
     path('cliente/eliminar/<int:codigo_cliente>/', eliminar_cliente ,name="eliminar_cliente"),
     
 
-    # Extra_Pages
-    path("extra_pages/", include("extra_pages.urls")),
-    # layouts
-    path("layouts/", include("layouts.urls")),  
- 
-
+    
 
 
 ]
