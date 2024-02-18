@@ -1,0 +1,56 @@
+{% extends 'partials/base.html' %}
+
+{% block content %}
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>CreApp-Propiedad</title>
+</head>
+<body>
+   
+<div class="container mt-4">
+    <div class="card">
+        <div class="card-header">
+            <h1>Datos Propiedad</h1>
+
+        </div>
+        <h2> {{propiedad.tipo}} </h2>
+        <h5>Codigo : {{propiedad.codigo}} </h5>
+        <h5>Fecha de Registro: {{propiedad.fecha_registro}} </h5>
+        <h5>Ubicacion : {{propiedad.ubicacion}} </h5>
+        <h5>Precio : {{propiedad.precio}} </h5>
+        <h5>Descripcion: {{propiedad.descripcion}} </h5>
+        <h5>Precio Avaluo: {{propiedad.precio_avaluo}} </h5>
+    </div>
+</div>
+<div class="container mt-4">
+    <div class="card">
+        <div class="card-header">
+            <h2>Datos Dueño</h2>
+        </div>
+
+        <h5>Nombre: {{cliente.nombre}} {{cliente.apellido}} </h5>
+        <h5>Telefono: {{cliente.telefono}} </h5>
+        <h5>Email: {{cliente.correo}} </h5>
+        <h5>Observaciones {{cliente.observaciones}} </h5>
+    </div>
+</div>
+<div class="container mt-4">
+    <div class="card">
+        <form action="/captar_propiedad/{{propiedad.pk}} ">
+            <button type="submit" class="btn btn-success">Captar</button>
+            <a type="button" href="{{ propiedad.get_delete_url }}" class="btn btn-danger">Eliminar</a>
+        <a type="button" href="{{ propiedad.get_edit_url }}" class="btn btn-warning">Editar</a>
+        <a href="{% url 'ver_propiedades_posible' %}" class="btn btn-primary">Volver a Propiedades Posibles</a>
+        </form>
+        
+    </div>
+</div>
+    
+    
+</body>
+</html>
+
+{% endblock %}

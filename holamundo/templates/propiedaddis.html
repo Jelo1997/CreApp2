@@ -1,0 +1,63 @@
+{% extends 'partials/base.html' %}
+
+{% block content %}
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>CreApp-Propiedad</title>
+</head>
+<body>
+   
+<div class="container mt-4">
+    <div class="card">
+        <div class="card-header">
+            <h1>Datos Propiedad</h1>
+
+        </div>
+        <h5>Tipo : {{propiedad.tipo}} </h5>
+        <h5>Codigo : {{propiedad.codigo}} </h5>
+        <h5>Fecha de Ingreso : {{propiedad.fecha_ingreso}} </h5>
+        <h5>Fecha de Caducidad : {{propiedad.fecha_caducidad}} </h5>
+        <h5>Ubicacion : {{propiedad.ubicacion}} </h5>
+        <h5>Descripcion : {{propiedad.descripcion}} </h5>
+    </div>
+</div>
+<div class="container mt-4">
+    <div class="card">
+        <div class="card-header">
+            <h1>Valor de Propiedad</h1>
+        </div>
+        <h5>Precio Comercial : {{propiedad.precio_comercial}} </h5>
+        <h5>Precio Crea : {{propiedad.precio_crea}} </h5>
+        <h5>Precio Mínimo : {{propiedad.precio_minimo}} </h5>
+    </div>
+</div>
+<div class="container mt-4">
+    <div class="card">
+        <div class="card-header">
+            <h2>Datos Dueño</h2>
+        </div>
+
+        <h5>Nombre: {{cliente.nombre}} {{cliente.apellido}} </h5>
+        <h5>Telefono: {{cliente.telefono}} </h5>
+        <h5>Email: {{cliente.correo}} </h5>
+        <h5>Observaciones {{cliente.observaciones}} </h5>
+    </div>
+</div>
+<div class="container mt-4">
+    <div class="card">
+        <div class="card-header">
+            <h2>Datos Generales</h2>
+        </div>
+        <h5>Tipo de Comisión : {{propiedad.tipo_comision}} </h5>
+        <h5>Convenio : {{propiedad.convenio}} </h5>
+        <h5>Estado: {{propiedad.proceso}} </h5>
+</div>
+    
+    
+</body>
+</html>
+
+{% endblock %}

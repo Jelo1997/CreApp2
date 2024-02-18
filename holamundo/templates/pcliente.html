@@ -1,0 +1,45 @@
+{% extends 'partials/base.html' %}
+
+{% block content %}
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>CreApp-Clientes</title>
+</head>
+<body>
+    <h1> Clientes </h1>
+    <a href="{% url 'nuevo_cliente' %}" class="btn btn-primary">Nuevo Cliente</a>
+    <table class="table table-striped">
+        
+        <tr>
+            <th><h2>ID</h2></th>
+            <th><h2>Nombre</h2></th>
+            <th><h2>Apellido</h2></th>
+            <th><h2>Teléfono</h2></th>
+            <th><h2>Correo</h2></th>
+            
+        </tr>
+
+        {% for clien in cliente %}
+        <tr>
+            <td> <a href='/cliente/{{clien.id}}'> {{clien.id}}</a> </td>
+            <td> {{clien.nombre}} </td>
+            <td> {{clien.apellido}} </td>
+            <td> {{clien.telefono}} </td>
+            <td> {{clien.correo}} </td>
+            
+        </tr>
+        {% endfor %}
+
+    </table>
+
+
+
+
+    
+</body>
+</html>
+
+{% endblock %}
