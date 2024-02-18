@@ -17,7 +17,7 @@ Including another URLconf
 from django.contrib import admin
 from django.urls import path, include
 
-from rescate_perros.views import holamundo, home, perros, ver_perro, lista_perros, ver_perro_api, nuevo_refugio, ver_refugio, editar_refugio, eliminar_refugio, lista_refugios
+
 from Crea.views import ver_propiedades_posible, ver_propiedad, index, captar_propiedad, ver_propiedades_disponibles, ver_propiedaddis, ver_pcliente, ver_pocliente, nueva_propiedad, editar_propiedad, eliminar_propiedad, nuevo_cliente, editar_cliente, eliminar_cliente
 
 urlpatterns = [
@@ -26,19 +26,8 @@ urlpatterns = [
 
 
     path('admin/', admin.site.urls),
-    path('hola/', holamundo, name='holamundo'),
-    path('', home, name='home'),
-    path('', home, name='dashboard'),
-    path('lista_perros/ciudad/<str:ciudad>/', lista_perros, name='lista_perros'),
-    path('perro/<int:codigo_perro>/', ver_perro, name='detalle_perro'),
-    path('perro_api/<int:codigo_perro>/', ver_perro_api, name='detalle_perro_api'),
     
-    # URLS de APLICACION
-    path('refugio/', lista_refugios, name='lista_refugios'),
-    path('refugio/<int:codigo_refugio>/', ver_refugio, name='ver_refugio'),
-    path('refugio/nuevo/', nuevo_refugio, name='nuevo_refugio'),
-    path('refugio/editar/<int:codigo_refugio>/', editar_refugio, name='editar_refugio'),
-    path('refugio/eliminar/<int:codigo_refugio>/', eliminar_refugio, name='eliminar_refugio'),
+    path('',index, name='dashboard'),
 
     #
     path('propiedades_posibles/', ver_propiedades_posible, name="ver_propiedades_posible"),

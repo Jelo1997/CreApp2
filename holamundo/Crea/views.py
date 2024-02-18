@@ -203,4 +203,10 @@ def ver_pocliente(request, codigo_cliente):
     template = "ppcliente.html"
     return render(request, template, contenido)
 
-
+def index(request):
+    template = 'dashboard.html'
+    c = {
+        'titulo': 'ESTA ES TU CASA',
+        'mensaje': 'Este es un mensaje desde la vista home'
+    }
+    return render(request, template, c)

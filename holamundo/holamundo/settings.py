@@ -54,7 +54,6 @@ INSTALLED_APPS = [
     'widget_tweaks',
     'imagekit',
     'rest_framework',
-    'rescate_perros',
     'Crea'
 
 ]
