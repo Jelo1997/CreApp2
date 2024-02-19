@@ -40,12 +40,15 @@
 </div>
 <div class="container mt-4">
     <div class="card">
-        <form action="/captar_propiedad/{{propiedad.pk}} ">
-            <button type="submit" class="btn btn-success">Captar</button>
-            <a type="button" href="{{ propiedad.get_delete_url }}" class="btn btn-danger">Eliminar</a>
-        <a type="button" href="{{ propiedad.get_edit_url }}" class="btn btn-warning">Editar</a>
-        <a href="{% url 'ver_propiedades_posible' %}" class="btn btn-primary">Volver a Propiedades Posibles</a>
-        </form>
+        <center>
+            <form action="/captar_propiedad/{{propiedad.pk}} ">
+                <button type="submit" class="btn btn-success">Captar</button>
+                <a type="button" href="{{ propiedad.get_delete_url }}" class="btn btn-danger">Eliminar</a>
+            <a type="button" href="{{ propiedad.get_edit_url }}" class="btn btn-warning">Editar</a>
+            <a href="{% url 'ver_propiedades_posible' %}" class="btn btn-primary">Regresar</a>
+            </form>
+        </center>
+
         
     </div>
 </div>

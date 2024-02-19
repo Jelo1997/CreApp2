@@ -1,10 +1,24 @@
 {% extends 'partials/base.html' %}
 {% block content %}
-<h1>Captar propiedad</h1>
+{% load crispy_forms_tags %}
+    <div class="container mt-4">
+        <div class="card">
+            <div class="card-header">
+                <h1>Captar propiedad</h1>
+            </div>
+            <form method="post">
+                {% csrf_token %}
+                {{ form|crispy }}
+                <center>
+                    <button type="submit">Captar</button>
+                </center>
+                
+            </form>
+        </div>
+    </div>
 
-<form method="post">
-    {% csrf_token %}
-    {{ form.as_p }}
-    <button type="submit">Captar</button>
-</form>
+
+
+
+
 {% endblock %}
