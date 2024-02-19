@@ -9,15 +9,16 @@
     <title>CreApp-Propiedad</title>
 </head>
 <body>
-   
+   <center>
+        <h1>Datos Propiedad</h1>
+   </center>
 <div class="container mt-4">
     <div class="card">
         <div class="card-header">
-            <h1>Datos Propiedad</h1>
-
+            <h3>Tipo : {{propiedad.tipo}} </h3>
+            <h5>Codigo : {{propiedad.codigo}} </h5>
         </div>
-        <h5>Tipo : {{propiedad.tipo}} </h5>
-        <h5>Codigo : {{propiedad.codigo}} </h5>
+
         <h5>Fecha de Ingreso : {{propiedad.fecha_ingreso}} </h5>
         <h5>Fecha de Caducidad : {{propiedad.fecha_caducidad}} </h5>
         <h5>Ubicacion : {{propiedad.ubicacion}} </h5>
@@ -25,9 +26,13 @@
     </div>
 </div>
 <div class="container mt-4">
+
     <div class="card">
         <div class="card-header">
-            <h1>Valor de Propiedad</h1>
+            <h1>Valor de Propiedad</h1> 
+            <p align="right">
+                <a href="{% url 'ver_pcliente' %}" class="btn btn-primary">Editar</a>
+            </p>
         </div>
         <h5>Precio Comercial : {{propiedad.precio_comercial}} </h5>
         <h5>Precio Crea : {{propiedad.precio_crea}} </h5>

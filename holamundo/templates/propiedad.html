@@ -9,26 +9,27 @@
     <title>CreApp-Propiedad</title>
 </head>
 <body>
-   
+   <center>
+        <h1>Datos Propiedad</h1>
+   </center>
 <div class="container mt-4">
     <div class="card">
         <div class="card-header">
-            <h1>Datos Propiedad</h1>
-
-        </div>
-        <h2> {{propiedad.tipo}} </h2>
-        <h5>Codigo : {{propiedad.codigo}} </h5>
+            <h2> {{propiedad.tipo}} </h2>
+            <h5>Codigo : {{propiedad.codigo}} </h5>
+        </div>       
+        
         <h5>Fecha de Registro: {{propiedad.fecha_registro}} </h5>
         <h5>Ubicacion : {{propiedad.ubicacion}} </h5>
         <h5>Precio : {{propiedad.precio}} </h5>
-        <h5>Descripcion: {{propiedad.descripcion}} </h5>
         <h5>Precio Avaluo: {{propiedad.precio_avaluo}} </h5>
+        <h5>Descripcion: {{propiedad.descripcion}} </h5>
     </div>
 </div>
 <div class="container mt-4">
     <div class="card">
         <div class="card-header">
-            <h2>Datos Dueño</h2>
+            <h2>Dueño de la Propiedad</h2>
         </div>
 
         <h5>Nombre: {{cliente.nombre}} {{cliente.apellido}} </h5>

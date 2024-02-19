@@ -16,17 +16,31 @@
         <a href="{% url 'ver_pcliente' %}" class="btn btn-primary">Regresar</a>
        </p>
     <div class="container mt-4">
-        <div class="card">
-            <h3>Nombre</h3>
-            <p> {{cliente.nombre}} {{cliente.apellido}} </p>
-            <h3>Telefono</h3>
-            <p>{{cliente.telefono}} </p>
-            <h3>Email</h3>
-            <p>{{cliente.correo}} </p>
-            <h3>Cedula</h3>
-            <p> {{cliente.cedula}} </p>
-            <h3>Observaciones</h3>
-            <p>{{cliente.observaciones}}</p>
+        <div class="card" style="text-align: center">
+            <table>
+                <tr>
+                    <th><h3>Nombre</h3></th>
+                    <th><h3>Cedula</h3></th>
+                </tr>
+                <tr>
+                    <td><p> {{cliente.nombre}} {{cliente.apellido}} </p></td>
+                    <td><p> {{cliente.cedula}} </p></td>
+                </tr>
+                <tr>
+                    <th><h3>Telefono</h3></th>
+                    <th><h3>Email</h3></th>
+                </tr>
+                <tr>
+                    <td><p>{{cliente.telefono}} </p></td>
+                    <td><p>{{cliente.correo}} </p></td>
+                </tr>
+                <tr>
+                    <td colspan="2"><h3>Observaciones</h3></td>
+                </tr>
+                <tr>
+                    <td colspan="2"><p>{{cliente.observaciones}}</p></td>
+                </tr>
+            </table>    
         </div>
     </div>
 
