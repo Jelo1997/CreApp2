@@ -69,3 +69,9 @@ class ClienteForm(forms.ModelForm):
     class Meta:
         model = Cliente
         fields = ['nombre', 'apellido', 'cedula', 'telefono', 'correo', 'observaciones']
+
+class EmpleadoForm(forms.ModelForm):
+
+    class Meta:
+        model = Empleado
+        fields = ['telefono', 'apellido','area', 'correo', 'nombre']
