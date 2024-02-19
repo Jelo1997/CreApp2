@@ -1,0 +1,47 @@
+{% extends 'partials/base.html' %}
+
+{% block content %}
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>CreApp-Empleados</title>
+</head>
+<body>
+    <h1> Empleados </h1>
+    <a href="{% url 'nuevo_empleado' %}" class="btn btn-primary">Nuevo Empleados</a>
+    <table class="table table-striped">
+        
+        <tr>
+            <th><h2>ID</h2></th>
+            <th><h2>Nombre</h2></th>
+            <th><h2>Apellido</h2></th>
+            <th><h2>Teléfono</h2></th>
+            <th><h2>Correo</h2></th>
+            <th><h2>Area</h2></th>
+            
+        </tr>
+
+        {% for emple in empleado %}
+        <tr>
+            <td> <a href='/empleado/{{emple.id}}'> {{emple.id}}</a> </td>
+            <td> {{emple.nombre}} </td>
+            <td> {{emple.apellido}} </td>
+            <td> {{emple.telefono}} </td>
+            <td> {{emple.correo}} </td>
+            <td> {{emple.area}} </td>
+            
+        </tr>
+        {% endfor %}
+
+    </table>
+
+
+
+
+    
+</body>
+</html>
+
+{% endblock %}

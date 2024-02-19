@@ -1,0 +1,50 @@
+{% extends 'partials/base.html' %}
+
+{% block content %}
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>CreApp-Clientes</title>
+</head>
+<body>
+    
+    <div class="container mt-4">
+        <div class="card">
+            <div class="card-header">
+                <h1>Datos Empleados</h1>
+            </div>
+            <h3> {{empleado.nombre}} {{empleado.apellido}} </h3>
+            <h5>Telefono: {{empleado.telefono}} </h5>
+            <h5>Email: {{empleado.correo}} </h5>
+            <h5>Id: {{empleado.id}} </h5>
+
+        </div>
+    </div>
+
+    <div class="container mt-4">
+        <div class="card">
+            <table>
+                <tr>
+                    <h2>Area de trabajo</h2>
+                </tr>
+                <tr>
+                    <td> {{empleado.area}} </td>
+                    
+                </tr>
+                <td>
+                    <a type="button" href="{{ empleado.get_delete_url }}" class="btn btn-danger">Eliminar</a>
+                    <a type="button" href="{{ empleado.get_edit_url }}" class="btn btn-warning">Editar</a> 
+                    <a href="{% url 'ver_empleado' %}" class="btn btn-primary">Volver</a>
+                </td>
+            </table>
+        </div>
+    </div>
+
+
+    
+</body>
+</html>
+
+{% endblock %}
