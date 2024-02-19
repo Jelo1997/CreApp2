@@ -46,21 +46,16 @@ def nueva_propiedad(request):
 
 def editar_propiedad(request, codigo_propiedad):
     contenido = {}
-    contenido['propiedad'] = get_object_or_404(Propiedad_posible, pk = codigo_propiedad ) 
+    propiedad = get_object_or_404(Propiedad_posible, pk = codigo_propiedad) 
     if request.method == 'POST':
-        contenido['form'] = PropiedadForm(
-                        request.POST or None,
-                        request.FILES or None,)
-        if contenido['form'].is_valid():
-            contenido['form'].save()
-            return redirect(contenido['form'].instance.get_absolute_url())
-        
-    contenido ['form'] = PropiedadForm(
-        request.POST or None,
-        request.FILES or None,
-        instance = contenido['propiedad']
-    )
-    
+        form = PropiedadForm(request.POST, request.FILES, instance=propiedad)               
+        if form.is_valid():
+            form.save()
+            return redirect(propiedad.get_absolute_url())
+    else:
+        form = PropiedadForm(instance=propiedad)
+    contenido['form'] = form
+    contenido['propiedad'] = propiedad
     return render(request, 'formulario_propiedad.html', contenido)
 
 def eliminar_propiedad(request, codigo_propiedad):
@@ -168,21 +163,16 @@ def nuevo_cliente(request):
 
 def editar_cliente(request, codigo_cliente):
     contenido = {}
-    contenido['cliente'] = get_object_or_404(Cliente, pk = codigo_cliente) 
+    cliente = get_object_or_404(Cliente, pk = codigo_cliente) 
     if request.method == 'POST':
-        contenido['form'] = ClienteForm(
-                        request.POST or None,
-                        request.FILES or None,)
-        if contenido['form'].is_valid():
-            contenido['form'].save()
-            return redirect(contenido['form'].instance.get_absolute_url())
-        
-    contenido ['form'] = ClienteForm(
-        request.POST or None,
-        request.FILES or None,
-        instance = contenido['cliente']
-    )
-    
+        form = ClienteForm(request.POST, request.FILES, instance=cliente)               
+        if form.is_valid():
+            form.save()
+            return redirect(cliente.get_absolute_url())
+    else:
+        form = ClienteForm(instance=cliente)
+    contenido['form'] = form
+    contenido['cliente'] = cliente
     return render(request, 'formulario_cliente.html', contenido)
 
 def eliminar_cliente(request, codigo_cliente):
@@ -233,22 +223,17 @@ def nuevo_empleado(request):
 
 def editar_empleado(request, codigo_empleado):
     contenido = {}
-    contenido['empleado'] = get_object_or_404(Empleado, pk = codigo_empleado) 
+    empleado = get_object_or_404(Cliente, pk = codigo_empleado) 
     if request.method == 'POST':
-        contenido['form'] = EmpleadoForm(
-                        request.POST or None,
-                        request.FILES or None,)
-        if contenido['form'].is_valid():
-            contenido['form'].save()
-            return redirect(contenido['form'].instance.get_absolute_url())
-        
-    contenido ['form'] = EmpleadoForm(
-        request.POST or None,
-        request.FILES or None,
-        instance = contenido['empleado']
-    )
-    
-    return render(request, 'formulario_empleado.html', contenido)
+        form = ClienteForm(request.POST, request.FILES, instance=empleado)               
+        if form.is_valid():
+            form.save()
+            return redirect(empleado.get_absolute_url())
+    else:
+        form = ClienteForm(instance=empleado)
+    contenido['form'] = form
+    contenido['cliente'] = empleado
+    return render(request, 'formulario_cliente.html', contenido)
 
 def eliminar_empleado(request, codigo_empleado):
     contenido = {}
