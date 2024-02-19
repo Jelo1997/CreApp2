@@ -57,9 +57,9 @@ urlpatterns = [
 
     #
     path('propiedades_posibles/', ver_propiedades_posible, name="ver_propiedades_posible"),
-    path('propiedades_disponibles/', ver_propiedades_disponibles,name ="ver_propiedades_disponible"),
-    path('propiedad/<int:codigo_propiedad>/', ver_propiedad ,name="detalle_propiedad"),
-    path('propiedaddis/<int:codigo_propiedad>/', ver_propiedaddis ,name="detalle_propiedaddis"),
+    path('propiedades_disponibles/', ver_propiedades_disponibles, name ="ver_propiedades_disponible"),
+    path('propiedad/<int:codigo_propiedad>/', ver_propiedad , name="detalle_propiedad"),
+    path('propiedaddis/<int:codigo_propiedad>/', ver_propiedaddis , name="detalle_propiedaddis"),
     path('captar_propiedad/<int:codigo_propiedad>/', captar_propiedad),
     path('propiedad/nuevo', nueva_propiedad ,name="nueva_propiedad"),
     path('propiedad/editar/<int:codigo_propiedad>/', editar_propiedad ,name="editar_propiedad"),

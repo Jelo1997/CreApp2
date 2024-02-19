@@ -9,25 +9,34 @@
     <title>CreApp-Propiedades</title>
 </head>
 <body>
-   <h1>Posibles Propiedades</h1>
-   <a href="{% url 'nueva_propiedad' %}" class="btn btn-primary">Nueva Propiedad</a>
-    <table class="table table-striped">
+    <center>
+        <h1>Posibles Propiedades</h1>
+    </center>
+   <hr>
+   <p align="right">
+    <a  href="{% url 'nueva_propiedad' %}" class="btn btn-primary">Nueva Propiedad</a>
+   </p>
+   
+   <hr>
+    <table class="table table-striped" style="text-align: center">
         <tr>
             <td><h2>ID</h2></td>
             <td><h2>Tipo</h2></td>
             <td><h2>Ubicacion</h2></td>
             <td><h2>Precio</h2></td>
             <td><h2>Descripcion</h2></td>
+            <td><h2> </h2></td>
         </tr>
 
                 {% for prop in propiedad %}
                     {% if prop.es_activo %}
                     <tr>
-                        <td><a href='/propiedad/{{prop.pk}}'> {{prop.pk}}</a></td>
+                        <td> {{prop.pk}}</td>
                         <td>{{prop.tipo}}</td>
                         <td>{{prop.ubicacion}}</td>
                         <td>{{prop.precio}}</td>
                         <td>{{prop.descripcion}}</td>
+                        <td><a href='/propiedad/{{prop.pk}}' class="btn btn-primary">Ver</a></td>
                     </tr>
                     {% endif %}
                 {% endfor %}

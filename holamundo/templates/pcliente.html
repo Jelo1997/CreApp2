@@ -9,9 +9,17 @@
     <title>CreApp-Clientes</title>
 </head>
 <body>
-    <h1> Clientes </h1>
-    <a href="{% url 'nuevo_cliente' %}" class="btn btn-primary">Nuevo Cliente</a>
-    <table class="table table-striped">
+    <center>
+        <h1> Clientes </h1>
+    </center>
+    <hr>
+    <p align="right">
+        <a href="{% url 'nuevo_cliente' %}" class="btn btn-primary">Nuevo Cliente</a>
+    </p>
+    
+    <hr>
+
+    <table class="table table-striped" style="text-align: center">
         
         <tr>
             <th><h2>ID</h2></th>
@@ -19,17 +27,17 @@
             <th><h2>Apellido</h2></th>
             <th><h2>Teléfono</h2></th>
             <th><h2>Correo</h2></th>
-            
+            <th><h2> </h2></th>
         </tr>
 
         {% for clien in cliente %}
-        <tr>
-            <td> <a href='/cliente/{{clien.id}}'> {{clien.id}}</a> </td>
+        <tr >
+            <td> {{clien.id}}</td>
             <td> {{clien.nombre}} </td>
             <td> {{clien.apellido}} </td>
             <td> {{clien.telefono}} </td>
             <td> {{clien.correo}} </td>
-            
+            <td> <a href='/cliente/{{clien.id}}' class="btn btn-primary">Ver</a></td>
         </tr>
         {% endfor %}
 

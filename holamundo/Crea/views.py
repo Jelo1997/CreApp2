@@ -21,6 +21,7 @@ def ver_propiedades_posible(request):
     contenido = {
         'propiedad' : propiedad
     }
+    
     template = "propiedades_posibles.html"
     return render(request, template, contenido)
 

@@ -9,24 +9,45 @@
     <title>CreApp-Clientes</title>
 </head>
 <body>
-    
+    <center>
+        <h1>Datos Cliente</h1>
+    </center>
+    <p align="right">
+        <a href="{% url 'ver_pcliente' %}" class="btn btn-primary">Regresar</a>
+       </p>
     <div class="container mt-4">
-        <div class="card">
-            <div class="card-header">
-                <h1>Datos Posibles Clientes</h1>
-            </div>
-            <h3> {{cliente.nombre}} {{cliente.apellido}} </h3>
-            <h5>Telefono: {{cliente.telefono}} </h5>
-            <h5>Email: {{cliente.correo}} </h5>
-            <h5>Id: {{cliente.id}} </h5>
-
+        <div class="card" style="text-align: center">
+            <table>
+                <tr>
+                    <th><h3>Nombre</h3></th>
+                    <th><h3>Cedula</h3></th>
+                </tr>
+                <tr>
+                    <td><p> {{cliente.nombre}} {{cliente.apellido}} </p></td>
+                    <td><p> {{cliente.cedula}} </p></td>
+                </tr>
+                <tr>
+                    <th><h3>Telefono</h3></th>
+                    <th><h3>Email</h3></th>
+                </tr>
+                <tr>
+                    <td><p>{{cliente.telefono}} </p></td>
+                    <td><p>{{cliente.correo}} </p></td>
+                </tr>
+                <tr>
+                    <td colspan="2"><h3>Observaciones</h3></td>
+                </tr>
+                <tr>
+                    <td colspan="2"><p>{{cliente.observaciones}}</p></td>
+                </tr>
+            </table>    
         </div>
     </div>
 
     <div class="container mt-4">
         <div class="card">
             <div class="card-header">
-                <h1>Seguimiento Procesos</h1>
+                <h2>Seguimiento Procesos</h2>
             </div>
             {% for prop in propiedad %}
             <h3> {{prop.codigo}}  </h3>
@@ -34,23 +55,20 @@
             <h2> {{prop.proceso}} </h2>
             {%endfor%}
         </div>
+
     </div>
 
+<hr>
 
-    <div class="container mt-4">
+    <div class="container mt-4" style="text-align: center">
         <div class="card">
-            <table>
-                <tr>
-                    <h2>Observaciones</h2>
-                </tr>
-                <tr>
-                    <td> {{cliente.observaciones}} </td>
-                    
-                </tr>
+            <table >
                 <td>
                     <a type="button" href="{{ cliente.get_delete_url }}" class="btn btn-danger">Eliminar</a>
                     <a type="button" href="{{ cliente.get_edit_url }}" class="btn btn-warning">Editar</a> 
-                    <a href="{% url 'ver_pcliente' %}" class="btn btn-primary">Volver a Página de Clientes</a>
+                    <!-- 
+                        <a href="{% url 'ver_pcliente' %}" class="btn btn-primary">Volver a Página de Clientes</a>
+                    -->   
                 </td>
             </table>
         </div>

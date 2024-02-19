@@ -9,8 +9,11 @@
     <title>CreApp-Propiedades</title>
 </head>
 <body>
-   <h1>Propiedades Disponibles</h1>
-    <table class="table table-striped">
+    <center>
+        <h1 >Propiedades Disponibles</h1>
+    </center>
+   <hr>
+    <table class="table table-striped" style="text-align: center">
         <tr>
             <td><h2>ID</h2></td>
             <td><h2>Tipo</h2></td>
@@ -19,17 +22,19 @@
             <td><h2>Precio Crea</h2></td>
             <td><h2>Precio Mínimo</h2></td>
             <td><h2>Descripcion</h2></td>
+            <td><h2> </h2></td>
         </tr>
 
                 {% for prop in propiedad %}
                 <tr>
-                    <td><a href='/propiedaddis/{{prop.pk}}'> {{prop.pk}}</a></td>
+                    <td>{{prop.pk}}</td>
                     <td>{{prop.tipo}}</td>
                     <td>{{prop.ubicacion}}</td>
                     <td>{{prop.precio_comercial}}</td>
                     <td>{{prop.precio_crea}}</td>
                     <td>{{prop.precio_minimo}}</td>
                     <td>{{prop.descripcion}}</td>
+                    <td><a href='/propiedaddis/{{prop.pk}}' class="btn btn-primary"> Ver</a> </td>
                 </tr>
                 {% endfor %}
 
