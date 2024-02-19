@@ -4,44 +4,71 @@
 <!DOCTYPE html>
 <html lang="en">
 <head>
-    <meta charset="UTF-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>CreApp-Clientes</title>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>CreApp-Clientes</title>
+  <script src="https://cdnjs.cloudflare.com/ajax/libs/jquery/3.6.0/jquery.min.js"></script> <script>
+    $(document).ready(function() {
+      $("#searchInput").on("keyup", function() {
+        var searchTerm = $(this).val().toLowerCase(); // Get the search term and convert to lowercase for case-insensitive search
+        $(".table-striped tr").each(function() {
+          var rowText = $(this).text().toLowerCase(); // Convert each row's text to lowercase for comparison
+          if (rowText.indexOf(searchTerm) !== -1) {
+            $(this).show(); // Show rows containing the search term
+          } else {
+            $(this).hide(); // Hide rows not containing the search term
+          }
+        });
+      });
+    });
+  </script>
 </head>
 <body>
-    <center>
-        <h1> Clientes </h1>
-    </center>
-    <hr>
-    <p align="right">
-        <a href="{% url 'nuevo_cliente' %}" class="btn btn-primary">Nuevo Cliente</a>
-    </p>
-    
-    <hr>
+  <center>
+    <h1>Clientes</h1>
+  </center>
+  <hr>
+  <table  WIDTH="100%">
+    <tr>
+        <td>
+            <input type="text" id="searchInput" placeholder="Buscar cliente"> 
+            <i class="ti-search "></i>
+        </td>
+        <td>
+            <p align="right">
+                <a href="{% url 'nuevo_cliente' %}" class="btn btn-primary">Nuevo Cliente</a>
+              </p>
+        </td>
+    </tr>
+  </table>
 
-    <table class="table table-striped" style="text-align: center">
-        
-        <tr>
-            <th><h2>ID</h2></th>
-            <th><h2>Nombre</h2></th>
-            <th><h2>Apellido</h2></th>
-            <th><h2>Teléfono</h2></th>
-            <th><h2>Correo</h2></th>
-            <th><h2> </h2></th>
+  <hr>
+  <table class="table table-striped" style="text-align: center">
+
+    <tr>
+      <th><h2>ID</h2></th>
+      <th><h2>Nombre</h2></th>
+      <th><h2>Apellido</h2></th>
+      <th><h2>Teléfono</h2></th>
+      <th><h2>Correo</h2></th>
+      <th><h2> </h2></th>
+    </tr>
+
+    {% for clien in cliente %}
+      {% if clien.estado == 'Vendedor' or 'Vendedor/Comprador' %}
+        <tr class="searchable"> <td>{{clien.id}}</td>
+          <td>{{clien.nombre}}</td>
+          <td>{{clien.apellido}}</td>
+          <td>{{clien.telefono}}</td>
+          <td>{{clien.correo}}</td>
+          <td><a href='/cliente/{{clien.id}}' class="btn btn-primary">Ver</a></td>
         </tr>
+      {% endif %}
+    {% endfor %}
 
-        {% for clien in cliente %}
-        <tr >
-            <td> {{clien.id}}</td>
-            <td> {{clien.nombre}} </td>
-            <td> {{clien.apellido}} </td>
-            <td> {{clien.telefono}} </td>
-            <td> {{clien.correo}} </td>
-            <td> <a href='/cliente/{{clien.id}}' class="btn btn-primary">Ver</a></td>
-        </tr>
-        {% endfor %}
-
-    </table>
+  </table>
+</body>
+</html>
 
 
 

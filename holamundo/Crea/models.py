@@ -14,7 +14,12 @@ class Cliente(models.Model):
     telefono = models.CharField(max_length=144, blank= False, null= False)
     correo = models.EmailField(max_length=144, blank= False, null= False)
     observaciones = models.CharField(max_length=144, blank= False, null= False)
-    
+    estados = (
+        ("Comprador", "Comprador"),
+        ("Vendedor", "Vendedor"),
+        ("Comprador/Vendedor", "Comprador/Vendedor"),
+    )
+    estado = models.CharField(max_length=45, choices=estados, null=True)  
 
     def __str__(self) -> str:
        return f'{self.nombre}'
