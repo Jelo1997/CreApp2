@@ -133,4 +133,15 @@ class Empleado(models.Model):
     def __str__(self) -> str:
        return f'{self.nombre}'
     
-    
+    def get_absolute_url(self):
+
+
+       return reverse("detalle_empleado", kwargs={'codigo_empleado' : self.id})
+   
+    def get_edit_url(self):
+       return reverse("editar_empleado", kwargs={'codigo_empleado' : self.id})
+   
+    def get_delete_url(self):
+
+
+       return reverse("eliminar_empleado", kwargs={'codigo_empleado' : self.id})
