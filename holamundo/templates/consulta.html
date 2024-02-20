@@ -1,0 +1,74 @@
+{% extends 'partials/base.html' %}
+
+{% block content %}
+<center>
+    <h1>Seguimiento de Procesos </h1>
+    <h3>{{ cliente.nombre }} {{ cliente.apellido }}</h3>
+    <h3>{{ cliente.cedula }}</h3>
+</center>
+
+<tbody id="tbody-propiedades">
+    <hr>
+    {% if propd == '' %}
+    {% else %}
+<center>
+    <h2>Procesos de Venta</h2>
+</center>
+<hr>
+
+<table class="table table-striped" style="text-align: center" id="tabla-propiedades">
+
+    <tr>
+      <th>Código</th>
+      <th>Fecha de Ingreso</th>
+      <th>Fecha de Caducidad</th>
+      <th>Estado</th>
+    </tr>
+
+
+      
+        {% for propiedad in propd %}
+          <tr>
+            <td>{{ propiedad.codigo }}</td>
+            <td>{{ propiedad.fecha_ingreso }}</td>
+            <td>{{ propiedad.fecha_caducidad }}</td>
+            <td>{{ propiedad.proceso }}</td>
+          </tr>
+        {% endfor %}
+
+  </table>
+  {% endif %}
+</tbody>
+<hr>
+<center>
+    <h2>Propiedades de Interes</h2>
+</center>
+<hr>
+<table class="table table-striped" style="text-align: center">
+    <tr>
+        <th>Código</th>
+        <th>Ubicación</th>
+        <th>Tipo</th>
+        <th>Precio</th>
+    </tr>
+    {% for propiedad1 in propp %}
+    <tr>
+        <td>{{ propiedad1.codigo}}</td>
+        <td>{{propiedad1.ubicacion}}</td>
+        <td>{{propiedad1.tipo}}</td>
+        <td>{{propiedad1.precio}}</td>
+    </tr>
+    {% endfor %}
+</table>
+
+
+
+{% endblock %}
+<script>
+    const tablaPropiedades = document.getElementById('tabla-propiedades');
+    const tbodyPropiedades = document.getElementById('tbody-propiedades');
+    
+    if (tbodyPropiedades.querySelector('tr')) {
+      tablaPropiedades.classList.remove('oculto');
+    }
+</script>
