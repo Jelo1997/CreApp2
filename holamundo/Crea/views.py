@@ -1,7 +1,9 @@
 import datetime
 from msilib.schema import ListView
-from django.shortcuts import redirect, render, get_object_or_404
 
+
+from django.shortcuts import redirect, render, redirect , get_object_or_404
+from django.views.generic import DetailView
 from django.core.validators import ValidationError
 from django.contrib.auth.decorators import login_required
 from django.shortcuts import get_object_or_404, redirect, render
@@ -281,3 +283,15 @@ def index(request):
     }
     return render(request, template, c)
     
+
+
+def propiedades_por_usuario(request, cedula):
+  cliente = Cliente.objects.get(cedula=cedula)
+  propiedades_disponibles = Propiedad_disponible.objects.filter(id_cliente_id=cliente)
+  propiedades_posibles = Propiedad_posible.objects.filter(id_cliente_id=cliente)
+  context = {
+    "cliente": cliente,
+    "propd": propiedades_disponibles,
+    "propp": propiedades_posibles,
+  }
+  return render(request, "consulta.html", context)
