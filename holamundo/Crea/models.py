@@ -2,10 +2,21 @@ from django import forms
 from django.db import models
 from django.urls import reverse
 
+from django.contrib.auth.models import User
 # Create your models here.
 
 
 #MODELO CLIENTE
+
+class Perfil_Usuario(models.Model):
+   user = models.OneToOneField(User, related_name='perfil', on_delete=models.CASCADE)
+   celular = models.CharField(blank=True,null=True, max_length=255)
+   ubicacion = models.CharField(blank=True,null=True, max_length=255)
+   foto_usuario = models.FileField(
+      upload_to="foto_usuario/",
+      blank=True,
+   )
+   
 
 class Cliente(models.Model):
     nombre = models.CharField(max_length=144, blank= False, null= False)

@@ -1,17 +1,36 @@
 import datetime
 from msilib.schema import ListView
-from django.shortcuts import redirect, render, redirect , get_object_or_404
+from django.shortcuts import redirect, render, get_object_or_404
 
 from django.core.validators import ValidationError
-
+from django.contrib.auth.decorators import login_required
 from django.shortcuts import get_object_or_404, redirect, render
 
-from .models import Propiedad_posible, Propiedad_disponible, Cliente, Empleado
-from .forms import PropiedadForm , CaptarPropiedadForm, ClienteForm, EmpleadoForm
+from .models import Propiedad_posible, Propiedad_disponible, Cliente, Empleado, Perfil_Usuario
+from .forms import PropiedadForm , CaptarPropiedadForm, ClienteForm, EmpleadoForm, Perfil_UsuarioForm
 
 
 # Create your views here.
-
+@login_required
+def ver_perfil_usuario(request):
+    contenido = {}
+    if hasattr(request.user, 'perfil'):
+        perfil = request.user.perfil
+    else:
+        perfil = Perfil_Usuario(user = request.user)
+    if request.method == 'POST':
+        form = Perfil_UsuarioForm(request.POST, request.FILES, instance=perfil)               
+        if form.is_valid():
+            form.save()
+    else:
+        form = Perfil_UsuarioForm(instance=perfil)
+    contenido['form'] = form
+    contenido['empleado'] = perfil
+    
+    return render(request, 'perfil_usuario.html',contenido)
+    
+    
+    
 def index(request):
     template = "index.html"
     return render(request, template)
@@ -261,3 +280,4 @@ def index(request):
         'mensaje': 'Este es un mensaje desde la vista home'
     }
     return render(request, template, c)
+    

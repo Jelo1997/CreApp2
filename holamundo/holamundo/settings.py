@@ -13,6 +13,7 @@ import os
 from pathlib import Path
 from django.contrib.messages import constants as messages
 
+
 # Build paths inside the project like this: BASE_DIR / 'subdir'.
 BASE_DIR = Path(__file__).resolve().parent.parent
 
@@ -241,3 +242,6 @@ SOCIALACCOUNT_PROVIDERS = {
 
 # client id = '556542475411-atai04oepna72lf526enbkq3b5d6sod1.apps.googleusercontent.com'
 # client secret = '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'
+
+MEDIA_UTL = '/media/'
+MEDIA_ROOT = os.path.join(BASE_DIR, 'media')

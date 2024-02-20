@@ -1,19 +1,67 @@
 from django.contrib import admin
-from .models import Propiedad_disponible, Propiedad_posible, Cliente, Empleado
-# Register your models here.
+from .models import Perfil_Usuario, Cliente, Propiedad_posible, Propiedad_disponible, Empleado
 
-@admin.register(Propiedad_posible)
-class PropiedadPAdmin(admin.ModelAdmin):
-    list_display = ('id','es_activo', 'tipo', 'precio')
 
-@admin.register(Propiedad_disponible)
-class PropiedadDAdmin(admin.ModelAdmin):
-    list_display = ('id', 'tipo')
+@admin.register(Perfil_Usuario)
+class Perfil_UsuarioAdmin(admin.ModelAdmin):
+    list_display = ('id', 'user', 'celular', 'ubicacion', 'foto_usuario')
+    list_filter = ('user',)
+
 
 @admin.register(Cliente)
 class ClienteAdmin(admin.ModelAdmin):
-    list_display = ('id', 'nombre')
+    list_display = (
+        'id',
+        'nombre',
+        'apellido',
+        'cedula',
+        'telefono',
+        'correo',
+        'observaciones',
+        'estado',
+    )
+
+
+@admin.register(Propiedad_posible)
+class Propiedad_posibleAdmin(admin.ModelAdmin):
+    list_display = (
+        'id',
+        'codigo',
+        'fecha_registro',
+        'ubicacion',
+        'precio',
+        'tipo',
+        'descripcion',
+        'es_activo',
+        'precio_avaluo',
+        'id_cliente',
+    )
+    list_filter = ('fecha_registro', 'es_activo', 'id_cliente')
+
+
+@admin.register(Propiedad_disponible)
+class Propiedad_disponibleAdmin(admin.ModelAdmin):
+    list_display = (
+        'id',
+        'codigo',
+        'fecha_ingreso',
+        'fecha_caducidad',
+        'tipo',
+        'ubicacion',
+        'descripcion',
+        'tipo_comision',
+        'precio_pactado',
+        'precio_comercial',
+        'precio_crea',
+        'precio_minimo',
+        'convenio',
+        'proceso',
+        'id_cliente',
+    )
+    list_filter = ('fecha_ingreso', 'fecha_caducidad', 'id_cliente')
+
 
 @admin.register(Empleado)
 class EmpleadoAdmin(admin.ModelAdmin):
-    list_display = ('id', )
+    list_display = ('id', 'nombre', 'apellido', 'correo', 'area', 'telefono')
+
