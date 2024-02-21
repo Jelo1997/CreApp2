@@ -3,11 +3,11 @@ from msilib.schema import ListView
 
 
 from django.shortcuts import redirect, render, redirect , get_object_or_404
-from django.views.generic import DetailView
+from django.views.generic import DetailView, FormView
 from django.core.validators import ValidationError
 from django.contrib.auth.decorators import login_required
 from django.shortcuts import get_object_or_404, redirect, render
-
+from django.views.generic import DetailView
 from .models import Propiedad_posible, Propiedad_disponible, Cliente, Empleado, Perfil_Usuario
 from .forms import PropiedadForm , CaptarPropiedadForm, ClienteForm, EmpleadoForm, Perfil_UsuarioForm
 
