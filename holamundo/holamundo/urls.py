@@ -34,7 +34,7 @@ urlpatterns = [
     
     path('mi_perfil/',ver_perfil_usuario,name='ver_perfil_usuario'),
     
-    path('accounts/profile/',ver_perfil_usuario,name='profile'),
+    path('accounts/profile/', ver_perfil_usuario, name='profile'),
     
     path('', views.DashboardView.as_view(), name='dashboard'),
     # calender

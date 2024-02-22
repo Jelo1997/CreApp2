@@ -15,21 +15,21 @@ from .forms import PropiedadForm , CaptarPropiedadForm, ClienteForm, EmpleadoFor
 # Create your views here.
 @login_required
 def ver_perfil_usuario(request):
-    contenido = {}
+    c = {}
     if hasattr(request.user, 'perfil'):
         perfil = request.user.perfil
     else:
-        perfil = Perfil_Usuario(user = request.user)
+        perfil = Perfil_Usuario(user=request.user)
     if request.method == 'POST':
-        form = Perfil_UsuarioForm(request.POST, request.FILES, instance=perfil)               
+        form = Perfil_UsuarioForm(request.POST, request.FILES, instance=perfil)
         if form.is_valid():
             form.save()
     else:
         form = Perfil_UsuarioForm(instance=perfil)
-    contenido['form'] = form
-    contenido['empleado'] = perfil
-    
-    return render(request, 'perfil_usuario.html',contenido)
+    c['form'] = form
+    c['refugio']= perfil
+
+    return render(request, 'perfil_usuario.html', c)
     
     
     

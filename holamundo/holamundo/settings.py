@@ -243,5 +243,5 @@ SOCIALACCOUNT_PROVIDERS = {
 # client id = '556542475411-atai04oepna72lf526enbkq3b5d6sod1.apps.googleusercontent.com'
 # client secret = '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'
 
-MEDIA_UTL = '/media/'
+MEDIA_URL = '/media/'
 MEDIA_ROOT = os.path.join(BASE_DIR, 'media')
