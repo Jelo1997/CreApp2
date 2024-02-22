@@ -67,7 +67,10 @@ class Propiedad_posible(models.Model):
     es_activo = models.BooleanField(blank=False, null=False, default=True, 
                                     verbose_name='¿Propiedad activa?')
     precio_avaluo = models.DecimalField(max_digits=65, decimal_places = 2 ,blank = False, null = False)
-
+    foto_propiedad = models.FileField(
+      upload_to="foto_propiedad/",
+      blank=True,
+    )
     id_cliente = models.ForeignKey( Cliente, related_name ='id_cliente', on_delete=models.CASCADE, null= True)
 
 
@@ -97,6 +100,10 @@ class Propiedad_posible(models.Model):
        return reverse("eliminar_cliente", kwargs={'codigo_cliente' : self.id})
 
 class Propiedad_disponible(models.Model):
+    foto_propiedad = models.FileField(
+      upload_to="foto_propiedad/",
+      blank=True,
+    )
     codigo = models.CharField(max_length=144, blank= False, null= False)
     fecha_ingreso = models.DateField()
     fecha_caducidad = models.DateField()

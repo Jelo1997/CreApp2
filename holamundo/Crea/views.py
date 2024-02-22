@@ -126,6 +126,7 @@ def captar_propiedad(request, codigo_propiedad):
         if form.is_valid():
             # Migrar datos y crear nueva instancia en `propiedad_disponible`
             nueva_propiedad = Propiedad_disponible(
+                foto_propiedad=form.cleaned_data['foto_propiedad'],
                 codigo=form.cleaned_data['codigo'],
                 fecha_ingreso=datetime.date.today(),  # Set fecha_ingreso to today
                 fecha_caducidad=form.cleaned_data.get('fecha_caducidad'),  # Optional field
@@ -295,15 +296,3 @@ def propiedades_por_usuario(request, cedula=None):
     "propp": propiedades_posibles,
   }
   return render(request, "consulta.html", context)
-<<<<<<< Updated upstream
-=======
-
-
-class BuscarPersonaView(FormView):
-    template_name = "realizarconsulta.html"
-    form_class = ClienteForm
-
-    def form_valid(self, form):
-        cedula = form.cleaned_data['cedula']
-        return redirect('consulta', cedula=cedula)
->>>>>>> Stashed changes

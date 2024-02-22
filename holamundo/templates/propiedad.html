@@ -24,6 +24,13 @@
         <h5>Precio : {{propiedad.precio}} </h5>
         <h5>Precio Avaluo: {{propiedad.precio_avaluo}} </h5>
         <h5>Descripcion: {{propiedad.descripcion}} </h5>
+        
+        {% if propiedad.foto_propiedad %}
+
+                <img src="{{propiedad.foto_propiedad.url}}" alt="" width="150px">
+                
+        {% endif %}
+        
     </div>
 </div>
 <div class="container mt-4">
