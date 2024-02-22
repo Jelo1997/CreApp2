@@ -9,12 +9,13 @@ class PropiedadForm(forms.ModelForm):
     
     class Meta:
         model = Propiedad_posible
-        fields = ['codigo', 'fecha_registro', 'ubicacion', 'precio', 'tipo', 'descripcion', 'precio_avaluo', 'id_cliente']
+        fields = ['codigo', 'fecha_registro', 'ubicacion', 'precio', 'tipo', 'descripcion', 'precio_avaluo','foto_propiedad', 'id_cliente']
 
 class CaptarPropiedadForm(forms.ModelForm):
   class Meta:
     model = Propiedad_disponible
     fields = [
+      'foto_propiedad',
       'codigo',
       'fecha_ingreso',
       'fecha_caducidad',

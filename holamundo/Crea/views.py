@@ -13,25 +13,29 @@ from .forms import PropiedadForm , CaptarPropiedadForm, ClienteForm, EmpleadoFor
 
 
 # Create your views here.
-@login_required
+@login_required 
 def ver_perfil_usuario(request):
-    c = {}
-    if hasattr(request.user, 'perfil'):
-        perfil = request.user.perfil
-    else:
-        perfil = Perfil_Usuario(user=request.user)
-    if request.method == 'POST':
-        form = Perfil_UsuarioForm(request.POST, request.FILES, instance=perfil)
-        if form.is_valid():
-            form.save()
-    else:
-        form = Perfil_UsuarioForm(instance=perfil)
-    c['form'] = form
-    c['refugio']= perfil
+    try:
+        # Intenta obtener el perfil del usuario actual
+        perfil = Perfil_Usuario.objects.get(user=request.user)
+        # Si ya tiene datos en el perfil, redirige al dashboard
+        return redirect('dashboard')
+    except Perfil_Usuario.DoesNotExist:
+        pass  # Continúa si no hay datos en el perfil del usuario
 
-    return render(request, 'perfil_usuario.html', c)
-    
-    
+    if request.method == 'POST':
+        form = Perfil_UsuarioForm(request.POST)
+        if form.is_valid():
+            # Guarda los datos del cliente asociados al usuario actual
+            perfil = form.save(commit=False)
+            perfil.user = request.user
+            perfil.save()
+            # Después de guardar, redirige al dashboard
+            return redirect('dashboard')  # Redirige a la página de inicio o donde desees
+    else:
+        form = Perfil_UsuarioForm()
+
+    return render(request, 'perfil_usuario.html', {'form': form})    
     
 def index(request):
     template = "index.html"
@@ -126,6 +130,7 @@ def captar_propiedad(request, codigo_propiedad):
         if form.is_valid():
             # Migrar datos y crear nueva instancia en `propiedad_disponible`
             nueva_propiedad = Propiedad_disponible(
+                foto_propiedad=form.cleaned_data['foto_propiedad'],
                 codigo=form.cleaned_data['codigo'],
                 fecha_ingreso=datetime.date.today(),  # Set fecha_ingreso to today
                 fecha_caducidad=form.cleaned_data.get('fecha_caducidad'),  # Optional field

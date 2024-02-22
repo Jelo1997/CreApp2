@@ -84,6 +84,8 @@ urlpatterns = [
     path('empleado/eliminar/<int:codigo_empleado>/', eliminar_empleado ,name="eliminar_empleado"),
 
     path("consulta/<str:cedula>/", propiedades_por_usuario, name='consulta'),
-    
+
+    #path("consultapersona", BuscarPersonaView.as_view(), name='consultapersona')
+
 ]
 urlpatterns += static (settings.MEDIA_URL, document_root=settings.MEDIA_ROOT)

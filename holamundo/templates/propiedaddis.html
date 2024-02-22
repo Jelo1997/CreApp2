@@ -23,6 +23,14 @@
         <h5>Fecha de Caducidad : {{propiedad.fecha_caducidad}} </h5>
         <h5>Ubicacion : {{propiedad.ubicacion}} </h5>
         <h5>Descripcion : {{propiedad.descripcion}} </h5>
+        <h5>Foto: 
+            {% if propiedad.foto_propiedad %}
+
+            <img src='{{propiedad.foto_propiedad.url}}' alt="" width="150px">
+            
+            {% endif %}
+        </h5>
+
     </div>
 </div>
 <div class="container mt-4">
