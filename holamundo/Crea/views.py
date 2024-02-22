@@ -295,8 +295,7 @@ def propiedades_por_usuario(request, cedula=None):
     "propp": propiedades_posibles,
   }
   return render(request, "consulta.html", context)
-<<<<<<< Updated upstream
-=======
+
 
 
 class BuscarPersonaView(FormView):
@@ -306,4 +305,4 @@ class BuscarPersonaView(FormView):
     def form_valid(self, form):
         cedula = form.cleaned_data['cedula']
         return redirect('consulta', cedula=cedula)
->>>>>>> Stashed changes
+
