@@ -1,0 +1,25 @@
+{% extends 'partials/base.html' %}
+
+{% block content %}
+
+
+<html lang="es">
+<head>
+    <meta charset="UTF-8">
+    <title>Búsqueda por cédula</title>
+</head>
+<body>
+    <h1>Búsqueda por cédula</h1>
+    <form action="{% url 'consulta'%}" method="post">
+
+            {% csrf_token %}
+            <label for="cedula">Cédula:</label>
+            <input type="text" id="cedula" name="cedula" required>
+            
+            <input type="submit" value="Buscar">
+
+    </form>
+
+</body>
+</html>
+{% endblock %}

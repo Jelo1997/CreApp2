@@ -23,7 +23,11 @@ from django.conf import settings
 from django.conf.urls.static import static
 
 
+<<<<<<< Updated upstream
 from Crea.views import ver_propiedades_posible, ver_propiedad, index, captar_propiedad, ver_propiedades_disponibles, ver_propiedaddis, ver_pcliente, ver_pocliente, nueva_propiedad, editar_propiedad, eliminar_propiedad, nuevo_cliente, editar_cliente, eliminar_cliente, ver_empleado, nuevo_empleado, editar_empleado, eliminar_empleado, ver_det_empleado, ver_perfil_usuario, propiedades_por_usuario
+=======
+from Crea.views import   ver_propiedades_posible, ver_propiedad, index, captar_propiedad, ver_propiedades_disponibles, ver_propiedaddis, ver_pcliente, ver_pocliente, nueva_propiedad, editar_propiedad, eliminar_propiedad, nuevo_cliente, editar_cliente, eliminar_cliente, ver_empleado, nuevo_empleado, editar_empleado, eliminar_empleado, ver_det_empleado, propiedades_por_usuario, BuscarPersonaView
+>>>>>>> Stashed changes
 
 urlpatterns = [
 
@@ -82,10 +86,8 @@ urlpatterns = [
     path('empleado/nuevo', nuevo_empleado ,name="nuevo_empleado"),
     path('empleado/editar/<int:codigo_empleado>/', editar_empleado ,name="editar_empleado"),
     path('empleado/eliminar/<int:codigo_empleado>/', eliminar_empleado ,name="eliminar_empleado"),
-    path("propiedades/<str:cedula>/", propiedades_por_usuario, name="propiedades_por_usuario"),
 
-    
-
-
+    path("consulta/<str:cedula>/", propiedades_por_usuario, name='consulta'),
+    path("consultapersona", BuscarPersonaView.as_view(), name='consultapersona')
 ]
 urlpatterns += static (settings.MEDIA_URL, document_root=settings.MEDIA_ROOT)

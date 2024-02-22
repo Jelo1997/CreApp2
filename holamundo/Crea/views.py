@@ -3,11 +3,11 @@ from msilib.schema import ListView
 
 
 from django.shortcuts import redirect, render, redirect , get_object_or_404
-from django.views.generic import DetailView
+from django.views.generic import DetailView, FormView
 from django.core.validators import ValidationError
 from django.contrib.auth.decorators import login_required
 from django.shortcuts import get_object_or_404, redirect, render
-
+from django.views.generic import DetailView
 from .models import Propiedad_posible, Propiedad_disponible, Cliente, Empleado, Perfil_Usuario
 from .forms import PropiedadForm , CaptarPropiedadForm, ClienteForm, EmpleadoForm, Perfil_UsuarioForm
 
@@ -285,7 +285,7 @@ def index(request):
     
 
 
-def propiedades_por_usuario(request, cedula):
+def propiedades_por_usuario(request, cedula=None):
   cliente = Cliente.objects.get(cedula=cedula)
   propiedades_disponibles = Propiedad_disponible.objects.filter(id_cliente_id=cliente)
   propiedades_posibles = Propiedad_posible.objects.filter(id_cliente_id=cliente)
@@ -295,3 +295,15 @@ def propiedades_por_usuario(request, cedula):
     "propp": propiedades_posibles,
   }
   return render(request, "consulta.html", context)
+<<<<<<< Updated upstream
+=======
+
+
+class BuscarPersonaView(FormView):
+    template_name = "realizarconsulta.html"
+    form_class = ClienteForm
+
+    def form_valid(self, form):
+        cedula = form.cleaned_data['cedula']
+        return redirect('consulta', cedula=cedula)
+>>>>>>> Stashed changes
