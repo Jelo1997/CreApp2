@@ -11,10 +11,10 @@
                     <div class="card overflow-hidden">
                         <div class="bg-primary">
                             <div class="text-primary text-center p-4">
-                                <h5 class="text-white font-size-20">Welcome Back !</h5>
-                                <p class="text-white-50">Sign in to continue to Veltrix.</p>
+                                <h3 class="text-white font-size-20">Bienvenido</h3>
+                                
                                 <a href="{% url 'dashboard' %}" class="logo logo-admin">
-                                    <img src="{% static 'images/logo-sm.png' %}" height="24" alt="logo">
+                                    <img src="{% static 'images/crea3.png' %}" height="70" alt="logo">
                                 </a>
                             </div>
                         </div>
@@ -37,7 +37,7 @@
                                             </div>
                                         </div>
                                         <div class="col-sm-6 text-end">
-                                            <button class="btn btn-primary w-md waves-effect waves-light" type="submit">sign In</button>
+                                            <button class="btn btn-primary w-md waves-effect waves-light" type="submit">Ingresar</button>
                                         </div>
                                     </div>
                                     <div class="mt-4 pt-2 text-center">
@@ -51,7 +51,7 @@
 
                                     <div class="mt-2 mb-0 row">
                                         <div class="col-12 mt-4">
-                                            <a href="{% url 'account_reset_password' %}"><i class="mdi mdi-lock"></i> Forgot your password?</a>
+                                            <a href="{% url 'account_reset_password' %}"><i class="mdi mdi-lock"></i> Olvidaste tu contraseña?</a>
                                         </div>
                                     </div>
 
@@ -62,10 +62,7 @@
 
                     </div>
 
-                    <div class="mt-5 text-center">
-                        <p>Don't have an account ? <a href="{{ signup_url }}" class="fw-medium text-primary"> Signup now </a> </p>
-                        <p class="mb-0">© <script>document.write(new Date().getFullYear())</script> Veltrix. Crafted with <i class="mdi mdi-heart text-danger"></i> by Themesdesign</p>
-                    </div>
+
 
 {% endblock content %}
 

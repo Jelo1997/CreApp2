@@ -1,29 +1,22 @@
 {% extends 'partials/base.html' %}
-
+{% load crispy_forms_tags %}
 {% block content %}
+<center>
+        <h1 >Empleados</h1>
+</center>
+<hr>
 <div class="container mt-4">
         <div class="card">
-                <div class="card-header">
-
-                        <h5 class="card-title">Empleados</h5>
-        
-                </div>
                 
                 <form action="" method="post">
                     {% csrf_token %}
 
-                    {% for field in form %}
-
-                    <div class="form-group">     
-                        <label for="exampleInputEmail1">{{ field.label_tag }}</label>
-                        
-                        {{ field }}
-                    </div>
-
-                    {% endfor %}
+                    {{ form|crispy }}
+                    <center>
+                        <input type="submit" class="mt-10 btn btn-primary" value="Enviar">
+                        <a href="{% url 'ver_empleado' %}" class="btn btn-primary">Regresar</a>
+                    </center>
                     
-                    <input type="submit" class="mt-10 btn btn-primary" value="Submit">
-                    <a href="{% url 'ver_empleado' %}" class="btn btn-primary">Volver</a>
                     
             </form>
 
