@@ -14,7 +14,7 @@
     </center>
     <div class="container mt-4">
         <div class="card">         
-            <h5>Telefono: {{empleado.telefono}} </h5>
+            <h5>Celular: {{empleado.celular}} </h5>
             <h5>Email: {{empleado.correo}} </h5>
             
 
@@ -32,7 +32,8 @@
                     
                 </tr>
                 <td>
-                    <a type="button" href="{{ empleado.get_delete_url }}" class="btn btn-danger">Eliminar</a>
+                    <!--
+                    <a type="button" href="{{ empleado.get_delete_url }}" class="btn btn-danger">Eliminar</a> -->
                     <a type="button" href="{{ empleado.get_edit_url }}" class="btn btn-warning">Editar</a> 
                     <a href="{% url 'ver_empleado' %}" class="btn btn-primary">Volver</a>
                 </td>

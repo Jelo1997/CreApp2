@@ -7,17 +7,7 @@ from django.contrib.auth.models import User
 
 
 #MODELO CLIENTE
-
-class Perfil_Usuario(models.Model):
-   user = models.OneToOneField(User, related_name='perfil', on_delete=models.CASCADE, null=True)
-   celular = models.CharField(blank=True,null=True, max_length=255)
-   ubicacion = models.CharField(blank=True,null=True, max_length=255)
-   foto_usuario = models.FileField(
-      upload_to="foto_usuario/",
-      blank=True,
-   )
    
-
 class Cliente(models.Model):
     nombre = models.CharField(max_length=144, blank= False, null= False)
     apellido = models.CharField(max_length=144, blank= False, null= False)
@@ -142,6 +132,7 @@ class Propiedad_disponible(models.Model):
 #MODELO EMPLEADO    
 
 class Empleado(models.Model):
+    user = models.OneToOneField(User, related_name='empleado', on_delete=models.CASCADE, null=True)
     nombre = models.CharField(max_length=144, blank= False, null= True)
     apellido = models.CharField(max_length=144, blank= False, null= True)
     correo  = models.EmailField(max_length=144, blank= False, null= True)
@@ -151,8 +142,11 @@ class Empleado(models.Model):
         ("Tramites", "Tramites"),
     )
     area = models.CharField(max_length=50, choices=areas, blank= False, null= True)
-    telefono = models.CharField(max_length=144, blank= False, null= True)
-    
+    celular = models.CharField(max_length=144, blank= False, null= True)
+    foto = models.FileField(
+      upload_to="foto_empleado/",
+      blank=True,
+    )
     def __str__(self) -> str:
        return f'{self.nombre}'
     

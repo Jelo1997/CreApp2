@@ -1,12 +1,5 @@
 from django.contrib import admin
-from .models import Perfil_Usuario, Cliente, Propiedad_posible, Propiedad_disponible, Empleado
-
-
-@admin.register(Perfil_Usuario)
-class Perfil_UsuarioAdmin(admin.ModelAdmin):
-    list_display = ('id', 'user', 'celular', 'ubicacion', 'foto_usuario')
-    list_filter = ('user',)
-
+from .models import Cliente, Propiedad_posible, Propiedad_disponible, Empleado
 
 @admin.register(Cliente)
 class ClienteAdmin(admin.ModelAdmin):
@@ -63,5 +56,5 @@ class Propiedad_disponibleAdmin(admin.ModelAdmin):
 
 @admin.register(Empleado)
 class EmpleadoAdmin(admin.ModelAdmin):
-    list_display = ('id', 'nombre', 'apellido', 'correo', 'area', 'telefono')
+    list_display = ('id', 'nombre', 'apellido', 'correo', 'area', 'celular','foto')
 

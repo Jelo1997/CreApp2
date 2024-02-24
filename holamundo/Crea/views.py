@@ -8,8 +8,9 @@ from django.core.validators import ValidationError
 from django.contrib.auth.decorators import login_required
 from django.shortcuts import get_object_or_404, redirect, render
 from django.views.generic import DetailView
-from .models import Propiedad_posible, Propiedad_disponible, Cliente, Empleado, Perfil_Usuario
-from .forms import PropiedadForm , CaptarPropiedadForm, ClienteForm, EmpleadoForm, Perfil_UsuarioForm
+from .models import Propiedad_posible, Propiedad_disponible, Cliente, Empleado 
+from .forms import PropiedadForm , CaptarPropiedadForm, ClienteForm, EmpleadoForm
+from django.contrib import messages
 
 
 # Create your views here.
@@ -17,23 +18,23 @@ from .forms import PropiedadForm , CaptarPropiedadForm, ClienteForm, EmpleadoFor
 def ver_perfil_usuario(request):
     try:
         # Intenta obtener el perfil del usuario actual
-        perfil = Perfil_Usuario.objects.get(user=request.user)
+        empleado = Empleado.objects.get(user=request.user)
         # Si ya tiene datos en el perfil, redirige al dashboard
         return redirect('dashboard')
-    except Perfil_Usuario.DoesNotExist:
+    except Empleado.DoesNotExist:
         pass  # Continúa si no hay datos en el perfil del usuario
 
     if request.method == 'POST':
-        form = Perfil_UsuarioForm(request.POST)
+        form = EmpleadoForm(request.POST)
         if form.is_valid():
             # Guarda los datos del cliente asociados al usuario actual
-            perfil = form.save(commit=False)
-            perfil.user = request.user
-            perfil.save()
+            empleado = form.save(commit=False)
+            empleado.user = request.user
+            empleado.save()
             # Después de guardar, redirige al dashboard
             return redirect('dashboard')  # Redirige a la página de inicio o donde desees
     else:
-        form = Perfil_UsuarioForm()
+        form = EmpleadoForm()
 
     return render(request, 'perfil_usuario.html', {'form': form})    
     
@@ -228,6 +229,30 @@ def ver_empleado(request):
     template = "empleado.html"
     return render(request, template, contenido)
 
+def ver_perfil_empleado(request):
+    if not request.user.is_authenticated or not hasattr(request.user, 'empleado'):
+        
+        return render(request, 'error.html', {'mensaje': 'No tienes permiso para acceder a esta página'})
+    
+    empleado = request.user.empleado
+
+    if request.method == 'POST':
+        form = EmpleadoForm(request.POST, request.FILES, instance=empleado)
+        if form.is_valid():
+            form.save()
+            messages.success(request, 'Información actualizada exitosamente.')
+            return redirect('perfil_empleado')
+        else:
+            messages.error(request, 'Error al actualizar la información. Por favor, revisa los campos.')
+    else:
+        form = EmpleadoForm(instance=empleado)
+
+    contenido = {
+        'empleado': empleado,
+        'form': form,
+    }
+    return render(request, 'det_empleado.html', contenido)
+
 def nuevo_empleado(request):
     contenido = {}
     if request.method == 'POST':
@@ -249,23 +274,44 @@ def nuevo_empleado(request):
 
 def editar_empleado(request, codigo_empleado):
     contenido = {}
-    empleado = get_object_or_404(Cliente, pk = codigo_empleado) 
+    empleado = get_object_or_404(Empleado, pk = codigo_empleado) 
     if request.method == 'POST':
-        form = ClienteForm(request.POST, request.FILES, instance=empleado)               
+        form = EmpleadoForm(request.POST, request.FILES, instance=empleado)               
         if form.is_valid():
             form.save()
             return redirect(empleado.get_absolute_url())
     else:
-        form = ClienteForm(instance=empleado)
+        form = EmpleadoForm(instance=empleado)
     contenido['form'] = form
-    contenido['cliente'] = empleado
-    return render(request, 'formulario_cliente.html', contenido)
+    contenido['empleado'] = empleado
+    return render(request, 'formulario_empleado.html', contenido)
 
 def eliminar_empleado(request, codigo_empleado):
     contenido = {}
     contenido['empleado'] = get_object_or_404(Empleado, pk = codigo_empleado) 
     contenido['empleado'].delete()
     return redirect('/empleado/')
+
+def ver_det_empleado(request):
+    if not request.user.is_authenticated or not hasattr(request.user, 'empleado'):
+     empleado = request.user.empleado
+
+    if request.method == 'POST':
+        form = EmpleadoForm(request.POST, request.FILES, instance=empleado)
+        if form.is_valid():
+            form.save()
+            messages.success(request, 'Información actualizada exitosamente.')
+            return redirect('ver_empleado')
+        else:
+            messages.error(request, 'Error al actualizar la información. Por favor, revisa los campos.')
+    else:
+        form = EmpleadoForm(instance=empleado)
+
+    contenido = {
+        'empleado': empleado,
+        'form': form,
+    }
+    return render(request, 'det_empleado.html', contenido)
 
 def ver_det_empleado(request, codigo_empleado):
 

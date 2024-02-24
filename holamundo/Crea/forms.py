@@ -75,10 +75,5 @@ class EmpleadoForm(forms.ModelForm):
 
     class Meta:
         model = Empleado
-        fields = ['telefono', 'apellido','area', 'correo', 'nombre']
+        fields = ['celular', 'apellido', 'correo', 'nombre', 'foto']
         
-class Perfil_UsuarioForm(forms.ModelForm):
-
-    class Meta:
-        model = Perfil_Usuario
-        fields = ['celular', 'ubicacion','foto_usuario']
