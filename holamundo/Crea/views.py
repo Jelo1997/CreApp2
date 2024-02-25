@@ -8,11 +8,10 @@ from django.core.validators import ValidationError
 from django.contrib.auth.decorators import login_required
 from django.shortcuts import get_object_or_404, redirect, render
 from django.views.generic import DetailView
-from .models import Propiedad_posible, Propiedad_disponible, Cliente, Empleado 
-from .forms import PropiedadForm , CaptarPropiedadForm, ClienteForm, EmpleadoForm
-from django.contrib import messages
-from django.urls import reverse
-from django.http import HttpResponse
+from .models import Propiedad_posible, Propiedad_disponible, Cliente, Empleado, Perfil_Usuario
+from .forms import PropiedadForm , CaptarPropiedadForm, ClienteForm, EmpleadoForm, Perfil_UsuarioForm, BuscarPersonaForm
+
+
 # Create your views here.
    
     
@@ -319,9 +318,20 @@ def index(request):
     }
     return render(request, template, c)
     
+class BuscarPersonaView(FormView):
+    template_name = "realizarconsulta.html"
+    form_class = BuscarPersonaForm
 
+    def form_valid(self, form):
+        cedula = form.cleaned_data['cedula']
+        context ={
+            'cedula':cedula
+        }
+        return render(self.request, 'propiedades_por_usuario.html', context) 
 
-def propiedades_por_usuario(request, cedula=None):
+    
+
+def propiedades_por_usuario(request, cedula):
   cliente = Cliente.objects.get(cedula=cedula)
   propiedades_disponibles = Propiedad_disponible.objects.filter(id_cliente_id=cliente)
   propiedades_posibles = Propiedad_posible.objects.filter(id_cliente_id=cliente)
@@ -334,11 +344,5 @@ def propiedades_por_usuario(request, cedula=None):
 
 
 
-class BuscarPersonaView(FormView):
-    template_name = "realizarconsulta.html"
-    form_class = ClienteForm
 
-    def form_valid(self, form):
-        cedula = form.cleaned_data['cedula']
-        return redirect('consulta', cedula=cedula)
 
