@@ -23,7 +23,7 @@ from django.conf import settings
 from django.conf.urls.static import static
 
 
-from Crea.views import ver_propiedades_posible, ver_propiedad, index, captar_propiedad, ver_propiedades_disponibles, ver_propiedaddis, ver_pcliente, ver_pocliente, nueva_propiedad, editar_propiedad, eliminar_propiedad, nuevo_cliente, editar_cliente, eliminar_cliente, ver_empleado, nuevo_empleado, editar_empleado, eliminar_empleado, ver_det_empleado, ver_perfil_usuario, propiedades_por_usuario, ver_perfil_empleado
+from Crea.views import ver_propiedades_posible, ver_propiedad, index, captar_propiedad, ver_propiedades_disponibles, ver_propiedaddis, ver_pcliente, ver_pocliente, nueva_propiedad, editar_propiedad, eliminar_propiedad, nuevo_cliente, editar_cliente, eliminar_cliente, ver_empleado, nuevo_empleado, editar_empleado, eliminar_empleado, ver_det_empleado, propiedades_por_usuario, ver_perfil_empleado
 
 urlpatterns = [
 
@@ -31,10 +31,6 @@ urlpatterns = [
 
 
     path('admin/', admin.site.urls),
-    
-    path('mi_perfil/',ver_perfil_usuario,name='ver_perfil_usuario'),
-    
-    path('accounts/profile/', ver_perfil_usuario, name='profile'),
     
     path('', views.DashboardView.as_view(), name='dashboard'),
     # calender
@@ -78,7 +74,7 @@ urlpatterns = [
     path('cliente/eliminar/<int:codigo_cliente>/', eliminar_cliente ,name="eliminar_cliente"),
     
     path('empleado/', ver_empleado, name="ver_empleado"),
-    path('perfil_empleado/', ver_perfil_empleado, name="ver_perfil_empleado"),
+    path('accounts/profile/', ver_perfil_empleado, name="ver_perfil_empleado"),
     path('empleado/<int:codigo_empleado>/', ver_det_empleado, name="detalle_empleado"),
     path('empleado/nuevo', nuevo_empleado ,name="nuevo_empleado"),
     path('empleado/editar/<int:codigo_empleado>/', editar_empleado ,name="editar_empleado"),

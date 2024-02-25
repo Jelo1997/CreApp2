@@ -11,37 +11,16 @@ from django.views.generic import DetailView
 from .models import Propiedad_posible, Propiedad_disponible, Cliente, Empleado 
 from .forms import PropiedadForm , CaptarPropiedadForm, ClienteForm, EmpleadoForm
 from django.contrib import messages
-
-
+from django.urls import reverse
+from django.http import HttpResponse
 # Create your views here.
-@login_required 
-def ver_perfil_usuario(request):
-    try:
-        # Intenta obtener el perfil del usuario actual
-        empleado = Empleado.objects.get(user=request.user)
-        # Si ya tiene datos en el perfil, redirige al dashboard
-        return redirect('dashboard')
-    except Empleado.DoesNotExist:
-        pass  # Continúa si no hay datos en el perfil del usuario
-
-    if request.method == 'POST':
-        form = EmpleadoForm(request.POST)
-        if form.is_valid():
-            # Guarda los datos del cliente asociados al usuario actual
-            empleado = form.save(commit=False)
-            empleado.user = request.user
-            empleado.save()
-            # Después de guardar, redirige al dashboard
-            return redirect('dashboard')  # Redirige a la página de inicio o donde desees
-    else:
-        form = EmpleadoForm()
-
-    return render(request, 'perfil_usuario.html', {'form': form})    
+   
     
 def index(request):
     template = "index.html"
     return render(request, template)
 
+@login_required
 def ver_propiedades_posible(request):
     propiedad = Propiedad_posible.objects.all()
     contenido = {
@@ -51,7 +30,19 @@ def ver_propiedades_posible(request):
     template = "propiedades_posibles.html"
     return render(request, template, contenido)
 
+@login_required
 def nueva_propiedad(request):
+    # Verificar si el usuario está autenticado y tiene un empleado asociado
+    if not request.user.is_authenticated or not hasattr(request.user, 'empleado'):
+        return HttpResponse('Acceso no permitido')
+
+    # Obtener el empleado asociado al usuario
+    empleado = request.user.empleado
+    
+    # Verificar si el empleado es de la categoría "Aprovicionamiento"
+    if not empleado.es_aprovicionamiento():
+        return HttpResponse('Acceso no permitido')
+    
     contenido = {}
     if request.method == 'POST':
         contenido['form'] = PropiedadForm(
@@ -70,6 +61,7 @@ def nueva_propiedad(request):
     
     return render(request, 'formulario_propiedad.html', contenido)
 
+@login_required
 def editar_propiedad(request, codigo_propiedad):
     contenido = {}
     propiedad = get_object_or_404(Propiedad_posible, pk = codigo_propiedad) 
@@ -84,13 +76,15 @@ def editar_propiedad(request, codigo_propiedad):
     contenido['propiedad'] = propiedad
     return render(request, 'formulario_propiedad.html', contenido)
 
+@login_required
 def eliminar_propiedad(request, codigo_propiedad):
     contenido = {}
     contenido['propiedad'] = get_object_or_404(Propiedad_posible, pk = codigo_propiedad) 
     contenido['propiedad'].es_activo = False
     contenido['propiedad'].save()
     return redirect('/propiedades_posibles/')
-    
+
+@login_required    
 def ver_propiedades_disponibles(request):
     propiedad = Propiedad_disponible.objects.all()
     contenido = {
@@ -99,6 +93,7 @@ def ver_propiedades_disponibles(request):
     template = "propiedades_disponibles.html"
     return render(request, template, contenido)
 
+@login_required
 def ver_propiedad(request, codigo_propiedad):
     propiedad = get_object_or_404(Propiedad_posible, pk = codigo_propiedad )
     cliente = propiedad.id_cliente
@@ -109,6 +104,7 @@ def ver_propiedad(request, codigo_propiedad):
     template = "propiedad.html"
     return render(request, template, contenido)
 
+@login_required
 def ver_propiedaddis(request, codigo_propiedad):
     c = {}
     propiedaddis =  get_object_or_404(Propiedad_disponible, pk=codigo_propiedad)
@@ -121,7 +117,7 @@ def ver_propiedaddis(request, codigo_propiedad):
     return render(request,template, contenido)
 
 
-
+@login_required
 def captar_propiedad(request, codigo_propiedad):
     propiedad = Propiedad_posible.objects.get(pk=codigo_propiedad)
 
@@ -161,6 +157,7 @@ def captar_propiedad(request, codigo_propiedad):
 
     return render(request, 'captar_propiedad.html', context)
 
+@login_required
 def ver_pcliente(request):
     cliente = Cliente.objects.all()
     contenido = {
@@ -169,6 +166,7 @@ def ver_pcliente(request):
     template = "pcliente.html"
     return render(request, template, contenido)
 
+@login_required
 def nuevo_cliente(request):
     contenido = {}
     if request.method == 'POST':
@@ -188,6 +186,7 @@ def nuevo_cliente(request):
     
     return render(request, 'formulario_cliente.html', contenido)
 
+@login_required
 def editar_cliente(request, codigo_cliente):
     contenido = {}
     cliente = get_object_or_404(Cliente, pk = codigo_cliente) 
@@ -202,6 +201,7 @@ def editar_cliente(request, codigo_cliente):
     contenido['cliente'] = cliente
     return render(request, 'formulario_cliente.html', contenido)
 
+@login_required
 def eliminar_cliente(request, codigo_cliente):
     contenido = {}
     contenido['cliente'] = get_object_or_404(Cliente, pk = codigo_cliente) 
@@ -221,6 +221,7 @@ def ver_pocliente(request, codigo_cliente):
     template = "ppcliente.html"
     return render(request, template, contenido)
 
+@login_required
 def ver_empleado(request):
     empleado = Empleado.objects.all()
     contenido = {
@@ -229,31 +230,9 @@ def ver_empleado(request):
     template = "empleado.html"
     return render(request, template, contenido)
 
-def ver_perfil_empleado(request):
-    if not request.user.is_authenticated or not hasattr(request.user, 'empleado'):
-        
-        return render(request, 'error.html', {'mensaje': 'No tienes permiso para acceder a esta página'})
-    
-    empleado = request.user.empleado
-
-    if request.method == 'POST':
-        form = EmpleadoForm(request.POST, request.FILES, instance=empleado)
-        if form.is_valid():
-            form.save()
-            messages.success(request, 'Información actualizada exitosamente.')
-            return redirect('perfil_empleado')
-        else:
-            messages.error(request, 'Error al actualizar la información. Por favor, revisa los campos.')
-    else:
-        form = EmpleadoForm(instance=empleado)
-
-    contenido = {
-        'empleado': empleado,
-        'form': form,
-    }
-    return render(request, 'det_empleado.html', contenido)
-
+@login_required
 def nuevo_empleado(request):
+    
     contenido = {}
     if request.method == 'POST':
         contenido['form'] = EmpleadoForm(
@@ -272,6 +251,7 @@ def nuevo_empleado(request):
     
     return render(request, 'formulario_empleado.html', contenido)
 
+@login_required
 def editar_empleado(request, codigo_empleado):
     contenido = {}
     empleado = get_object_or_404(Empleado, pk = codigo_empleado) 
@@ -286,22 +266,27 @@ def editar_empleado(request, codigo_empleado):
     contenido['empleado'] = empleado
     return render(request, 'formulario_empleado.html', contenido)
 
+@login_required
 def eliminar_empleado(request, codigo_empleado):
     contenido = {}
     contenido['empleado'] = get_object_or_404(Empleado, pk = codigo_empleado) 
     contenido['empleado'].delete()
     return redirect('/empleado/')
 
-def ver_det_empleado(request):
+@login_required
+def ver_perfil_empleado(request):
+    
     if not request.user.is_authenticated or not hasattr(request.user, 'empleado'):
-     empleado = request.user.empleado
-
+        return render(request, 'error.html', {'mensaje': 'No tienes permiso para acceder a esta página'})
+    
+    empleado = request.user.empleado
+    
     if request.method == 'POST':
         form = EmpleadoForm(request.POST, request.FILES, instance=empleado)
         if form.is_valid():
             form.save()
             messages.success(request, 'Información actualizada exitosamente.')
-            return redirect('ver_empleado')
+            return redirect('dashboard')
         else:
             messages.error(request, 'Error al actualizar la información. Por favor, revisa los campos.')
     else:
@@ -313,8 +298,8 @@ def ver_det_empleado(request):
     }
     return render(request, 'det_empleado.html', contenido)
 
+@login_required
 def ver_det_empleado(request, codigo_empleado):
-
 
     empleado = get_object_or_404(Empleado, pk = codigo_empleado )
 

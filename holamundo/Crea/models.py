@@ -137,7 +137,7 @@ class Empleado(models.Model):
     apellido = models.CharField(max_length=144, blank= False, null= True)
     correo  = models.EmailField(max_length=144, blank= False, null= True)
     areas = (
-        ("Aprobicionamiento", "Aprobicionamiento"),
+        ("Aprovicionamiento", "Aprovicionamiento"),
         ("Ventas", "Ventas"),
         ("Tramites", "Tramites"),
     )
@@ -153,12 +153,21 @@ class Empleado(models.Model):
     def get_absolute_url(self):
 
 
-       return reverse("detalle_empleado", kwargs={'codigo_empleado' : self.id})
+      return reverse("detalle_empleado", kwargs={'codigo_empleado' : self.id})
    
     def get_edit_url(self):
-       return reverse("editar_empleado", kwargs={'codigo_empleado' : self.id})
+      return reverse("editar_empleado", kwargs={'codigo_empleado' : self.id})
    
     def get_delete_url(self):
+      return reverse("eliminar_empleado", kwargs={'codigo_empleado' : self.id})
 
+    def es_aprovicionamiento(self):
+      return self.area == "Aprovicionamiento"
 
-       return reverse("eliminar_empleado", kwargs={'codigo_empleado' : self.id})
+    def es_ventas(self):
+      return self.area == "Ventas"
+
+    def es_tramites(self):
+        return self.area == "Tramites"
+     
+     
