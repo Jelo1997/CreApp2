@@ -8,8 +8,8 @@ from django.core.validators import ValidationError
 from django.contrib.auth.decorators import login_required
 from django.shortcuts import get_object_or_404, redirect, render
 from django.views.generic import DetailView
-from .models import Propiedad_posible, Propiedad_disponible, Cliente, Empleado, Perfil_Usuario
-from .forms import PropiedadForm , CaptarPropiedadForm, ClienteForm, EmpleadoForm, Perfil_UsuarioForm, BuscarPersonaForm
+from .models import Propiedad_posible, Propiedad_disponible, Cliente, Empleado
+from .forms import PropiedadForm , CaptarPropiedadForm, ClienteForm, EmpleadoForm, BuscarPersonaForm
 
 
 # Create your views here.
