@@ -319,29 +319,13 @@ def index(request):
     }
     return render(request, template, c)
     
-class BuscarPersonaView(FormView):
-    template_name = "realizarconsulta.html"
-    form_class = BuscarPersonaForm
-
-    def form_valid(self, form):
-        cedula = form.cleaned_data['cedula']
-        context ={
-            'cedula':cedula
-        }
-        return render(self.request, 'propiedades_por_usuario.html', context) 
-
-    
-
-def propiedades_por_usuario(request, cedula):
-  cliente = Cliente.objects.get(cedula=cedula)
-  propiedades_disponibles = Propiedad_disponible.objects.filter(id_cliente_id=cliente)
-  propiedades_posibles = Propiedad_posible.objects.filter(id_cliente_id=cliente)
-  context = {
-    "cliente": cliente,
-    "propd": propiedades_disponibles,
-    "propp": propiedades_posibles,
-  }
-  return render(request, "consulta.html", context)
+def ver_propiedades_por_cliente(request, cedula_cliente):
+    try:
+        propiedades_cliente = Propiedad_disponible.objects.filter(id_cliente__cedula=cedula_cliente)
+        propiedades_con_estado = [(propiedad, propiedad.get_proceso_display()) for propiedad in propiedades_cliente]
+        return render(request, 'ver_propiedades.html', {'propiedades': propiedades_con_estado})
+    except Propiedad_disponible.DoesNotExist:
+        return HttpResponse("El cliente no tiene propiedades asociadas.")
 
 
 class ClienteDetailView(DetailView):
@@ -352,22 +336,23 @@ class ClienteDetailView(DetailView):
         context['form'] = ObservacionesForm()
         return context
 
-def agregar_observaciones(request, pk):
-  cliente = get_object_or_404(Cliente, pk=pk)
+def agregar_observaciones(request, id):
+    cliente = get_object_or_404(Cliente, id=id)
 
-  if request.method == 'POST':
-    form = ObservacionesForm(request.POST)
+    if request.method == 'POST':
+        form = ObservacionesForm(request.POST)
 
-    if form.is_valid():
-      observacion = form.cleaned_data['observacion']
-      cliente.observaciones_adicionales += observacion + '\n'
-      cliente.save()
-      return redirect('cliente_detalle', pk=pk)
+        if form.is_valid():
+            print(form.cleaned_data) 
+            observacion = form.cleaned_data['observaciones_adicionales']
+            cliente.observaciones_adicionales += observacion + '\n'
+            cliente.save()
+            
+    else:
+        form = ObservacionesForm()
+        print(form.errors)
 
-  else:
-    form = ObservacionesForm()
-
-  context = {'cliente': cliente, 'form': form}
-  return render(request, 'agregar_observaciones.html', context)
+    context = {'cliente': cliente, 'form': form}
+    return render(request, "ppcliente.html", context)
 
 

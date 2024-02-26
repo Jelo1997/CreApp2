@@ -11,6 +11,11 @@
 <body>
    <center>
         <h1>Datos Propiedad</h1>
+        {% if propiedad.foto_propiedad %}
+
+        <img src="{{propiedad.foto_propiedad.url}}" alt="" width="150px">
+        
+        {% endif %}
    </center>
 <div class="container mt-4">
     <div class="card">
@@ -25,11 +30,7 @@
         <h5>Precio Avaluo: {{propiedad.precio_avaluo}} </h5>
         <h5>Descripcion: {{propiedad.descripcion}} </h5>
         
-        {% if propiedad.foto_propiedad %}
 
-                <img src="{{propiedad.foto_propiedad.url}}" alt="" width="150px">
-                
-        {% endif %}
         
     </div>
 </div>
