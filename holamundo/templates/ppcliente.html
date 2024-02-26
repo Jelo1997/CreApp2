@@ -34,15 +34,35 @@
                     <td><p>{{cliente.telefono}} </p></td>
                     <td><p>{{cliente.correo}} </p></td>
                 </tr>
-                <tr>
-                    <td colspan="2"><h3>Observaciones</h3></td>
-                </tr>
-                <tr>
-                    <td colspan="2"><p>{{cliente.observaciones}}</p></td>
-                </tr>
+
             </table>    
         </div>
     </div>
+    <div class="container mt-4">
+        <div class="card">
+            <div class="card-header">
+                <h3>Observaciones</h3>
+            </div>
+            <p>{{cliente.observaciones}}</p>
+        </div>
+    </div>
+    
+    <div class="container">
+        <h2>Agregar observaciones</h2>
+        <button id="show-form" onclick="showForm()">Mostrar formulario</button>
+      
+        <div id="form" style="display: none;">
+          <form action="{% url 'agregar_observaciones' cliente.id %}" method="post">
+            {% csrf_token %}
+            <label for="observacion">Observaciones:</label>
+            <br>
+            <textarea name="observacion" id="observacion" rows="5" cols="50"></textarea>
+            <br>
+            <button type="submit" class="btn btn-primary">Agregar</button>
+          </form>
+        </div>
+      </div>
+
 
     <div class="container mt-4">
         <div class="card">
@@ -77,6 +97,13 @@
 
     
 </body>
+{% endblock %}
+{% block scripts %}
+    <script>
+    function showForm() {
+      document.getElementById('form').style.display = 'block';
+    }
+    </script>
 </html>
 
 {% endblock %}

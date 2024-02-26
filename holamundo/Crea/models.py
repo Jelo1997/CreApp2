@@ -21,7 +21,7 @@ class Cliente(models.Model):
         ("Comprador/Vendedor", "Comprador/Vendedor"),
     )
     estado = models.CharField(max_length=45, choices=estados, null=True)  
-
+    observaciones_adicionales = models.TextField(blank=True, null=True)
     def __str__(self) -> str:
        return f'{self.nombre}'
 

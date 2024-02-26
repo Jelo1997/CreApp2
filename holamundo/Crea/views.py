@@ -1,6 +1,7 @@
 import datetime
 from msilib.schema import ListView
-
+from django.http import HttpResponse
+from django.contrib import messages
 
 from django.shortcuts import redirect, render, redirect , get_object_or_404
 from django.views.generic import DetailView, FormView
@@ -9,7 +10,7 @@ from django.contrib.auth.decorators import login_required
 from django.shortcuts import get_object_or_404, redirect, render
 from django.views.generic import DetailView
 from .models import Propiedad_posible, Propiedad_disponible, Cliente, Empleado
-from .forms import PropiedadForm , CaptarPropiedadForm, ClienteForm, EmpleadoForm, BuscarPersonaForm
+from .forms import PropiedadForm , CaptarPropiedadForm, ClienteForm, EmpleadoForm, BuscarPersonaForm, ObservacionesForm
 
 
 # Create your views here.
@@ -343,6 +344,30 @@ def propiedades_por_usuario(request, cedula):
   return render(request, "consulta.html", context)
 
 
+class ClienteDetailView(DetailView):
+    model = Cliente
 
+    def get_context_data(self, **kwargs):
+        context = super().get_context_data(**kwargs)
+        context['form'] = ObservacionesForm()
+        return context
+
+def agregar_observaciones(request, pk):
+  cliente = get_object_or_404(Cliente, pk=pk)
+
+  if request.method == 'POST':
+    form = ObservacionesForm(request.POST)
+
+    if form.is_valid():
+      observacion = form.cleaned_data['observacion']
+      cliente.observaciones_adicionales += observacion + '\n'
+      cliente.save()
+      return redirect('cliente_detalle', pk=pk)
+
+  else:
+    form = ObservacionesForm()
+
+  context = {'cliente': cliente, 'form': form}
+  return render(request, 'agregar_observaciones.html', context)
 
 

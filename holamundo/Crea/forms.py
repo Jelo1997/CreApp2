@@ -79,3 +79,6 @@ class EmpleadoForm(forms.ModelForm):
 
 class BuscarPersonaForm(forms.Form):
   cedula = forms.CharField(label="Cédula", max_length=10)
+
+class ObservacionesForm(forms.Form):
+    observacion = forms.CharField(widget=forms.Textarea, label="observaciones_adicionales")

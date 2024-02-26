@@ -23,7 +23,7 @@ from django.conf import settings
 from django.conf.urls.static import static
 
 
-from Crea.views import BuscarPersonaView, ver_propiedades_posible, ver_propiedad, index, captar_propiedad, ver_propiedades_disponibles, ver_propiedaddis, ver_pcliente, ver_pocliente, nueva_propiedad, editar_propiedad, eliminar_propiedad, nuevo_cliente, editar_cliente, eliminar_cliente, ver_empleado, nuevo_empleado, editar_empleado, eliminar_empleado, ver_det_empleado, propiedades_por_usuario,ver_perfil_empleado
+from Crea.views import BuscarPersonaView, ver_propiedades_posible, ver_propiedad, index, captar_propiedad, ver_propiedades_disponibles, ver_propiedaddis, ver_pcliente, ver_pocliente, nueva_propiedad, editar_propiedad, eliminar_propiedad, nuevo_cliente, editar_cliente, eliminar_cliente, ver_empleado, nuevo_empleado, editar_empleado, eliminar_empleado, ver_det_empleado, propiedades_por_usuario,ver_perfil_empleado, agregar_observaciones
 
 urlpatterns = [
 
@@ -82,7 +82,9 @@ urlpatterns = [
 
     path("consulta/<str:cedula>/", propiedades_por_usuario, name='consulta'),
 
-    path("consultapersona", BuscarPersonaView.as_view(), name='consultapersona')
+    path("consultapersona", BuscarPersonaView.as_view(), name='consultapersona'),
+
+    path('cliente/<int:pk>/agregar_observaciones/', agregar_observaciones, name='agregar_observaciones'),
 
 ]
 urlpatterns += static (settings.MEDIA_URL, document_root=settings.MEDIA_ROOT)
