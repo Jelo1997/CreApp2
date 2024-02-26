@@ -370,6 +370,35 @@ def propiedades_por_usuario(request, cedula):
     }
     return render(request, "consulta.html", context) 
 
+def procesos_propiedades(request):
+    cliente = Cliente.objects.all
+    propiedades_disponibles = Propiedad_disponible.objects.all
+    context={
+        "cliente": cliente,
+        "propd": propiedades_disponibles,
+    }
+    return render(request, "procesos.html", context) 
+
+
+def actualizar_proceso(request, propiedad_id):
+ if request.method == 'POST':
+        propiedad = Propiedad_disponible.objects.get(pk=propiedad_id)
+        nuevo_proceso_valor = request.POST.get('proceso')
+        nuevo_proceso_etiqueta = None
+        
+        # Buscar la etiqueta del nuevo proceso
+        for valor, etiqueta in propiedad.proc2:
+            if valor == nuevo_proceso_valor:
+                nuevo_proceso_etiqueta = etiqueta
+                break
+        
+        nuevas_observaciones = request.POST.get('observaciones')
+        
+        # Actualizar los datos de la propiedad
+        propiedad.proceso_venta = nuevo_proceso_etiqueta
+        propiedad.observaciones_procesos = nuevas_observaciones
+        propiedad.save()
+        return redirect('procesos propiedades')
 
 class ClienteDetailView(DetailView):
     model = Cliente

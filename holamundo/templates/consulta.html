@@ -13,7 +13,7 @@
     {% if propd == '' %}
     {% else %}
 <center>
-    <h2>Procesos de Venta</h2>
+    <h2>Procesos de Compra</h2>
 </center>
 <hr>
 
@@ -21,21 +21,19 @@
 
     <tr>
       <th>Código</th>
-      <th>Fecha de Ingreso</th>
-      <th>Fecha de Caducidad</th>
-      <th>Estado</th>
+      <th>Tipo</th>
+      <th>Ubicación</th>
       <th>Proceso</th>
+      <th>Observaciones</th>
     </tr>
 
-
-      
         {% for propiedad in propd %}
           <tr>
             <td>{{ propiedad.codigo }}</td>
-            <td>{{ propiedad.fecha_ingreso }}</td>
-            <td>{{ propiedad.fecha_caducidad }}</td>
-            <td>{{ propiedad.proceso }}</td>
+            <td> {{propiedad.tipo}} </td>
+            <td> {{propiedad.ubicacion}} </td>
             <td> {{propiedad.proceso_venta}} </td>
+            <td> {{propiedad.observaciones_procesos}} </td>
           </tr>
         {% endfor %}
 
@@ -43,28 +41,6 @@
   {% endif %}
 </tbody>
 <hr>
-<center>
-    <h2>Propiedades de Interes</h2>
-</center>
-<hr>
-<table class="table table-striped" style="text-align: center">
-    <tr>
-        <th>Código</th>
-        <th>Ubicación</th>
-        <th>Tipo</th>
-        <th>Precio</th>
-    </tr>
-    {% for propiedad1 in propp %}
-    <tr>
-        <td>{{ propiedad1.codigo}}</td>
-        <td>{{propiedad1.ubicacion}}</td>
-        <td>{{propiedad1.tipo}}</td>
-        <td>{{propiedad1.precio}}</td>
-    </tr>
-    {% endfor %}
-</table>
-
-
 
 {% endblock %}
 <script>

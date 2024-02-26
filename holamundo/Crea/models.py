@@ -146,6 +146,7 @@ class Propiedad_disponible(models.Model):
         ("19", "Fin Compra y venta de contado"),
     )
     proceso_venta = models.CharField(max_length=60, choices=proc2, null=True)
+    observaciones_procesos = models.TextField(max_length=500, blank= False, null= True)
     id_cliente = models.ForeignKey(Cliente, related_name ='pk', on_delete=models.CASCADE, null= True)
 
     def __str__(self) -> str:

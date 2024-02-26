@@ -49,7 +49,7 @@ INSTALLED_APPS = [
     'email_templates',
     'layouts',
     'authentication',
-
+    
     "crispy_forms",
     'crispy_bootstrap5',
 

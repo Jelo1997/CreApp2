@@ -1,0 +1,80 @@
+{% extends 'partials/base.html' %}
+
+{% block content %}
+<center>
+    <h2>Procesos de Compras</h2>
+</center>
+<hr>
+<table class="table table-striped" style="text-align: center" id="tabla-propiedades">
+
+    <tr>
+      <th>Código</th>
+      <th>Tipo</th>
+      <th>Ubicación</th>
+      <th>Proceso</th>
+      <th>Observaciones</th>
+    </tr>
+
+        {% for propiedad in propd %}
+
+     
+          <tr>
+            <td>{{ propiedad.codigo }}</td>
+            <td> {{propiedad.tipo}} </td>
+            <td> {{propiedad.ubicacion}} </td>
+            {% if propiedad.id_cliente %}
+                <td>{{ propiedad.id_cliente.cedula }}</td>
+                <td>{{ propiedad.id_cliente.telefono }}</td>
+            {% else %}
+                <td>No asignado</td>
+                <td>No asignado</td>
+            {% endif %}
+            <td> {{propiedad.proceso_venta}} </td>
+            <td> {{propiedad.observaciones_procesos}} </td>
+            <td>
+                <button type="button" class="btn btn-primary" data-toggle="modal" data-target="#editarModal{{ propiedad.id }}">
+                    Editar
+                </button>
+                <!-- Modal -->
+                <div class="modal fade" id="editarModal{{ propiedad.id }}" tabindex="-1" role="dialog" aria-labelledby="editarModalLabel{{ propiedad.id }}" aria-hidden="true">
+                    <div class="modal-dialog" role="document">
+                        <div class="modal-content">
+                            <div class="modal-header">
+                                <h5 class="modal-title" id="editarModalLabel{{ propiedad.id }}">Editar Proceso</h5>
+                                <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+                                    <span aria-hidden="true">&times;</span>
+                                </button>
+                            </div>
+                            <div class="modal-body">
+                                <form method="post" action="{% url 'ruta_para_actualizar_proceso' propiedad.id %}">
+                                    {% csrf_token %}
+                                    <div class="form-group">
+                                        <label for="proceso{{ propiedad.id }}">Proceso:</label>
+                                        <select class="form-control" id="proceso{{ propiedad.id }}" name="proceso">
+                                            {% for option in propiedad.proc2 %}
+                                                <option value="{{ option.0 }}" {% if option.0 == propiedad.proceso_venta %} selected {% endif %}>{{ option.1 }}</option>
+                                            {% endfor %}
+                                        </select>
+                                    </div>
+                                    <div class="form-group">
+                                        <label for="observaciones{{ propiedad.id }}">Observaciones:</label>
+                                        <textarea class="form-control" id="observaciones{{ propiedad.id }}" name="observaciones">{{ propiedad.observaciones_procesos }}</textarea>
+                                    </div>
+                                    <button type="submit" class="btn btn-primary">Guardar Cambios</button>
+                                </form>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </td>
+          </tr>
+          
+        {% endfor %}
+
+  </table>
+  
+
+  <script src="https://code.jquery.com/jquery-3.6.0.min.js"></script>
+  <script src="https://cdnjs.cloudflare.com/ajax/libs/popper.js/1.14.7/umd/popper.min.js"></script>
+  <script src="https://stackpath.bootstrapcdn.com/bootstrap/4.3.1/js/bootstrap.min.js"></script>
+{% endblock %}
