@@ -31,7 +31,9 @@ def generar_convenio_pdf(request, codigo_propiedad):
         'cedula_cliente': cliente.cedula,
         'tipo_propiedad': propiedad.tipo,
         'ubicacion_propiedad': propiedad.ubicacion,
-        'pecio_pactado': propiedad.precio_pactado,
+        'precio_pactado': propiedad.precio_pactado,
+        'fecha_ingreso' : propiedad.fecha_ingreso,
+        'fecha_caducidad' : propiedad.fecha_caducidad,
     }
     
     # Carga la plantilla HTML del convenio
