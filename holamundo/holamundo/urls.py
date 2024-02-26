@@ -87,7 +87,7 @@ urlpatterns = [
     #convenio
     path('convenio/<int:codigo_propiedad>/', generar_convenio_pdf, name='convenio'),
 
-    path('cliente/<int:pk>/agregar_observaciones/', agregar_observaciones, name='agregar_observaciones'),
+    path('cliente/<int:id>/agregar_observaciones/', agregar_observaciones, name='agregar_observaciones'),
 
 ]
 urlpatterns += static (settings.MEDIA_URL, document_root=settings.MEDIA_ROOT)

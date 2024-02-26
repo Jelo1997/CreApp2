@@ -21,7 +21,7 @@ class Cliente(models.Model):
         ("Comprador/Vendedor", "Comprador/Vendedor"),
     )
     estado = models.CharField(max_length=45, choices=estados, null=True)  
-    observaciones_adicionales = models.TextField(blank=True, null=True)
+    observaciones_adicionales = models.TextField(blank=True, null=True, default='')
     def __str__(self) -> str:
        return f'{self.nombre}'
 
@@ -40,7 +40,7 @@ class Cliente(models.Model):
 
 
     
-#MODELO PROPIEDAD DISPONIBLE
+#MODELO PROPIEDAD POSIBLE
 
 class Propiedad_posible(models.Model):
     codigo = models.CharField(max_length=144, blank= False, null= False)
@@ -124,6 +124,28 @@ class Propiedad_disponible(models.Model):
         ("Jurídico", "Jurídico")
     )
     proceso = models.CharField(max_length=20, choices=proc)
+    proc2 = (
+        ("1", "Levantamiento planimétrico de compra y venta (1 semana)"),
+        ("2", "Aprobación de la planimetría en el municipio (3 semanas)"),
+        ("3", "Minuta y documentación en notaria (4 días)"),
+        ("4", "Ingreso de la carpeta en notaria (3 días)"),
+        ("5", "Espera para la asignación de un perito evaluador (3 semanas)"),
+        ("6", "Aprobación de perito evaluador (3 días)"),
+        ("7", "Crédito aprobado"),
+        ("8", "Firmas de traspaso de dominio en notaria"),
+        ("9", "Registro del crédito hipotecario en el municipio(3 días)"),
+        ("10", "Fin"),
+        ("11", "Levantamiento planimétrico de compra y venta (1 semana)"),
+        ("12", "Aprobación de la planimetría en el municipio (3 semanas)"),
+        ("13", "Minuta y documentación en notaria (4 días)"),
+        ("14", "Ingreso al departamento de rentas en el municipio (1 semana)"),
+        ("15", "Pago de alcabalas y plusvalía"),
+        ("16", "Reingreso a la notaría para la revisión (3 días)"),
+        ("17", "Firmas de la compra y venta en notaria (2 dias)"),
+        ("18", "Registro de las escrituras en el municipio (3 dias )"),
+        ("19", "Fin Compra y venta de contado"),
+    )
+    proceso_venta = models.CharField(max_length=20, choices=proc2, null=True)
     id_cliente = models.ForeignKey(Cliente, related_name ='pk', on_delete=models.CASCADE, null= True)
 
     def __str__(self) -> str:
