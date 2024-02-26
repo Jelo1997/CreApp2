@@ -24,6 +24,7 @@
       <th>Fecha de Ingreso</th>
       <th>Fecha de Caducidad</th>
       <th>Estado</th>
+      <th>Proceso</th>
     </tr>
 
 
@@ -34,6 +35,7 @@
             <td>{{ propiedad.fecha_ingreso }}</td>
             <td>{{ propiedad.fecha_caducidad }}</td>
             <td>{{ propiedad.proceso }}</td>
+            <td> {{propiedad.proceso_venta}} </td>
           </tr>
         {% endfor %}
 

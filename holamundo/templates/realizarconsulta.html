@@ -3,34 +3,19 @@
 {% block content %}
 
 
-<!DOCTYPE html>
 <html lang="es">
 <head>
     <meta charset="UTF-8">
-    <meta http-equiv="X-UA-Compatible" content="IE=edge">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Consulta de Propiedades por Cliente</title>
+    <title>Búsqueda por cédula</title>
 </head>
 <body>
-    <h1>Consulta de Propiedades por Cliente</h1>
-    <form action="{% url 'ver_propiedades_por_cliente' %}" method="get">
-        <label for="cedula_cliente">Cédula del Cliente:</label>
-        <input type="text" id="cedula_cliente" name="cedula_cliente">
-        <button type="submit">Consultar</button>
-    </form>
+    <h1>Búsqueda por cédula</h1>
+    <form action="{% url 'consultapersona' %}" method="post">
+        {% csrf_token %}
+        {{ form }}
+        <button type="submit">Buscar</button>
+      </form>
 
-    {% if propiedades %}
-    <h2>Propiedades del Cliente:</h2>
-    <ul>
-        {% for propiedad, estado_proceso in propiedades %}
-        <li>
-            <strong>Código:</strong> {{ propiedad.codigo }}<br>
-            <strong>Estado del Proceso:</strong> {{ estado_proceso }}
-        </li>
-        {% endfor %}
-    </ul>
-    {% endif %}
 </body>
 </html>
-
 {% endblock %}

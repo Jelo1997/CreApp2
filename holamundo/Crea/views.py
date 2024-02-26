@@ -319,13 +319,24 @@ def index(request):
     }
     return render(request, template, c)
     
-def ver_propiedades_por_cliente(request, cedula_cliente):
-    try:
-        propiedades_cliente = Propiedad_disponible.objects.filter(id_cliente__cedula=cedula_cliente)
-        propiedades_con_estado = [(propiedad, propiedad.get_proceso_display()) for propiedad in propiedades_cliente]
-        return render(request, 'ver_propiedades.html', {'propiedades': propiedades_con_estado})
-    except Propiedad_disponible.DoesNotExist:
-        return HttpResponse("El cliente no tiene propiedades asociadas.")
+class BuscarPersonaView(FormView):
+    template_name = "realizarconsulta.html"
+    form_class = BuscarPersonaForm
+
+    def form_valid(self, form):
+        cedula = form.cleaned_data['cedula']
+        return propiedades_por_usuario(self.request, cedula)  # Llama a la vista de función propiedades_por_usuario
+
+def propiedades_por_usuario(request, cedula):
+    cliente = Cliente.objects.get(cedula=cedula)
+    propiedades_disponibles = Propiedad_disponible.objects.filter(id_cliente_id=cliente)
+    propiedades_posibles = Propiedad_posible.objects.filter(id_cliente_id=cliente)
+    context = {
+        "cliente": cliente,
+        "propd": propiedades_disponibles,
+        "propp": propiedades_posibles,
+    }
+    return render(request, "consulta.html", context) 
 
 
 class ClienteDetailView(DetailView):

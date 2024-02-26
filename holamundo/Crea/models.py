@@ -145,7 +145,7 @@ class Propiedad_disponible(models.Model):
         ("18", "Registro de las escrituras en el municipio (3 dias )"),
         ("19", "Fin Compra y venta de contado"),
     )
-    proceso_venta = models.CharField(max_length=20, choices=proc2, null=True)
+    proceso_venta = models.CharField(max_length=60, choices=proc2, null=True)
     id_cliente = models.ForeignKey(Cliente, related_name ='pk', on_delete=models.CASCADE, null= True)
 
     def __str__(self) -> str:
