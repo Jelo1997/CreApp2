@@ -64,9 +64,6 @@ INSTALLED_APPS = [
     'rest_framework',
     'Crea',
     
-    
-    
-
 ]
 
 MIDDLEWARE = [
