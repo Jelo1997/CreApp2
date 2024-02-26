@@ -128,7 +128,7 @@ class Propiedad_disponible(models.Model):
 
     def __str__(self) -> str:
        return f'{self.codigo}'
-    
+
 #MODELO EMPLEADO    
 
 class Empleado(models.Model):
@@ -151,8 +151,6 @@ class Empleado(models.Model):
        return f'{self.nombre}'
     
     def get_absolute_url(self):
-
-
       return reverse("detalle_empleado", kwargs={'codigo_empleado' : self.id})
    
     def get_edit_url(self):

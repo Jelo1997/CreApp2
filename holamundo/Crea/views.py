@@ -10,11 +10,42 @@ from django.shortcuts import get_object_or_404, redirect, render
 from django.views.generic import DetailView
 from .models import Propiedad_posible, Propiedad_disponible, Cliente, Empleado
 from .forms import PropiedadForm , CaptarPropiedadForm, ClienteForm, EmpleadoForm, BuscarPersonaForm
+from django.http import HttpResponse
+
+#generar pdf
+from django.template.loader import get_template
+from weasyprint import HTML
 
 
 # Create your views here.
    
+def generar_convenio_pdf(request, codigo_propiedad):
+    # Obtiene los datos específicos del convenio
     
+    propiedad = get_object_or_404(Propiedad_disponible, pk=codigo_propiedad)
+    cliente = propiedad.id_cliente
+    datos_convenio = {
+        'nombre_cliente': cliente.nombre + ' ' + cliente.apellido,
+        'cedula_cliente': cliente.cedula,
+        'tipo_propiedad': propiedad.tipo,
+        'ubicacion_propiedad': propiedad.ubicacion,
+        'pecio_pactado': propiedad.precio_pactado,
+    }
+    
+    # Carga la plantilla HTML del convenio
+    template = get_template('convenio.html')
+
+    # Renderiza la plantilla con los datos del convenio
+    html_content = template.render(datos_convenio)
+
+    # Convierte el contenido HTML en un documento PDF
+    pdf_file = HTML(string=html_content).write_pdf()
+
+    # Devuelve el archivo PDF como respuesta HTTP
+    response = HttpResponse(pdf_file, content_type='application/pdf')
+    response['Content-Disposition'] = 'filename="convenio.pdf"'
+    return response
+
 def index(request):
     template = "index.html"
     return render(request, template)
