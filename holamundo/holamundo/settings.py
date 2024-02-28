@@ -186,7 +186,12 @@ ACCOUNT_EMAIL_VERIFICATION = 'mandatory'
 # static files
 STATIC_URL = '/static/'
 STATICFILES_DIRS = [os.path.join(BASE_DIR,'static'),
-                    os.path.join(BASE_DIR,'src')]
+                    os.path.join(BASE_DIR,'static/css'),
+                    os.path.join(BASE_DIR,'static/fonts'),
+                    os.path.join(BASE_DIR,'static/images'),
+                    os.path.join(BASE_DIR,'static/js'),
+                    os.path.join(BASE_DIR,'static/src'),
+                    os.path.join(BASE_DIR,'static/libs'),]
 STATIC_ROOT = os.path.join(BASE_DIR,'static/assets')
 
 CRISPY_ALLOWED_TEMPLATE_PACKS = "bootstrap5"
