@@ -82,7 +82,7 @@ ROOT_URLCONF = 'holamundo.urls'
 TEMPLATES = [
     {
         'BACKEND': 'django.template.backends.django.DjangoTemplates',
-        'DIRS': ['templates'],
+        'DIRS': ['templates','/home/sfk/CreApp2/holamundo/templates'],
         'APP_DIRS': True,
         'OPTIONS': {
             'context_processors': [
