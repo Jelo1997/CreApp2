@@ -185,7 +185,15 @@ ACCOUNT_EMAIL_VERIFICATION = 'mandatory'
 
 # static files
 STATIC_URL = '/static/'
-STATICFILES_DIRS = [os.path.join(BASE_DIR,'static/assets'),]
+STATICFILES_DIRS = [os.path.join(BASE_DIR,'static/admin'),
+                    os.path.join(BASE_DIR,'static/css'),
+                    os.path.join(BASE_DIR,'static/django_extensions'),
+                    os.path.join(BASE_DIR,'static/fonts'),
+                    os.path.join(BASE_DIR,'static/images'),
+                    os.path.join(BASE_DIR,'static/js'),
+                    os.path.join(BASE_DIR,'static/libs'),
+                    os.path.join(BASE_DIR,'static/rest_framework'),
+                    os.path.join(BASE_DIR,'templates'),]
 STATIC_ROOT = os.path.join(BASE_DIR,'static')
 
 CRISPY_ALLOWED_TEMPLATE_PACKS = "bootstrap5"
