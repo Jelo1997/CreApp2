@@ -158,7 +158,7 @@ USE_TZ = True
 # Static files (CSS, JavaScript, Images)
 # https://docs.djangoproject.com/en/4.2/howto/static-files/
 
-STATIC_URL = 'static/'
+
 
 # Default primary key field type
 # https://docs.djangoproject.com/en/4.2/ref/settings/#default-auto-field
@@ -185,14 +185,8 @@ ACCOUNT_EMAIL_VERIFICATION = 'mandatory'
 
 # static files
 STATIC_URL = '/static/'
-STATICFILES_DIRS = [os.path.join(BASE_DIR,'static'),
-                    os.path.join(BASE_DIR,'static/css'),
-                    os.path.join(BASE_DIR,'static/fonts'),
-                    os.path.join(BASE_DIR,'static/images'),
-                    os.path.join(BASE_DIR,'static/js'),
-                    os.path.join(BASE_DIR,'static/src'),
-                    os.path.join(BASE_DIR,'static/libs'),]
-STATIC_ROOT = os.path.join(BASE_DIR,'static/assets')
+STATICFILES_DIRS = [os.path.join(BASE_DIR,'static/assets'),]
+STATIC_ROOT = os.path.join(BASE_DIR,'static')
 
 CRISPY_ALLOWED_TEMPLATE_PACKS = "bootstrap5"
 CRISPY_TEMPLATE_PACK = "bootstrap5"
