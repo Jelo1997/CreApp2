@@ -189,6 +189,7 @@ STATICFILES_DIRS = [os.path.join(BASE_DIR,'Crea'),
                     os.path.join(BASE_DIR,'holamundo'),
                     os.path.join(BASE_DIR,'templates'),
                     os.path.join(BASE_DIR,'src'),
+                    os.path.join(BASE_DIR,'static/images/convenio'),
                     ]
 STATIC_ROOT = os.path.join(BASE_DIR,'static')
 
