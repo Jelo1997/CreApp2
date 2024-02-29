@@ -8,6 +8,56 @@
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
   <title>CreApp-Propiedades</title>
   <script src="https://cdnjs.cloudflare.com/ajax/libs/jquery/3.6.0/jquery.min.js"></script>
+  <style>
+    body {
+      font-family: Arial, sans-serif;
+      margin: 0;
+      padding: 0;
+      background-color: #f8f9fa;
+    }
+
+    center {
+      margin-top: 20px;
+    }
+
+    h1 {
+      color: #343a40;
+    }
+
+    hr {
+      border: 1px solid #dee2e6;
+      margin: 20px 0;
+    }
+
+    #searchInput {
+      width: 100%;
+      padding: 8px;
+      margin-bottom: 20px;
+      border: 1px solid #ced4da;
+      border-radius: 4px;
+      box-sizing: border-box;
+    }
+
+    table {
+      width: 100%;
+      border-collapse: collapse;
+    }
+
+    th, td {
+      padding: 10px;
+      border-bottom: 1px solid #dee2e6;
+    }
+
+    th {
+      background-color: #f8f9fa;
+      color: #343a40;
+      font-size: 18px;
+    }
+
+    td {
+      font-size: 16px;
+    }
+  </style>
   <script>
     $(document).ready(function() {
       $("#searchInput").on("keyup", function() {
@@ -31,19 +81,20 @@
 
   <hr>
 
-  <input type="text" id="searchInput" placeholder="Buscar Propiedad"><i class="ti-search "></i>
+  <input type="text" id="searchInput" placeholder="Buscar Propiedad">
   <hr>
-  <table class="table table-striped" style="text-align: center">
+  <table class="table-striped" style="text-align: center">
 
     <tr>
-      <th><h2>ID</h2></th>
-      <th><h2>Tipo</h2></th>
-      <th><h2>Ubicacion</h2></th>
-      <th><h2>Precio Comercial</h2></th>
-      <th><h2>Precio Crea</h2></th>
-      <th><h2>Precio Mínimo</h2></th>
-      <th><h2>Descripcion</h2></th>
-      <th><h2> </h2></th>
+      <th>ID</th>
+      <th>Tipo</th>
+      <th>Ubicación</th>
+      <th>Precio Comercial</th>
+      <th>Precio Crea</th>
+      <th>Precio Mínimo</th>
+      <th>Descripción</th>
+      <th>Mas Opciones</th>
+      <th></th>
     </tr>
 
     {% for prop in propiedad %}
@@ -55,9 +106,8 @@
         <td>{{prop.precio_crea}}</td>
         <td>{{prop.precio_minimo}}</td>
         <td>{{prop.descripcion}}</td>
-        <td>{{prop.foto_propiedad}}</td>
-        <td><a href='/propiedaddis/{{prop.pk}}' class="btn btn-primary">Ver</a></td>
-        <td><a href='/convenio/{{prop.pk}}' class="btn btn-primary">Convenio</a></td>
+        <td><a href='/propiedaddis/{{prop.pk}}' class="btn btn-primary">Detalles</a></td>
+        <td><a href='/convenio/{{prop.pk}}' class="btn btn-warning">Convenio</a></td>
         
       </tr>
     {% endfor %}
