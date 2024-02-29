@@ -7,69 +7,103 @@
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>CreApp-Propiedad</title>
+    <style>
+        body {
+            font-family: Arial, sans-serif;
+            margin: 0;
+            padding: 0;
+            background-color: #f4f4f4;
+        }
+
+        .container {
+            max-width: 800px;
+            margin: 20px auto;
+            padding: 20px;
+            background-color: #fff;
+            border-radius: 8px;
+            box-shadow: 0 0 10px rgba(0, 0, 0, 0.1);
+        }
+
+        .card {
+            margin-bottom: 20px;
+            padding: 20px;
+            border: 1px solid #ddd;
+            border-radius: 6px;
+            background-color: #f9f9f9;
+        }
+
+        .card-header {
+            background-color: #e9e9e9;
+            padding: 10px;
+            border-bottom: 1px solid #ddd;
+            border-radius: 6px 6px 0 0;
+        }
+
+        h1, h2, h3, h4, h5, h6 {
+            margin-top: 0;
+        }
+
+        img {
+            max-width: 100%;
+            height: auto;
+        }
+    </style>
 </head>
 <body>
-   <center>
-        <h1>Datos Propiedad</h1>
-   </center>
-<div class="container mt-4">
-    <div class="card">
-        <div class="card-header">
-            <h3>Tipo : {{propiedad.tipo}} </h3>
-            <h5>Codigo : {{propiedad.codigo}} </h5>
+    <div class="container">
+        <div class="card">
+            <div class="card-header">
+                <h1>Datos Propiedad</h1>
+            </div>
+            <div class="card-body">
+                <h3>Tipo: {{ propiedad.tipo }}</h3>
+                <h5>Codigo: {{ propiedad.codigo }}</h5>
+                <h5>Fecha de Ingreso: {{ propiedad.fecha_ingreso }}</h5>
+                <h5>Fecha de Caducidad: {{ propiedad.fecha_caducidad }}</h5>
+                <h5>Ubicacion: {{ propiedad.ubicacion }}</h5>
+                <h5>Descripcion: {{ propiedad.descripcion }}</h5>
+                <h5>Foto: 
+                    {% if propiedad.foto_propiedad %}
+                        <img src="{{ propiedad.foto_propiedad.url }}" alt="">
+                    {% endif %}
+                </h5>
+            </div>
         </div>
-
-        <h5>Fecha de Ingreso : {{propiedad.fecha_ingreso}} </h5>
-        <h5>Fecha de Caducidad : {{propiedad.fecha_caducidad}} </h5>
-        <h5>Ubicacion : {{propiedad.ubicacion}} </h5>
-        <h5>Descripcion : {{propiedad.descripcion}} </h5>
-        <h5>Foto: 
-            {% if propiedad.foto_propiedad %}
-
-            <img src='{{propiedad.foto_propiedad.url}}' alt="" width="150px">
-            
-            {% endif %}
-        </h5>
-
+        
+        <div class="card">
+            <div class="card-header">
+                <h2>Valor de Propiedad</h2>
+            </div>
+            <div class="card-body">
+                <h5>Precio Comercial: {{ propiedad.precio_comercial }}</h5>
+                <h5>Precio Crea: {{ propiedad.precio_crea }}</h5>
+                <h5>Precio Mínimo: {{ propiedad.precio_minimo }}</h5>
+            </div>
+        </div>
+        
+        <div class="card">
+            <div class="card-header">
+                <h2>Datos Dueño</h2>
+            </div>
+            <div class="card-body">
+                <h5>Nombre: {{ cliente.nombre }} {{ cliente.apellido }}</h5>
+                <h5>Telefono: {{ cliente.telefono }}</h5>
+                <h5>Email: {{ cliente.correo }}</h5>
+                <h5>Observaciones: {{ cliente.observaciones }}</h5>
+            </div>
+        </div>
+        
+        <div class="card">
+            <div class="card-header">
+                <h2>Datos Generales</h2>
+            </div>
+            <div class="card-body">
+                <h5>Tipo de Comisión: {{ propiedad.tipo_comision }}</h5>
+                <h5>Convenio: {{ propiedad.convenio }}</h5>
+                <h5>Estado: {{ propiedad.proceso }}</h5>
+            </div>
+        </div>
     </div>
-</div>
-<div class="container mt-4">
-
-    <div class="card">
-        <div class="card-header">
-            <h1>Valor de Propiedad</h1> 
-            <p align="right">
-                <a href="{% url 'ver_pcliente' %}" class="btn btn-primary">Editar</a>
-            </p>
-        </div>
-        <h5>Precio Comercial : {{propiedad.precio_comercial}} </h5>
-        <h5>Precio Crea : {{propiedad.precio_crea}} </h5>
-        <h5>Precio Mínimo : {{propiedad.precio_minimo}} </h5>
-    </div>
-</div>
-<div class="container mt-4">
-    <div class="card">
-        <div class="card-header">
-            <h2>Datos Dueño</h2>
-        </div>
-
-        <h5>Nombre: {{cliente.nombre}} {{cliente.apellido}} </h5>
-        <h5>Telefono: {{cliente.telefono}} </h5>
-        <h5>Email: {{cliente.correo}} </h5>
-        <h5>Observaciones {{cliente.observaciones}} </h5>
-    </div>
-</div>
-<div class="container mt-4">
-    <div class="card">
-        <div class="card-header">
-            <h2>Datos Generales</h2>
-        </div>
-        <h5>Tipo de Comisión : {{propiedad.tipo_comision}} </h5>
-        <h5>Convenio : {{propiedad.convenio}} </h5>
-        <h5>Estado: {{propiedad.proceso}} </h5>
-</div>
-    
-    
 </body>
 </html>
 
