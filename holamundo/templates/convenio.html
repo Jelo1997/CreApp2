@@ -33,7 +33,6 @@
             background-image: url(https://sfk.pythonanywhere.com/media/convenio/head.JPG);
             background-repeat: no-repeat;
             background-size: cover;
-            z-index: 1;
         }
         /* Estilos para el pie de página */
         #footer {
@@ -45,14 +44,6 @@
             text-align: center;
             background-image: url(https://sfk.pythonanywhere.com/media/convenio/pie.JPG);
             background-color: #ccc;
-            z-index: 1;
-        }
-        #main-content {
-            padding-top: 120px; /* Adjusts the space for the header */
-            padding-bottom: 70px; /* Adjusts the space for the footer */
-            
-            margin-bottom: 70px; /* Additional space below the content */
-            z-index: 2;
         }
     </style>
     
@@ -61,7 +52,7 @@
     <div id="header">
         
     </div>
-    <img src="{{ MEDIA_URL }}convenio/head.JPG" >
+    <img src="{{ MEDIA_URL }}convenio/head.JPG" alt="header">
     <div id="main-content">
         <h3 style="text-align: center;">CONVENIO DE EXCLUSIVIDAD DE VENTA A PRECIO FIJO</h3>
         <p>
