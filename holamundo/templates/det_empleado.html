@@ -7,42 +7,87 @@
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>CreApp-Clientes</title>
+    <style>
+        body {
+            font-family: Arial, sans-serif;
+            margin: 0;
+            padding: 0;
+            background-color: #f8f9fa;
+        }
+
+        .container {
+            max-width: 800px;
+            margin: 20px auto;
+            padding: 20px;
+            background-color: #fff;
+            border-radius: 8px;
+            box-shadow: 0 0 10px rgba(0, 0, 0, 0.1);
+        }
+
+        .card {
+            margin-bottom: 20px;
+            padding: 20px;
+            border: 1px solid #ced4da;
+            border-radius: 6px;
+            background-color: #fff;
+        }
+
+        h1, h2, h3, h4, h5, h6 {
+            margin-top: 0;
+            color: #343a40;
+        }
+
+        table {
+            width: 100%;
+            border-collapse: collapse;
+        }
+
+        table td {
+            padding: 8px;
+            border-bottom: 1px solid #dee2e6;
+        }
+
+        .btn {
+            display: inline-block;
+            padding: 8px 16px;
+            margin-right: 10px;
+            text-decoration: none;
+            color: #fff;
+            background-color: #007bff;
+            border: none;
+            border-radius: 4px;
+            cursor: pointer;
+            transition: background-color 0.3s ease;
+        }
+
+        .btn:hover {
+            background-color: #0056b3;
+        }
+    </style>
 </head>
 <body>
-    <center>
-        <h1>Datos {{empleado.nombre}} {{empleado.apellido}}</h1>
-    </center>
-    <div class="container mt-4">
+    <div class="container">
+        <center>
+            <h1>Datos {{ empleado.nombre }} {{ empleado.apellido }}</h1>
+        </center>
         <div class="card">         
-            <h5>Celular: {{empleado.celular}} </h5>
-            <h5>Email: {{empleado.correo}} </h5>
-            
-
+            <h5>Celular: {{ empleado.celular }}</h5>
+            <h5>Email: {{ empleado.correo }}</h5>
         </div>
-    </div>
 
-    <div class="container mt-4">
         <div class="card">
+            <h2>Area de trabajo</h2>
             <table>
                 <tr>
-                    <h2>Area de trabajo</h2>
+                    <td>{{ empleado.area }}</td>
                 </tr>
-                <tr>
-                    <td> {{empleado.area}} </td>
-                    
-                </tr>
-                <td>
-                    <!--
-                    <a type="button" href="{{ empleado.get_delete_url }}" class="btn btn-danger">Eliminar</a> -->
-                    <a type="button" href="{{ empleado.get_edit_url }}" class="btn btn-warning">Editar</a> 
-                    <a href="{% url 'ver_empleado' %}" class="btn btn-primary">Volver</a>
-                </td>
             </table>
+            <div>
+                <a href="{{ empleado.get_edit_url }}" class="btn btn-warning">Editar</a> 
+                <a href="{% url 'ver_empleado' %}" class="btn btn-primary">Volver</a>
+            </div>
         </div>
     </div>
-
-
-    
 </body>
 </html>
 
