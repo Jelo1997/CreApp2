@@ -1,4 +1,5 @@
 {% load static %}
+{% load media %}
 <!DOCTYPE html>
 <html lang="es">
 <head>
@@ -30,7 +31,7 @@
             left: 0;
             right: 0;
             height: 100px;
-            background-image: url(http://localhost:8000/media/convenio/head.JPG);   
+            background-image: url(https://sfk.pythonanywhere.com/media/convenio/head.JPG);
             background-repeat: no-repeat;
             background-size: cover;
             z-index: 1;
@@ -43,7 +44,7 @@
             right: 0;
             height: 120px;
             text-align: center;
-            background-image: url(http://localhost:8000/media/convenio/pie.JPG);
+            background-image: url(https://sfk.pythonanywhere.com/media/convenio/pie.JPG);
             background-color: #ccc;
             z-index: 1;
         }
@@ -62,6 +63,7 @@
 
     </div>
     <div id="main-content">
+        <img src="{% media 'convenio/head.JPG' %}" alt="Imagen de encabezado">
         <h3 style="text-align: center;">CONVENIO DE EXCLUSIVIDAD DE VENTA A PRECIO FIJO</h3>
         <p>
             <p style="text-align: justify;">
