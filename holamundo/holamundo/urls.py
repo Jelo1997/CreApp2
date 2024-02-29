@@ -92,4 +92,4 @@ urlpatterns = [
     path('cliente/<int:id>/agregar_observaciones/', agregar_observaciones, name='agregar_observaciones'),
 
 ]
-urlpatterns += static (settings.MEDIA_URL, document_root=settings.MEDIA_ROOT)
++ static(settings.STATIC_URL, document_root=settings.STATIC_ROOT) + static(settings.MEDIA_URL, document_root=settings.MEDIA_ROOT)
