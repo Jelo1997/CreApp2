@@ -55,7 +55,11 @@
             <h1>Datos {{ empleado.nombre }} {{ empleado.apellido }}</h1>
         </center>
         <div class="card">
-            <h5>Foto: {{ empleado.foto }}</h5>
+            <h5>Foto: 
+                {% if empleado.foto %}
+                    <img src="{{ empleado.foto.url }}" alt="">
+                {% endif %}
+            </h5>
         </div>
         <div class="card">         
             <h5>Celular: {{ empleado.celular }}</h5>
