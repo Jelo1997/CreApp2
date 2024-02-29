@@ -22,7 +22,6 @@ from weasyprint import HTML
    
 def generar_convenio_pdf(request, codigo_propiedad):
     # Obtiene los datos específicos del convenio
-    
     propiedad = get_object_or_404(Propiedad_disponible, pk=codigo_propiedad)
     cliente = propiedad.id_cliente
     datos_convenio = {
@@ -31,18 +30,18 @@ def generar_convenio_pdf(request, codigo_propiedad):
         'tipo_propiedad': propiedad.tipo,
         'ubicacion_propiedad': propiedad.ubicacion,
         'precio_pactado': propiedad.precio_pactado,
-        'fecha_ingreso' : propiedad.fecha_ingreso,
-        'fecha_caducidad' : propiedad.fecha_caducidad,
+        'fecha_ingreso': propiedad.fecha_ingreso,
+        'fecha_caducidad': propiedad.fecha_caducidad,
     }
     
     # Carga la plantilla HTML del convenio
     template = get_template('convenio.html')
 
     # Renderiza la plantilla con los datos del convenio
-    html_content = template.render(datos_convenio)
+    html_content = template.render(datos_convenio, request)
 
     # Convierte el contenido HTML en un documento PDF
-    pdf_file = HTML(string=html_content).write_pdf()
+    pdf_file = HTML(string=html_content, base_url=request.build_absolute_uri()).write_pdf()
 
     # Devuelve el archivo PDF como respuesta HTTP
     response = HttpResponse(pdf_file, content_type='application/pdf')
