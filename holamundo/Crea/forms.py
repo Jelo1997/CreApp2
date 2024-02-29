@@ -60,6 +60,7 @@ class CaptarPropiedadForm(forms.ModelForm):
         'Información adicional',
         'convenio',
         'proceso',
+        'id_cliente_id'
       ),
       Submit('submit', 'Captar'),
     )
