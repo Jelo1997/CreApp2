@@ -20,7 +20,13 @@ class Cliente(models.Model):
         ("Vendedor", "Vendedor"),
         ("Comprador/Vendedor", "Comprador/Vendedor"),
     )
-    estado = models.CharField(max_length=45, choices=estados, null=True)  
+    estado = models.CharField(max_length=45, choices=estados, null=True)
+    caracteristicas = (
+        ("Vendido", "Vendido"),
+        ("En Seguimiento", "En Seguimiento"),
+        ("Descartado", "Descartado"),
+    )
+    caracteristica = models.CharField(max_length=45, choices=caracteristicas, null=True)  
     observaciones_adicionales = models.TextField(blank=True, null=True, default='')
     def __str__(self) -> str:
        return f'{self.nombre}'
