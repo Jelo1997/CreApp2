@@ -74,7 +74,7 @@ class ClienteForm(forms.ModelForm):
     def __init__(self, *args, **kwargs):
         super(ClienteForm, self).__init__(*args, **kwargs)
         user = kwargs.get('user')
-        if user and user.es_gerencia():
+        if user and user.empleado.es_gerencia():
             self.fields['estado'].widget.attrs['disabled'] = False
         else:
             self.fields['estado'].widget.attrs['disabled'] = True

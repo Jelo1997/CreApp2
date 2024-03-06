@@ -212,7 +212,8 @@ def nuevo_cliente(request):
         contenido['form'] = ClienteForm(
                         request.POST or None,
                         request.FILES or None,
-                        initial={'estado': estado_cliente})
+                        initial={'estado': estado_cliente}
+                        ,user=request.user)
         if contenido['form'].is_valid():
             contenido['form'].save()
             return redirect(contenido['form'].instance.get_absolute_url())
@@ -222,7 +223,8 @@ def nuevo_cliente(request):
         request.POST or None,
         request.FILES or None,
         instance = contenido['instancia_cliente'],
-        initial={'estado': estado_cliente}
+        initial={'estado': estado_cliente},
+        user=request.user
     )
     
     return render(request, 'formulario_cliente.html', contenido)
