@@ -3,9 +3,9 @@
 {% block content %}
 <style>
     .blocked-field {
-        background-color: #f2f2f2;  /* Cambiar el color de fondo */
-        color: #999999;  /* Cambiar el color del texto */
-        cursor: not-allowed;  /* Cambiar el cursor */
+        background-color: #f2f2f2;  
+        color: #999999;  
+        cursor: not-allowed; 
     }
 </style>
 <center>
@@ -26,5 +26,10 @@
                 </form>
 </div>
 </div>
-        
+<script>
+    document.addEventListener("DOMContentLoaded", function() {
+        var estadoField = document.querySelector("#id_estado");
+        estadoField.setAttribute("readonly", true);
+    });
+</script>       
 {% endblock %}
