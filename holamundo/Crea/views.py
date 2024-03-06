@@ -220,6 +220,8 @@ def nuevo_cliente(request):
                         user=request.user,
                         initial={'estado': estado_cliente})
         if contenido['form'].is_valid():
+            if 'estado' not in contenido['form'].cleaned_data:
+                contenido['form'].cleaned_data['estado'] = estado_cliente
             contenido['form'].save()
             return redirect(contenido['form'].instance.get_absolute_url())
         
