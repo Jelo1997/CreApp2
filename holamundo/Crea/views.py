@@ -11,7 +11,7 @@ from django.views.generic import DetailView
 from .models import Propiedad_posible, Propiedad_disponible, Cliente, Empleado
 from .forms import PropiedadForm , CaptarPropiedadForm, ClienteForm, EmpleadoForm, BuscarPersonaForm, ObservacionesForm
 from django.http import HttpResponse
-
+from django.conf import settings
 #generar pdf
 from django.template.loader import get_template
 from weasyprint import HTML
