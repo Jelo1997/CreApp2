@@ -77,7 +77,7 @@ class ClienteForm(forms.ModelForm):
         if user.empleado.es_gerencia():
             self.fields['estado'].widget.attrs['readonly'] = False
         else:
-            self.fields['estado'].widget.attrs['readonly'] = True
+            self.fields['estado'].widget.attrs['style'] = 'pointer-events: none;'
 class EmpleadoForm(forms.ModelForm):
 
     class Meta:
