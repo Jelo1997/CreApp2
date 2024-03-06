@@ -78,7 +78,7 @@ class ClienteForm(forms.ModelForm):
             self.fields['estado'].widget.attrs['readonly'] = False
         else:
             self.fields['estado'].widget.attrs['readonly'] = True
-            
+            self.fields['estado'].widget.attrs['class'] = 'blocked-field'
 class EmpleadoForm(forms.ModelForm):
 
     class Meta:
