@@ -206,6 +206,7 @@ def ver_pcliente(request):
 @login_required
 def nuevo_cliente(request):
     contenido = {}
+    opciones_estado = Cliente.estados
     if request.user.empleado.es_aprovicionamiento():
         estado_cliente = "Vendedor"
     elif request.user.empleado.es_ventas():
@@ -218,10 +219,9 @@ def nuevo_cliente(request):
                         request.POST or None,
                         request.FILES or None,
                         user=request.user,
-                        initial={'estado': estado_cliente})
+                        initial={'estado': estado_cliente},
+                        opciones_estado=opciones_estado)
         if contenido['form'].is_valid():
-            if 'estado' not in contenido['form'].cleaned_data:
-                contenido['form'].cleaned_data['estado'] = estado_cliente
             contenido['form'].save()
             return redirect(contenido['form'].instance.get_absolute_url())
         
@@ -231,7 +231,8 @@ def nuevo_cliente(request):
         request.FILES or None,
         instance = contenido['instancia_cliente'],
         user=request.user,
-        initial={'estado': estado_cliente})
+        initial={'estado': estado_cliente},
+        opciones_estado=opciones_estado)
     
     return render(request, 'formulario_cliente.html', contenido)
 
