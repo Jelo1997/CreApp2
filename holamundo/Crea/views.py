@@ -11,7 +11,7 @@ from django.views.generic import DetailView
 from .models import Propiedad_posible, Propiedad_disponible, Cliente, Empleado
 from .forms import PropiedadForm , CaptarPropiedadForm, ClienteForm, EmpleadoForm, BuscarPersonaForm, ObservacionesForm
 from django.http import HttpResponse
-from django.conf import settings
+
 #generar pdf
 from django.template.loader import get_template
 from weasyprint import HTML
@@ -39,9 +39,9 @@ def generar_convenio_pdf(request, codigo_propiedad):
 
     # Renderiza la plantilla con los datos del convenio
     html_content = template.render(datos_convenio, request)
-    base_url = request.build_absolute_uri(settings.STATIC_ROOT)
+    
     # Convierte el contenido HTML en un documento PDF
-    pdf_file = HTML(string=html_content, base_url=base_url).write_pdf()
+    pdf_file = HTML(string=html_content, base_url=request.build_absolute_uri()).write_pdf()
 
     # Devuelve el archivo PDF como respuesta HTTP
     response = HttpResponse(pdf_file, content_type='application/pdf')
