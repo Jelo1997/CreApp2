@@ -71,6 +71,9 @@ class ClienteForm(forms.ModelForm):
     class Meta:
         model = Cliente
         fields = ['nombre', 'apellido', 'cedula', 'telefono', 'correo', 'observaciones', 'estado']
+    def __init__(self, *args, **kwargs):
+        super(ClienteForm, self).__init__(*args, **kwargs)
+        self.fields['estado'].widget.attrs['disabled'] = True
 
 class EmpleadoForm(forms.ModelForm):
 
