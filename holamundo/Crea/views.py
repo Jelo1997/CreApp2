@@ -173,7 +173,7 @@ def captar_propiedad(request, codigo_propiedad):
                 precio_minimo=form.cleaned_data['precio_minimo'],
                 convenio=form.cleaned_data['convenio'],
                 proceso='Proceso de Venta',  # Default processo to "Proceso de Venta"
-                id_cliente=form.cleaned_data['id_cliente_id'] # Add missing fields if needed (id_cliente, etc.)
+                id_cliente=form.cleaned_data['id_cliente'] # Add missing fields if needed (id_cliente, etc.)
             )
             nueva_propiedad.save()
             propiedad.es_activo = False
