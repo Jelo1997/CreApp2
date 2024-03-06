@@ -218,9 +218,7 @@ def nuevo_cliente(request):
         contenido['form'] = ClienteForm(
                         request.POST or None,
                         request.FILES or None,
-                        user=request.user,
-                        estado_choices=estado_choices,
-                        initial={'estado': estado_cliente})
+                        user=request.user)
         if contenido['form'].is_valid():
             contenido['form'].save()
             return redirect(contenido['form'].instance.get_absolute_url())
