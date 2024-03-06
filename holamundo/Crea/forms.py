@@ -87,8 +87,18 @@ class EmpleadoForm(forms.ModelForm):
         model = Empleado
         fields = ['celular', 'apellido', 'correo', 'nombre', 'foto']
 
+
 class BuscarPersonaForm(forms.Form):
-  cedula = forms.CharField(label="Cédula", max_length=10)
+    cedula = forms.CharField(label="Cédula", max_length=10)
+
+    def clean_cedula(self):
+        cedula = self.cleaned_data['cedula']
+        
+        # Verificar que la cédula tenga 10 dígitos
+        if len(cedula) != 10 or not cedula.isdigit():
+            raise forms.ValidationError("La cédula debe contener 10 dígitos numéricos.")
+        
+        return cedula
 
 class ObservacionesForm(forms.Form):
       observaciones_adicionales = forms.CharField(widget=forms.Textarea, label="Observaciones adicionales")
