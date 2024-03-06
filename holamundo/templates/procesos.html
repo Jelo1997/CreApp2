@@ -12,9 +12,8 @@
       <th>Tipo</th>
       <th>Ubicación</th>
       <th>Cédula del vendedor</th>
-      <th>Cédula del comprador</th>
-      <th>Estado</th>
       <th>Contacto del vendedor</th>
+      <th>Cédula del comprador</th>
       <th>Contacto del comprador</th>
       <th>Estado del proceso</th>
       <th>Observaciones del estado</th>
@@ -27,6 +26,8 @@
             <td>{{ propiedad.codigo }}</td>
             <td> {{propiedad.tipo}} </td>
             <td> {{propiedad.ubicacion}} </td>
+            <td>  </td>
+            <td>  </td>
             {% if propiedad.id_cliente %}
                 <td>{{ propiedad.id_cliente.cedula }}</td>
                 <td>{{ propiedad.id_cliente.telefono }}</td>
