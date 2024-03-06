@@ -6,7 +6,6 @@ from django.shortcuts import redirect, render, redirect , get_object_or_404
 from django.views.generic import DetailView, FormView
 from django.core.validators import ValidationError
 from django.contrib.auth.decorators import login_required
-from django.contrib.admin.views.decorators import staff_member_required
 from django.shortcuts import get_object_or_404, redirect, render
 from django.views.generic import DetailView
 from .models import Propiedad_posible, Propiedad_disponible, Cliente, Empleado
@@ -308,9 +307,9 @@ def eliminar_empleado(request, codigo_empleado):
 
 @login_required
 def ver_perfil_empleado(request):
-    if request.user.is_staff:
-        if not request.user.is_authenticated or not hasattr(request.user, 'empleado'):
-            return render(request, 'error.html', {'mensaje': 'No tienes permiso para acceder a esta página'})
+    
+    if not request.user.is_authenticated or not hasattr(request.user, 'empleado'):
+        return render(request, 'error.html', {'mensaje': 'No tienes permiso para acceder a esta página'})
     
     empleado = request.user.empleado
     
