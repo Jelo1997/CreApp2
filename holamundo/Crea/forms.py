@@ -75,9 +75,9 @@ class ClienteForm(forms.ModelForm):
         user = kwargs.pop('user', None) 
         super(ClienteForm, self).__init__(*args, **kwargs)
         if user and user.empleado.es_gerencia():
-            self.fields['estado'].widget.attrs['disabled'] = False
+            self.fields['estado'].widget.attrs['readonly'] = False
         else:
-            self.fields['estado'].widget.attrs['disabled'] = True
+            self.fields['estado'].widget.attrs['readonly'] = True
             
 class EmpleadoForm(forms.ModelForm):
 
