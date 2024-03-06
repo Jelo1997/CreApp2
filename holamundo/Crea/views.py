@@ -39,7 +39,7 @@ def generar_convenio_pdf(request, codigo_propiedad):
 
     # Renderiza la plantilla con los datos del convenio
     html_content = template.render(datos_convenio, request)
-
+    
     # Convierte el contenido HTML en un documento PDF
     pdf_file = HTML(string=html_content, base_url=request.build_absolute_uri()).write_pdf()
 
@@ -173,7 +173,7 @@ def captar_propiedad(request, codigo_propiedad):
                 precio_minimo=form.cleaned_data['precio_minimo'],
                 convenio=form.cleaned_data['convenio'],
                 proceso='Proceso de Venta',  # Default processo to "Proceso de Venta"
-                id_cliente=form.cleaned_data['id_cliente_id'] # Add missing fields if needed (id_cliente, etc.)
+                id_cliente=form.cleaned_data['id_cliente'] # Add missing fields if needed (id_cliente, etc.)
             )
             nueva_propiedad.save()
             propiedad.es_activo = False
@@ -191,7 +191,12 @@ def captar_propiedad(request, codigo_propiedad):
 
 @login_required
 def ver_pcliente(request):
-    cliente = Cliente.objects.all()
+    if request.user.empleado.es_aprovicionamiento():
+        cliente = Cliente.objects.filter(estado='Vendedor')
+    elif request.user.empleado.es_ventas():
+        cliente = Cliente.objects.filter(estado='Comprador')
+    else:
+        cliente = Cliente.objects.all()
     contenido = {
         'cliente' : cliente
     }
@@ -201,10 +206,19 @@ def ver_pcliente(request):
 @login_required
 def nuevo_cliente(request):
     contenido = {}
+    if request.user.empleado.es_aprovicionamiento():
+        estado_cliente = "Vendedor"
+    elif request.user.empleado.es_ventas():
+        estado_cliente = "Comprador"
+    elif request.user.empleado.es_gerencia():
+        estado_cliente = None
+        
     if request.method == 'POST':
         contenido['form'] = ClienteForm(
                         request.POST or None,
-                        request.FILES or None,)
+                        request.FILES or None,
+                        user=request.user,
+                        initial={'estado': estado_cliente})
         if contenido['form'].is_valid():
             contenido['form'].save()
             return redirect(contenido['form'].instance.get_absolute_url())
@@ -213,8 +227,9 @@ def nuevo_cliente(request):
     contenido ['form'] = ClienteForm(
         request.POST or None,
         request.FILES or None,
-        instance = contenido['instancia_cliente']
-    )
+        instance = contenido['instancia_cliente'],
+        user=request.user,
+        initial={'estado': estado_cliente})
     
     return render(request, 'formulario_cliente.html', contenido)
 

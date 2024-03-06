@@ -50,12 +50,13 @@
 </head>
 <body>
     <div id="header">
-        
+        <img src="{% static 'images/convenio/head.jpg' %}">
+
     </div>
     
     <div id="main-content">
         <h3 style="text-align: center;">CONVENIO DE EXCLUSIVIDAD DE VENTA A PRECIO FIJO</h3>
-        <img src="/media/convenio/head.JPG" >
+        
         <p>
             <p style="text-align: justify;">
                 En la parroquia Puyo del cantón y provincia de Pastaza, el día {{ fecha_ingreso }}, los comparecientes, legalmente capaces para ejercer derechos y contraer obligaciones, en unidad de acto, libre y voluntariamente acuerdan celebrar el presente convenio de exclusividad de venta, regido por las siguientes cláusulas:
@@ -63,94 +64,77 @@
                 <p style="text-align: justify;">
                 <b>PRIMERA: COMPARECIENTES.-</b>
                 <br>
-                A la celebración del presente convenio de exclusividad de venta, comparecen, por una parte, en calidad de CLIENTE u OFERTANTE, Cliente: {{ nombre_cliente }} con cédula de ciudadanía N° {{ cedula_cliente }} quien, por medio del presente convenio, autorizo a LA COMPAÑÍA CREAINMOBILIARIA S.A. con número de RUC 1691721228001, representada legalmente por el Msc. Edgar Alejandro Conde Rivera, en calidad de AGENTE INTERMEDIARIO; ambos comparecientes domiciliados en la parroquia Puyo del cantón y provincia de Pastaza.
+                A la celebración del presente convenio de exclusividad de venta, comparecen, por una parte, en calidad de CLIENTE u OFERTANTE, Cliente: <b>{{ nombre_cliente }}</b> con cédula de ciudadanía <b>N° {{ cedula_cliente }}</b> quien, por medio del presente convenio, autorizo a <b>LA COMPAÑÍA CREAINMOBILIARIA S.A.</b> con número de RUC<b>1691721228001</b>, representada legalmente por el <b>Msc. Edgar Alejandro Conde Rivera</b>, en calidad de <b>AGENTE INTERMEDIARIO</b>; ambos comparecientes domiciliados en la parroquia Puyo del cantón y provincia de Pastaza.
                 </p>
                 <p style="text-align: justify;">
                 <b>SEGUNDA: ANTECEDENTES.- </b>
                 <br>
                 EL CLIENTE, están ofertando para venta el inmueble que se describen a continuación:
-                Tipo de inmueble: {{ tipo_propiedad }}. Clave catastral: 16-01-50-02-009-017-001-000. Ubicación: {{ ubicacion_propiedad }}
+                Tipo de inmueble: <b>{{ tipo_propiedad }}</b>. Clave catastral: 16-01-50-02-009-017-001-000. Ubicación: <b>{{ ubicacion_propiedad }}</b>.
                 </p>
                 <p style="text-align: justify;">
                 <b>TERCERA: OBJETO.- </b>
                 <br>
                 En virtud del presente convenio, EL CLIENTE contrata y encarga en forma EXCLUSIVA la COMPAÑÍA CREA INMOBILIARIA S.A como AGENTE INTERMEDIARIO para que oferte, vincule e intermedie en la venta del inmueble descrito en la cláusula segunda de este Convenio.
                 </p> 
-                <p style="text-align: justify;">
+                <p style="text-align: justify;" >
                     <b>CUARTA: OBLIGACIONES DE LA COMPAÑÍA CREA INMOBILIARIA S.A.- </b>
                     <br>
                     La COMPAÑÍA como AGENTE INTERMEDIARIO se obliga con el CLIENTE a:
                     <br>
-                    1.	Realizar publicaciones en los medios digitales de la COMPAÑIA CREA INMOBILIARIA S.A acerca de la venta del bien inmueble.  
-                    <br>
-                    2.	Brindar un servicio de excelencia a los clientes potenciales del bien ofertado, en la oficina de la COMPAÑÍA CREA INMOBILIARIA S.A., ubicada en la ciudad de Puyo y cualquier otra ciudad en la que se encuentre la compañía. 
-                    <br>
-                    3.	Trasladar de manera frecuente y las veces que sean necesarias a los potenciales clientes, interesados en adquirir el bien inmueble, al lugar de su ubicación.  
-                    <br>
-                    4.	Realizar la gestión y negociación de manera eficiente, para lograr la venta del bien inmueble durante el plazo que dure el presente acuerdo. 
-                    <br>
-                    5.	Informar al menos una vez al mes al propietario del bien acerca de las novedades en cuanto a la venta de su propiedad. 
-                    <br>
-                    6.	Realizar todo el trámite de COMPRA-VENTA, así como lo correspondiente a escrituras para la adjudicación del bien a nombre del comprador, entendiéndose que el trámite NO INCLUYE la representación legal del propietario, por lo tanto, en el caso de tener la necesidad de contar con la presencia del mismo para suscribir algún contrato, documentos notariales, escrituras de  adjudicación, u otros documentos, la obligación de la COMPAÑÍA CREA INMOBILIARIA S.A. es informarle de forma oportuna al propietario del bien inmueble para que proceda con su asistencia.  
+                    <ul style="list-style-type: decimal;">
+                        <li style="text-align: justify;">Realizar publicaciones en los medios digitales de la COMPAÑIA CREA INMOBILIARIA S.A acerca de la venta del bien inmueble.</li>
+                        <li style="text-align: justify;">Brindar un servicio de excelencia a los clientes potenciales del bien ofertado, en la oficina de la COMPAÑÍA CREA INMOBILIARIA S.A., ubicada en la ciudad de Puyo y cualquier otra ciudad en la que se encuentre la compañía.</li>
+                        <li style="text-align: justify;">Trasladar de manera frecuente y las veces que sean necesarias a los potenciales clientes, interesados en adquirir el bien inmueble, al lugar de su ubicación.</li>
+                        <li style="text-align: justify;">Realizar la gestión y negociación de manera eficiente, para lograr la venta del bien inmueble durante el plazo que dure el presente acuerdo.</li>
+                        <li style="text-align: justify;">Informar al menos una vez al mes al propietario del bien acerca de las novedades en cuanto a la venta de su propiedad.</li>
+                        <li style="text-align: justify;">Realizar todo el trámite de COMPRA-VENTA, así como lo correspondiente a escrituras para la adjudicación del bien a nombre del comprador, entendiéndose que el trámite NO INCLUYE la representación legal del propietario, por lo tanto, en el caso de tener la necesidad de contar con la presencia del mismo para suscribir algún contrato, documentos notariales, escrituras de adjudicación, u otros documentos, la obligación de la COMPAÑÍA CREA INMOBILIARIA S.A. es informarle de forma oportuna al propietario del bien inmueble para que proceda con su asistencia.</li>
+                    </ul>
                 </p>
                 <p style="text-align: justify;">
                     <b>QUINTA: OBLIGACIONES DEL CLIENTE.-</b>
                     <br>
                     El CLIENTE se obliga con el AGENTE INTERMEDIARIO:
                     <br>
-                    1.	Prestar todas las facilidades para que la COMPAÑÍA CREA INMOBILIARIA S.A cumpla con su trabajo, tales como, permitirle el ingreso a la propiedad, solo o acompañado de potenciales compradores cada vez que sea necesario.  
-                    <br>
-                    2.	Proporcionarle copias de documentos del inmueble, facilitarle información complementaria verdadera y actualizada, firmar y acusar recibo de los reportes presentados por la COMPAÑÍA CREA INMOBILIARIA S.A. 
-                    <br>
-                    3.	No suspender deliberadamente la venta del inmueble estando vigente el presente Convenio, ni posterior al vencimiento si una negociación está en proceso, bajo prevención de pagar los honorarios.  
-                    <br>
-                    4.	Pagar la comisión para la COMPAÑIA CREA INMOBILIARIA S.A. acordado en la cláusula novena. - COMISIÓN PARA CREA INMOBILIARIA S.A., si es que se ha concretado la venta del inmueble materia del presente Convenio.  
-                    <br>
-                    5.	Mantener limpia la propiedad durante el tiempo de duración del presente convenio y en caso de estar remontado actualmente, el PROPIETARIO deberá dejar limpio en un plazo máximo de 3 días hábiles para empezar con las publicaciones correspondientes. 
-                    <br>
-                    6.	En el caso de realizar la venta del bien inmueble de manera unilateral, sin la intervención de la COMPAÑÍA CREA INMOBILIARIA S.A., LOS CLIENTES deberán cancelar en un lapso de tiempo no mayor a 48 horas, el 20% del valor establecido en la cláusula Decima. - VALOR FIJADO DEL BIEN PARA EL CLIENTE PROPIETARIO del presente Convenio a la COMPAÑÍA CREA INMOBILIARIA S.A.
-                    <br>
-                    7.	Realizar los pagos correspondientes a impuestos municipales como los valores establecidos de “MEJORAS” Y “PLUSVALÍA”, únicamente en el caso de que el GAD Municipal determine que el bien inmueble se encuentra en sector urbano y cualquier otro valor adicional que sea correspondiente al predio y necesario para la completa legalidad de bien inmueble.
-                    <br>
-                    8.	Los propietarios deberán presentar toda la documentación actualizada, indispensable para el trámite de compra-venta del predio, una vez generada la venta del bien inmueble por medio de la COMPAÑÍA CREA INMOBILIARIA S.A.   
+                    <ul style="list-style-type: decimal;">
+                        <li style="text-align: justify;">Prestar todas las facilidades para que la COMPAÑÍA CREA INMOBILIARIA S.A cumpla con su trabajo, tales como, permitirle el ingreso a la propiedad, solo o acompañado de potenciales compradores cada vez que sea necesario.</li>
+                        <li style="text-align: justify;">Proporcionarle copias de documentos del inmueble, facilitarle información complementaria verdadera y actualizada, firmar y acusar recibo de los reportes presentados por la COMPAÑÍA CREA INMOBILIARIA S.A.</li>
+                        <li style="text-align: justify;">No suspender deliberadamente la venta del inmueble estando vigente el presente Convenio, ni posterior al vencimiento si una negociación está en proceso, bajo prevención de pagar los honorarios.</li>
+                        <li style="text-align: justify;">Pagar la comisión para la COMPAÑIA CREA INMOBILIARIA S.A. acordado en la cláusula novena. - COMISIÓN PARA CREA INMOBILIARIA S.A., si es que se ha concretado la venta del inmueble materia del presente Convenio.</li>
+                        <li style="text-align: justify;">Mantener limpia la propiedad durante el tiempo de duración del presente convenio y en caso de estar remontado actualmente, el PROPIETARIO deberá dejar limpio en un plazo máximo de 3 días hábiles para empezar con las publicaciones correspondientes.</li>
+                        <li style="text-align: justify;">En el caso de realizar la venta del bien inmueble de manera unilateral, sin la intervención de la COMPAÑÍA CREA INMOBILIARIA S.A., LOS CLIENTES deberán cancelar en un lapso de tiempo no mayor a 48 horas, el 20% del valor establecido en la cláusula Decima. - VALOR FIJADO DEL BIEN PARA EL CLIENTE PROPIETARIO del presente Convenio a la COMPAÑÍA CREA INMOBILIARIA S.A.</li>
+                        <li style="text-align: justify;">Realizar los pagos correspondientes a impuestos municipales como los valores establecidos de <b>“MEJORAS” Y “PLUSVALÍA”</b>, únicamente en el caso de que el GAD Municipal determine que el bien inmueble se encuentra en sector urbano y cualquier otro valor adicional que sea correspondiente al predio y necesario para la completa legalidad de bien inmueble.</li>
+                        <li style="text-align: justify;">Los propietarios deberán presentar toda la documentación actualizada, indispensable para el trámite de compra-venta del predio, una vez generada la venta del bien inmueble por medio de la COMPAÑÍA CREA INMOBILIARIA S.A.</li>
+                    </ul>
                 </p>
                 <p style="text-align: justify;">
                     <b>SEXTA: PLAZO.- </b>
                     <br>
-                    El presente Convenio tendrá una duración desde: {{ fecha_ingreso }} Hasta {{ fecha_caducidad }}, contados a partir de la presente fecha, una vez terminado el plazo del convenio y sin ninguna negociación en proceso automáticamente el AGENTE INTERMEDIARIO no podrá seguir ofertando o vendiendo el bien inmueble, salve el caso que los CLIENTES renueven el presente convenio. 
+                    El presente Convenio tendrá una duración desde: <b>{{ fecha_ingreso }} Hasta {{ fecha_caducidad }}</b>, contados a partir de la presente fecha, una vez terminado el plazo del convenio y sin ninguna negociación en proceso automáticamente el AGENTE INTERMEDIARIO no podrá seguir ofertando o vendiendo el bien inmueble, salve el caso que los CLIENTES renueven el presente convenio. 
                 </p>  
                 <p style="text-align: justify;">
                     <b>SEPTIMA: DOCUMENTACIÓN.-</b>
                     <br>
                     Para los fines propuestos, se entregará a la COMPAÑÍA CREA INMOBILIARIA S.A. la siguiente documentación:
                     <br>
-                    •	Una copia de la escritura legalmente registrada en el Registro de la Propiedad. 
-                    <br>
-                    •	Copias del poder en el caso de existir. 
-                    <br>
-                    •	Dos copias a color de la cédula y papeleta de votación de los CLIENTES dueños de la propiedad y apoderados.  
-                    <br>
-                    •	Recibo de pago del impuesto predial del año en curso.
-                    <br>
-                    •	Levantamiento planimétrico vigente. (REPLANTEO)
-                    <br>
-                    •	Certificado del Registro de la Propiedad actualizado. 
-                    <br>
-                    •	Certificado de no Adeudar al Municipio actualizado.
-                    <br>
-                    •	Línea de fábrica.
-                    <br>
-                    •	Certificado de bienes raíces 
-                    <br>
-                    •	Ficha catastral
-                    <br>
-                    •	Certificado bancario 
+                    <ul style="list-style-type: disc;">
+                        <li>Una copia de la escritura legalmente registrada en el Registro de la Propiedad.</li>
+                        <li>Copias del poder en el caso de existir.</li>
+                        <li>Dos copias a color de la cédula y papeleta de votación de los CLIENTES dueños de la propiedad y apoderados.</li>
+                        <li>Recibo de pago del impuesto predial del año en curso.</li>
+                        <li>Levantamiento planimétrico vigente. (REPLANTEO)</li>
+                        <li>Certificado del Registro de la Propiedad actualizado.</li>
+                        <li>Certificado de no Adeudar al Municipio actualizado.</li>
+                        <li>Línea de fábrica.</li>
+                        <li>Certificado de bienes raíces.</li>
+                        <li>Ficha catastral.</li>
+                        <li>Certificado bancario.</li>
+                    </ul>
                 </p>
-    
                 <p style="text-align: justify;">
                     <b>OCTAVA: COMISIÓN PARA CREAINMOBILIARIA S.A.- </b>
                     <br>
-                    El presente CONVENIO DE EXCLUSIVIDAD DE VENTA establece un tipo de comisión denominado PRECIO FIJO, el cual determina que, en el caso de realizarse la venta del bien inmueble, la COMPAÑÍA CREAINMOBILIARIA S.A., se compromete a pagar la cantidad de (${{ precio_pactado }}) CINCUENTA MIL DÓLARES DE LOS ESTADOS UNIDOS DE NORTE AMÉRICA, al “CLIENTE”, independientemente del valor real de la venta del bien inmueble, la diferencia del valor de venta real y el valor fijado por los CLIENTES propietarios será la COMISIÓN del AGENTE INTERMEDIARIO “LA COMPAÑÍA CREA INMOBILIARIA S.A.”.   
+                    El presente CONVENIO DE EXCLUSIVIDAD DE VENTA establece un tipo de comisión denominado PRECIO FIJO, el cual determina que, en el caso de realizarse la venta del bien inmueble, la COMPAÑÍA CREAINMOBILIARIA S.A., se compromete a pagar la cantidad de <b>(${{ precio_pactado }}) DÓLARES DE LOS ESTADOS UNIDOS DE NORTE AMÉRICA</b>, al “CLIENTE”, independientemente del valor real de la venta del bien inmueble, la diferencia del valor de venta real y el valor fijado por los CLIENTES propietarios será la COMISIÓN del AGENTE INTERMEDIARIO “LA COMPAÑÍA CREA INMOBILIARIA S.A.”.   
                 </p>  
                 <p style="text-align: justify;">
                     <b>NOVENA: CANCELACIÓN DE ESTE ACUERDO.- </b>
@@ -175,18 +159,16 @@
                     <table style="width: 100%;" >
                         <tr>
                             <td style="text-align: center;">
-                                AGENTE INTERMEDIARIO<br>
-                                CREA INMOBILIARIA S.A<br>
-                                RUC. 1691721228001<br>
-                                Msc. Alejandro Conde Rivera<br>
-                                Representante Legal
+                             <b>AGENTE INTERMEDIARIO</b><br>
+                             <b>CREA INMOBILIARIA S.A</b><br>
+                             <b>RUC. 1691721228001</b><br>
+                             <b>Msc. Alejandro Conde Rivera</b><br>
+                             <b> Representante Legal</b>
                             </td>
                             <td style="text-align: center;">
-                                CLIENTE PROPIETARIO
-                                <br>
-                                {{ nombre_cliente }}
-                                <br>
-                                C.C: {{ cedula_cliente }}
+                            <b>CLIENTE PROPIETARIO</b><br>
+                            <b>{{ nombre_cliente }}</b><br>
+                            <b>C.C: {{ cedula_cliente }}</b>
                             </td>
                         </tr>
                     </table>
@@ -201,7 +183,7 @@
     
     <!-- Agrega más contenido del convenio según sea necesario -->
     <div id="footer">
-
+        <img src="https://sfk.pythonanywhere.com/static/images/convenio/head.JPG" >
     </div>
 </body>
 </html>

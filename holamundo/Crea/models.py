@@ -163,6 +163,7 @@ class Empleado(models.Model):
         ("Aprovicionamiento", "Aprovicionamiento"),
         ("Ventas", "Ventas"),
         ("Tramites", "Tramites"),
+        ("Gerencia", "Gerencia"),
     )
     area = models.CharField(max_length=50, choices=areas, blank= False, null= True)
     celular = models.CharField(max_length=144, blank= False, null= True)
@@ -190,5 +191,8 @@ class Empleado(models.Model):
 
     def es_tramites(self):
         return self.area == "Tramites"
+    
+    def es_gerencia(self):
+        return self.area == "Gerencia"
      
      

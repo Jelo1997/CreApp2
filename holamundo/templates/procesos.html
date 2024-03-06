@@ -11,8 +11,12 @@
       <th>Código</th>
       <th>Tipo</th>
       <th>Ubicación</th>
-      <th>Proceso</th>
-      <th>Observaciones</th>
+      <th>Cédula del vendedor</th>
+      <th>Contacto del vendedor</th>
+      <th>Cédula del comprador</th>
+      <th>Contacto del comprador</th>
+      <th>Estado del proceso</th>
+      <th>Observaciones del estado</th>
     </tr>
 
         {% for propiedad in propd %}
@@ -22,6 +26,7 @@
             <td>{{ propiedad.codigo }}</td>
             <td> {{propiedad.tipo}} </td>
             <td> {{propiedad.ubicacion}} </td>
+            
             {% if propiedad.id_cliente %}
                 <td>{{ propiedad.id_cliente.cedula }}</td>
                 <td>{{ propiedad.id_cliente.telefono }}</td>
@@ -29,6 +34,8 @@
                 <td>No asignado</td>
                 <td>No asignado</td>
             {% endif %}
+            <td>  </td>
+            <td>  </td>
             <td> {{propiedad.proceso_venta}} </td>
             <td> {{propiedad.observaciones_procesos}} </td>
             <td>

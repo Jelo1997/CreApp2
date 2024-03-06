@@ -61,7 +61,7 @@ class CaptarPropiedadForm(forms.ModelForm):
         'Información adicional',
         'convenio',
         'proceso',
-        'id_cliente_id'
+        'id_cliente'
       ),
       Submit('submit', 'Captar'),
     )
@@ -72,7 +72,13 @@ class ClienteForm(forms.ModelForm):
     class Meta:
         model = Cliente
         fields = ['nombre', 'apellido', 'cedula', 'telefono', 'correo', 'observaciones', 'estado']
-
+    def __init__(self, *args, **kwargs):
+        user = kwargs.pop('user', None) 
+        super(ClienteForm, self).__init__(*args, **kwargs)
+        if user.empleado.es_gerencia():
+            self.fields['estado'].widget.attrs['readonly'] = False
+        else:
+            self.fields['estado'].widget.attrs['style'] = 'pointer-events: none;'
 class EmpleadoForm(forms.ModelForm):
 
     class Meta:

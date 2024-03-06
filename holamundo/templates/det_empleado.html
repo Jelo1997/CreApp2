@@ -54,13 +54,23 @@
         <center>
             <h1>Datos {{ empleado.nombre }} {{ empleado.apellido }}</h1>
         </center>
+        <div class="card">
+            <center>
+            <h5>Foto: 
+                {% if empleado.foto %}
+                    <img src="{{ empleado.foto.url }}" alt="">
+                {% endif %}
+            </h5>
+        </center>
+        </div>
         <div class="card">         
             <h5>Celular: {{ empleado.celular }}</h5>
             <h5>Email: {{ empleado.correo }}</h5>
+            
         </div>
 
         <div class="card">
-            <h2>Area de trabajo</h2>
+            <h2>Area de Trabajo</h2>
             <table>
                 <tr>
                     <td>{{ empleado.area }}</td>
