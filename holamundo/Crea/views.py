@@ -236,14 +236,20 @@ def nuevo_cliente(request):
 @login_required
 def editar_cliente(request, codigo_cliente):
     contenido = {}
+    if request.user.empleado.es_aprovicionamiento():
+        estado_cliente = "Vendedor"
+    elif request.user.empleado.es_ventas():
+        estado_cliente = "Comprador"
+    elif request.user.empleado.es_gerencia():
+        estado_cliente = None
     cliente = get_object_or_404(Cliente, pk = codigo_cliente) 
     if request.method == 'POST':
-        form = ClienteForm(request.POST, request.FILES, instance=cliente)               
+        form = ClienteForm(request.POST, request.FILES, instance=cliente, user=request.user, initial={'estado': estado_cliente})               
         if form.is_valid():
             form.save()
             return redirect(cliente.get_absolute_url())
     else:
-        form = ClienteForm(instance=cliente)
+        form = ClienteForm(instance=cliente, user=request.user, initial={'estado': estado_cliente})
     contenido['form'] = form
     contenido['cliente'] = cliente
     return render(request, 'formulario_cliente.html', contenido)
