@@ -73,12 +73,14 @@ class ClienteForm(forms.ModelForm):
         fields = ['nombre', 'apellido', 'cedula', 'telefono', 'correo', 'observaciones', 'estado']
     def __init__(self, *args, **kwargs):
         user = kwargs.pop('user', None) 
+        estado_choices = kwargs.pop('estado_choices', None)
         super(ClienteForm, self).__init__(*args, **kwargs)
         if user and user.empleado.es_gerencia():
             self.fields['estado'].widget.attrs['disabled'] = False
         else:
             self.fields['estado'].widget.attrs['disabled'] = True
-
+        if estado_choices:
+            self.fields['estado'].widget.choices = estado_choices
 class EmpleadoForm(forms.ModelForm):
 
     class Meta:
