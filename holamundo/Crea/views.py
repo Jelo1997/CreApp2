@@ -191,7 +191,12 @@ def captar_propiedad(request, codigo_propiedad):
 
 @login_required
 def ver_pcliente(request):
-    cliente = Cliente.objects.all()
+    if request.user.empleado.es_aprovicionamiento():
+        cliente = Cliente.objects.filter(estado='Vendedor')
+    elif request.user.empleado.es_ventas():
+        cliente = Cliente.objects.filter(estado='Comprador')
+    else:
+        cliente = Cliente.objects.all()
     contenido = {
         'cliente' : cliente
     }
