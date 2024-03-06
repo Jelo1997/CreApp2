@@ -76,7 +76,7 @@ class EmpleadoForm(forms.ModelForm):
 
     class Meta:
         model = Empleado
-        fields = ['celular', 'apellido', 'correo', 'areas', 'nombre', 'foto']
+        fields = ['celular', 'apellido', 'correo', 'area', 'nombre', 'foto']
 
 class BuscarPersonaForm(forms.Form):
   cedula = forms.CharField(label="Cédula", max_length=10)
