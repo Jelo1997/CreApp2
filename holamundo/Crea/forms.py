@@ -29,6 +29,7 @@ class CaptarPropiedadForm(forms.ModelForm):
       'precio_minimo',
       'convenio',
       'proceso',
+      'id_cliente_id'
     ]
     widgets = {
     'fecha_ingreso': forms.DateInput(attrs={'type': 'date'}),
