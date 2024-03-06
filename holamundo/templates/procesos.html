@@ -26,8 +26,7 @@
             <td>{{ propiedad.codigo }}</td>
             <td> {{propiedad.tipo}} </td>
             <td> {{propiedad.ubicacion}} </td>
-            <td>  </td>
-            <td>  </td>
+            
             {% if propiedad.id_cliente %}
                 <td>{{ propiedad.id_cliente.cedula }}</td>
                 <td>{{ propiedad.id_cliente.telefono }}</td>
@@ -35,6 +34,8 @@
                 <td>No asignado</td>
                 <td>No asignado</td>
             {% endif %}
+            <td>  </td>
+            <td>  </td>
             <td> {{propiedad.proceso_venta}} </td>
             <td> {{propiedad.observaciones_procesos}} </td>
             <td>
