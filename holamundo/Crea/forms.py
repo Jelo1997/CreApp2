@@ -71,13 +71,17 @@ class ClienteForm(forms.ModelForm):
     class Meta:
         model = Cliente
         fields = ['nombre', 'apellido', 'cedula', 'telefono', 'correo', 'observaciones', 'estado']
+        widgets = {
+            'estado': forms.Select(attrs={'estado': 'form-control'}),
+        }
+
     def __init__(self, *args, **kwargs):
         user = kwargs.pop('user', None) 
         super(ClienteForm, self).__init__(*args, **kwargs)
         if user and user.empleado.es_gerencia():
-            self.fields['estado'].widget.attrs['readonly'] = False
+            self.fields['estado'].widget.attrs['disabled'] = False
         else:
-            self.fields['estado'].widget.attrs['readonly'] = True
+            self.fields['estado'].widget.attrs['disabled'] = True
 class EmpleadoForm(forms.ModelForm):
 
     class Meta:
