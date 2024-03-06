@@ -34,6 +34,7 @@ class CaptarPropiedadForm(forms.ModelForm):
     widgets = {
     'fecha_ingreso': forms.DateInput(attrs={'type': 'date'}),
     'fecha_caducidad': forms.DateInput(attrs={'type': 'date'}),
+    'id_cliente': forms.Select(attrs={'class': 'form-control'})
   }
 
   def __init__(self, *args, **kwargs):
@@ -61,10 +62,11 @@ class CaptarPropiedadForm(forms.ModelForm):
         'Información adicional',
         'convenio',
         'proceso',
-        'id_cliente_id'
+        'id_cliente'
       ),
       Submit('submit', 'Captar'),
     )
+    self.fields['id_cliente'].queryset = Cliente.objects.filter(estado="Comprador")
 
         
 class ClienteForm(forms.ModelForm):
