@@ -201,10 +201,18 @@ def ver_pcliente(request):
 @login_required
 def nuevo_cliente(request):
     contenido = {}
+    if request.user.empleado.es_aprovicionamiento():
+        estado_cliente = "Vendedor"
+    elif request.user.empleado.es_ventas():
+        estado_cliente = "Comprador"
+    else:
+        estado_cliente = None
+        
     if request.method == 'POST':
         contenido['form'] = ClienteForm(
                         request.POST or None,
-                        request.FILES or None,)
+                        request.FILES or None,
+                        initial={'estado': estado_cliente})
         if contenido['form'].is_valid():
             contenido['form'].save()
             return redirect(contenido['form'].instance.get_absolute_url())
@@ -213,7 +221,8 @@ def nuevo_cliente(request):
     contenido ['form'] = ClienteForm(
         request.POST or None,
         request.FILES or None,
-        instance = contenido['instancia_cliente']
+        instance = contenido['instancia_cliente'],
+        initial={'estado': estado_cliente}
     )
     
     return render(request, 'formulario_cliente.html', contenido)
