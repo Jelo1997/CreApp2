@@ -11,14 +11,14 @@
                             <li class="menu-title" key="Main">Main</li>
                             <li>
                                 <a href="{% url 'dashboard' %}" class="waves-effect">
-                                    <i class="ti-home"></i><span class="badge rounded-pill bg-primary float-end">1</span>
+                                    <i class="ti-home"></i><span class="badge rounded-pill bg-primary float-end"></span>
                                     <span key="Dashboard">Dashboard</span>
                                 </a>
                             </li>
                             <li>
                                 {% if user.empleado %}
                                     <a href="{% url 'ver_perfil_empleado' %}" class="waves-effect">
-                                        <i class="ti-user"></i><span class="badge rounded-pill bg-primary float-end">1</span>
+                                        <i class="ti-user"></i><span class="badge rounded-pill bg-primary float-end"></span>
                                         <span key="Dashboard">Perfil</span>
                                     </a>
                                 {% endif %}
