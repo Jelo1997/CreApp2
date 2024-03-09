@@ -119,9 +119,8 @@ class Propiedad_disponible(models.Model):
     )
     convenio = models.CharField(max_length=20, choices=conv)
     proc = (
-        ("Proceso de Venta", "Proceso de Venta"),
-        ("Vendida", "Vendida"),
-        ("Jurídico", "Jurídico")
+        ("Contado", "Contado"),
+        ("Credito", "Credito"),
     )
     proceso = models.CharField(max_length=20, choices=proc)
     proc2 = (
@@ -135,15 +134,17 @@ class Propiedad_disponible(models.Model):
         ("8", "Firmas de traspaso de dominio en notaria"),
         ("9", "Registro del crédito hipotecario en el municipio(3 días)"),
         ("10", "Fin"),
-        ("11", "Levantamiento planimétrico de compra y venta (1 semana)"),
-        ("12", "Aprobación de la planimetría en el municipio (3 semanas)"),
-        ("13", "Minuta y documentación en notaria (4 días)"),
-        ("14", "Ingreso al departamento de rentas en el municipio (1 semana)"),
-        ("15", "Pago de alcabalas y plusvalía"),
-        ("16", "Reingreso a la notaría para la revisión (3 días)"),
-        ("17", "Firmas de la compra y venta en notaria (2 dias)"),
-        ("18", "Registro de las escrituras en el municipio (3 dias )"),
-        ("19", "Fin Compra y venta de contado"),
+    )
+    proc3 = (
+        ("1", "Levantamiento planimétrico de compra y venta (1 semana)"),
+        ("2", "Aprobación de la planimetría en el municipio (3 semanas)"),
+        ("3", "Minuta y documentación en notaria (4 días)"),
+        ("4", "Ingreso al departamento de rentas en el municipio (1 semana)"),
+        ("5", "Pago de alcabalas y plusvalía"),
+        ("6", "Reingreso a la notaría para la revisión (3 días)"),
+        ("7", "Firmas de la compra y venta en notaria (2 dias)"),
+        ("8", "Registro de las escrituras en el municipio (3 dias )"),
+        ("9", "Fin Compra y venta de contado"),
     )
     proceso_venta = models.CharField(max_length=60, choices=proc2, null=True)
     observaciones_procesos = models.TextField(max_length=500, blank= False, null= True)

@@ -189,6 +189,8 @@ def captar_propiedad(request, codigo_propiedad):
 
     return render(request, 'captar_propiedad.html', context)
 
+
+
 @login_required
 def ver_pcliente(request):
     if request.user.empleado.es_aprovicionamiento():

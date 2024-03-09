@@ -23,12 +23,6 @@
                                     </a>
                                 {% endif %}
                             </li>
-                            <li>
-                                <a href="{% url 'calendar' %}" class=" waves-effect">
-                                    <i class="ti-calendar"></i>
-                                    <span key="Calendar">Calendar</span>
-                                </a>
-                            </li>
                             {% if user.empleado %}
                                 {% if user.empleado.es_aprovicionamiento %}
                                     <li>
