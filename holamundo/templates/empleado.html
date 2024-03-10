@@ -27,7 +27,7 @@
     <hr>
     
     <table class="table table-striped" id="templeado">
-        
+        <thead>
         <tr>
             <th><h2>ID</h2></th>
             <th><h2>Nombre</h2></th>
@@ -37,7 +37,8 @@
             <th><h2>Area</h2></th>
             
         </tr>
-
+        </thead>
+        <tbody>
         {% for emple in empleado %}
         <tr>
             <td> <a href='/empleado/{{emple.id}}'> {{emple.id}}</a> </td>
@@ -49,7 +50,9 @@
             
         </tr>
         {% endfor %}
-
+        <tbody>
+    <tfoot>
+    </tfoot>
     </table>
 
 

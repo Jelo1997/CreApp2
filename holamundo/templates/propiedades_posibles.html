@@ -30,29 +30,32 @@
   <hr>
 
   <table class="table table-striped" style="text-align: center" id="tpropiedad">
-
-    <tr>
-      <th><h2>Codigo</h2></th>
-      <th><h2>Tipo</h2></th>
-      <th><h2>Ubicacion</h2></th>
-      <th><h2>Precio</h2></th>
-      <th><h2>Descripcion</h2></th>
-      <th><h2> </h2></th>
-    </tr>
-
-    {% for prop in propiedad %}
-      {% if prop.es_activo %}
-        <tr class="searchable">
-          <td>{{prop.codigo}}</td>
-          <td>{{prop.tipo}}</td>
-          <td>{{prop.ubicacion}}</td>
-          <td>{{prop.precio}}</td>
-          <td>{{prop.descripcion}}</td>
-          <td><a href='/propiedad/{{prop.pk}}' class="btn btn-primary">Ver</a></td>
-        </tr>
-      {% endif %}
-    {% endfor %}
-
+    <thead>
+      <tr>
+        <th><h2>Codigo</h2></th>
+        <th><h2>Tipo</h2></th>
+        <th><h2>Ubicacion</h2></th>
+        <th><h2>Precio</h2></th>
+        <th><h2>Descripcion</h2></th>
+        <th><h2> </h2></th>
+      </tr>
+    </thead>
+    <tbody>
+      {% for prop in propiedad %}
+        {% if prop.es_activo %}
+          <tr class="searchable">
+            <td>{{prop.codigo}}</td>
+            <td>{{prop.tipo}}</td>
+            <td>{{prop.ubicacion}}</td>
+            <td>{{prop.precio}}</td>
+            <td>{{prop.descripcion}}</td>
+            <td><a href='/propiedad/{{prop.pk}}' class="btn btn-primary">Ver</a></td>
+          </tr>
+        {% endif %}
+      {% endfor %}
+    <tbody>
+    <tfoot>
+    </tfoot>
   </table>
 
 </body>
