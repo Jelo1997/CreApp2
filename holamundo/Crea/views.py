@@ -453,7 +453,7 @@ def agregar_observaciones(request, id):
     return render(request, "ppcliente.html", context)
 
 
-def captar_propiedad(request, propiedad_id):
+def captar_propiedad2(request, propiedad_id):
     if request.method == 'POST':
         form = CapturarPropiedadForm(request.POST)
         if form.is_valid():
