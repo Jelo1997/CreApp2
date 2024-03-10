@@ -202,7 +202,7 @@ class Propiedad_disponible(models.Model):
 class Proceso(models.Model):
    id_cliente = models.ForeignKey(Cliente, related_name ='id_procesocliente', on_delete=models.CASCADE, null= True)
    id_empleado = models.ForeignKey(Empleado, related_name ='id_procesoempleado', on_delete=models.CASCADE, null= True)
-   id_propiedad = models.ForeignKey(Propiedad_disponible, related_name ='id_procesopropiedad', on_delete=models.CASCADE, null= True)
+   id_propiedad = models.ForeignKey(Propiedad_disponible, related_name ='id_procesopropiedad1', on_delete=models.CASCADE, null= True)
    def __str__(self) -> str:
     return f'{self.id_cliente}'
      
