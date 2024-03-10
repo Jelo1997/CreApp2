@@ -123,7 +123,7 @@
                     </div>
                     <div class="modal-body">
                         <!-- Formulario de captura de propiedad -->
-                        <form id="formCapturarPropiedad" method="post" action="{% url 'guardar_propiedad' %}">
+                        <form id="formCapturarPropiedad" method="post">
                             {% csrf_token %}
                             {{ form.as_p }}
                             <!-- Campo oculto para la ID de la propiedad -->
