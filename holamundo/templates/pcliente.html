@@ -28,7 +28,7 @@
   </table>
 
   <hr>
-  <table class="table table-striped table-hover" style="text-align: center" id="tcliente">
+  <table class="table table-striped" style="text-align: center" id="tcliente">
     <thead>
     <tr>
       <th><h2>ID</h2></th>
@@ -43,7 +43,7 @@
   <tbody>
     {% for clien in cliente %}
       {% if clien.estado == 'Vendedor' or 'Vendedor/Comprador' %}
-        <tr class="searchable"> <td>{{clien.id}}</td>
+          <td>{{clien.id}}</td>
           <td>{{clien.nombre}}</td>
           <td>{{clien.apellido}}</td>
           <td>{{clien.telefono}}</td>
