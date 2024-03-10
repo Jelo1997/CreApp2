@@ -9,7 +9,7 @@ from django.contrib.auth.decorators import login_required
 from django.shortcuts import get_object_or_404, redirect, render
 from django.views.generic import DetailView
 from .models import Propiedad_posible, Propiedad_disponible, Cliente, Empleado, Proceso
-from .forms import PropiedadForm , CaptarPropiedadForm, ClienteForm, EmpleadoForm, BuscarPersonaForm, ObservacionesForm
+from .forms import PropiedadForm , CaptarPropiedadForm, ClienteForm, EmpleadoForm, BuscarPersonaForm, ObservacionesForm, CapturarPropiedadForm2
 from django.http import HttpResponse
 
 #generar pdf
@@ -453,24 +453,28 @@ def agregar_observaciones(request, id):
     return render(request, "ppcliente.html", context)
 
 
-def guardar_propiedad(request):
+def captar_propiedad2(request, propiedad_id):
+    propiedad = Propiedad_disponible.objects.get(id=propiedad_id)
+    if request.method == 'POST':
+        form = CapturarPropiedadForm2(request.POST)
+        if form.is_valid():
+            # Guardar la propiedad asociada al formulario
+            propiedad = Propiedad_disponible.objects.get(id=form.cleaned_data['propiedad'])
+            # Crear una instancia del objeto propiedad capturada
+            propiedad_capturada = form.save(commit=False)
+            propiedad_capturada.propiedad = propiedad
+            # Guardar la propiedad capturada
+            propiedad_capturada.save()
+            # Redirigir a alguna página de éxito o mostrar un mensaje de éxito
+            return redirect('pagina_de_exito')  # Cambia 'pagina_de_exito' con el nombre de la URL de tu página de éxito
+    else:
+        form = CapturarPropiedadForm2()
     clientes = Cliente.objects.all()
     empleados = Empleado.objects.all()
-    if request.method == 'POST':
-        # Obtener los datos del formulario
-        propiedad_id = request.POST.get('propiedad_id')
-        cliente_id = request.POST.get('cliente')
-        vendedor_id = request.POST.get('vendedor')
-        # Aquí puedes obtener otros campos del formulario
-        # Por ejemplo, descripción, ubicación, etc.
-
-        # Crear una nueva instancia de Propiedad con los datos del formulario
-        nueva_propiedad = Proceso(id_cliente= cliente_id, id_propiedad=propiedad_id, id_vendedor=vendedor_id)
-        # Guardar la nueva propiedad en la base de datos
-        nueva_propiedad.save()
-        context = {'cliente' : clientes, 'empleado': empleados}
-        # Redirigir a alguna página de éxito o mostrar un mensaje de éxito
-        return redirect('pagina_de_exito')  # Cambia 'pagina_de_exito' con el nombre de la URL de tu página de éxito
-
-    # Si la solicitud no es POST, redirigir a alguna página de error o mostrar un mensaje de error
-    return redirect('pagina_de_error')  # Cambia 'pagina_de_error' con el nombre de la URL de tu página de error
+    contenido = {
+        'form': form,
+        'clientes': clientes,
+        'empleados': empleados,
+        'propiedad': propiedad,
+    }
+    return render(request, 'captar_propiedad.html', contenido)
