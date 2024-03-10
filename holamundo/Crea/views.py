@@ -454,6 +454,8 @@ def agregar_observaciones(request, id):
 
 
 def guardar_propiedad(request):
+    clientes = Cliente.objects.all()
+    empleados = Empleado.objects.all()
     if request.method == 'POST':
         # Obtener los datos del formulario
         propiedad_id = request.POST.get('propiedad_id')
@@ -466,7 +468,7 @@ def guardar_propiedad(request):
         nueva_propiedad = Proceso(id_cliente= cliente_id, id_propiedad=propiedad_id, id_vendedor=vendedor_id)
         # Guardar la nueva propiedad en la base de datos
         nueva_propiedad.save()
-
+        context = {'cliente' : clientes, 'empleado': empleados}
         # Redirigir a alguna página de éxito o mostrar un mensaje de éxito
         return redirect('pagina_de_exito')  # Cambia 'pagina_de_exito' con el nombre de la URL de tu página de éxito
 
