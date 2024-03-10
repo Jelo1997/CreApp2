@@ -465,4 +465,6 @@ def captar_propiedad2(request, propiedad_id):
     # Obtener todos los clientes y empleados
     clientes = Cliente.objects.all()
     empleados = Empleado.objects.all()
+    print(clientes)  # Imprimir clientes en la consola para verificar
+    print(empleados)  # Imprimir empleados en la consola para verificar
     return render(request, 'propiedaddis.html', {'form': form, 'propiedad': propiedad, 'clientes': clientes, 'empleados': empleados})
