@@ -1,5 +1,5 @@
 {% extends 'partials/base.html' %}
-
+{% load static %}
 {% block content %}
 <!DOCTYPE html>
 <html lang="en">
@@ -20,10 +20,6 @@
   <hr>
   <table  WIDTH="100%">
     <tr>
-        <td>
-            <input type="text" id="searchInput" placeholder="Buscar Propiedad"> 
-            <i class="ti-search "></i>
-        </td>
         <td>
             <p align="right">
                 <a href="{% url 'nueva_propiedad' %}" class="btn btn-primary">Nueva Propiedad</a>

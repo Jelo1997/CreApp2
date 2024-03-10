@@ -1,5 +1,5 @@
 {% extends 'partials/base.html' %}
-
+{% load static %}
 {% block content %}
 <!DOCTYPE html>
 <html lang="en">
@@ -14,7 +14,18 @@
 </head>
 <body>
     <h1> Empleados </h1>
-    <a href="{% url 'nuevo_empleado' %}" class="btn btn-primary">Nuevo Empleado</a>
+    <hr>
+    <table  WIDTH="100%">
+        <tr>
+            <td>
+                <p align="right">
+                    <a href="{% url 'nuevo_empleado' %}" class="btn btn-primary">Nuevo Empleado</a>
+                </p>
+            </td>
+        </tr>
+    </table>
+    <hr>
+    
     <table class="table table-striped">
         
         <tr>
