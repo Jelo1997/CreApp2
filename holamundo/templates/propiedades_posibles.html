@@ -1,5 +1,5 @@
 {% extends 'partials/base.html' %}
-
+{% load static %}
 {% block content %}
 <!DOCTYPE html>
 <html lang="en">
@@ -7,22 +7,11 @@
   <meta charset="UTF-8">
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
   <title>CreApp-Propiedades</title>
+  <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/twitter-bootstrap/5.3.0/css/bootstrap.min.css">
+  <link rel="stylesheet" href="https://cdn.datatables.net/2.0.2/css/dataTables.bootstrap5.css">
+
   <script src="https://cdnjs.cloudflare.com/ajax/libs/jquery/3.6.0/jquery.min.js"></script>
-  <script>
-    $(document).ready(function() {
-      $("#searchInput").on("keyup", function() {
-        var searchTerm = $(this).val().toLowerCase();
-        $(".table-striped tr").each(function() {
-          var rowText = $(this).text().toLowerCase();
-          if (rowText.indexOf(searchTerm) !== -1) {
-            $(this).show();
-          } else {
-            $(this).hide();
-          }
-        });
-      });
-    });
-  </script>
+  
 </head>
 <body>
   <center>
@@ -32,10 +21,6 @@
   <table  WIDTH="100%">
     <tr>
         <td>
-            <input type="text" id="searchInput" placeholder="Buscar Propiedad"> 
-            <i class="ti-search "></i>
-        </td>
-        <td>
             <p align="right">
                 <a href="{% url 'nueva_propiedad' %}" class="btn btn-primary">Nueva Propiedad</a>
               </p>
@@ -44,32 +29,56 @@
   </table>
   <hr>
 
-  <table class="table table-striped" style="text-align: center">
-
-    <tr>
-      <th><h2>Codigo</h2></th>
-      <th><h2>Tipo</h2></th>
-      <th><h2>Ubicacion</h2></th>
-      <th><h2>Precio</h2></th>
-      <th><h2>Descripcion</h2></th>
-      <th><h2> </h2></th>
-    </tr>
-
-    {% for prop in propiedad %}
-      {% if prop.es_activo %}
-        <tr class="searchable">
-          <td>{{prop.codigo}}</td>
-          <td>{{prop.tipo}}</td>
-          <td>{{prop.ubicacion}}</td>
-          <td>{{prop.precio}}</td>
-          <td>{{prop.descripcion}}</td>
-          <td><a href='/propiedad/{{prop.pk}}' class="btn btn-primary">Ver</a></td>
-        </tr>
-      {% endif %}
-    {% endfor %}
-
+  <table class="table table-striped" style="text-align: center" id="tpropiedad">
+    <thead>
+      <tr>
+        <th><h2>Codigo</h2></th>
+        <th><h2>Tipo</h2></th>
+        <th><h2>Ubicacion</h2></th>
+        <th><h2>Precio</h2></th>
+        <th><h2>Descripcion</h2></th>
+        <th><h2> </h2></th>
+      </tr>
+    </thead>
+    <tbody>
+      {% for prop in propiedad %}
+        {% if prop.es_activo %}
+          <tr class="searchable">
+            <td>{{prop.codigo}}</td>
+            <td>{{prop.tipo}}</td>
+            <td>{{prop.ubicacion}}</td>
+            <td>{{prop.precio}}</td>
+            <td>{{prop.descripcion}}</td>
+            <td><a href='/propiedad/{{prop.pk}}' class="btn btn-primary">Ver</a></td>
+          </tr>
+        {% endif %}
+      {% endfor %}
+    <tbody>
+    <tfoot>
+    </tfoot>
   </table>
 
 </body>
+<script>
+  $(document).ready(function(){
+      $('#tpropiedad').DataTable({
+          "language": {
+              "lengthMenu": "Mostrar _MENU_ registros",
+              "zeroRecords": "No se encontraron resultados",
+              "info": "Registros del _START_ al _END_ de un total de _TOTAL_ registros",
+              "infoEmpty": "Registros del 0 al 0",
+              "infoFiltered": "(Total de _MAX_ registros)",
+              "sSearch": "Buscar:",
+              "oPaginate": {
+                  "sFirst": "Primero",
+                  "sLast":"Último",
+                  "sNext":"Siguiente",
+                  "sPrevious": "Anterior"
+         },
+         "sProcessing":"Procesando...",
+          }
+      });
+  });
+</script>
 </html>
 {% endblock %}
