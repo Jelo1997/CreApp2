@@ -7,22 +7,8 @@
   <meta charset="UTF-8">
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
   <title>CreApp-Clientes</title>
+
   
-  <script src="https://cdnjs.cloudflare.com/ajax/libs/jquery/3.6.0/jquery.min.js"></script> <script>
-    $(document).ready(function() {
-      $("#searchInput").on("keyup", function() {
-        var searchTerm = $(this).val().toLowerCase(); // Get the search term and convert to lowercase for case-insensitive search
-        $(".table-striped tr").each(function() {
-          var rowText = $(this).text().toLowerCase(); // Convert each row's text to lowercase for comparison
-          if (rowText.indexOf(searchTerm) !== -1) {
-            $(this).show(); // Show rows containing the search term
-          } else {
-            $(this).hide(); // Hide rows not containing the search term
-          }
-        });
-      });
-    });
-  </script>
 </head>
 <body>
   <center>
