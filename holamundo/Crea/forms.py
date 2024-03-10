@@ -103,3 +103,7 @@ class BuscarPersonaForm(forms.Form):
 class ObservacionesForm(forms.Form):
       observaciones_adicionales = forms.CharField(widget=forms.Textarea, label="Observaciones adicionales")
 
+class CapturarPropiedadForm(forms.ModelForm):
+    class Meta:
+        model = Proceso
+        fields = ['cliente', 'vendedor', 'propiedad']

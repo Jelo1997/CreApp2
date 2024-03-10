@@ -9,7 +9,7 @@ from django.contrib.auth.decorators import login_required
 from django.shortcuts import get_object_or_404, redirect, render
 from django.views.generic import DetailView
 from .models import Propiedad_posible, Propiedad_disponible, Cliente, Empleado, Proceso
-from .forms import PropiedadForm , CaptarPropiedadForm, ClienteForm, EmpleadoForm, BuscarPersonaForm, ObservacionesForm
+from .forms import PropiedadForm , CaptarPropiedadForm, ClienteForm, EmpleadoForm, BuscarPersonaForm, ObservacionesForm, CapturarPropiedadForm
 from django.http import HttpResponse
 
 #generar pdf
@@ -453,3 +453,24 @@ def agregar_observaciones(request, id):
     return render(request, "ppcliente.html", context)
 
 
+def captar_propiedad(request, propiedad_id):
+    if request.method == 'POST':
+        form = CapturarPropiedadForm(request.POST)
+        if form.is_valid():
+            # Guardar la información en la tabla Procesos
+            proceso = form.save(commit=False)
+            proceso.save()
+            # Redirigir a alguna página de éxito o mostrar un mensaje de éxito
+            return redirect('pagina_de_exito')  # Cambia 'pagina_de_exito' con el nombre de la URL de tu página de éxito
+    else:
+        form = CapturarPropiedadForm()
+    propiedad = Propiedad_disponible.objects.get(id=propiedad_id)
+    clientes = Cliente.objects.all()
+    empleados = Empleado.objects.all()
+    contenido = {
+        'form': form,
+        'propiedad': propiedad,
+        'clientes': clientes,
+        'empleados': empleados,
+    }
+    return render(request, 'captar_propiedad.html', contenido)
