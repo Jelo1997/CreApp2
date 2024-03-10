@@ -459,10 +459,10 @@ def captar_propiedad2(request, propiedad_id):
         form = CapturarPropiedadForm(request.POST)
         if form.is_valid():
             form.save()
-            return redirect('pagina_de_exito')  # Redirigir a la página de éxito después de guardar la propiedad
+            return redirect('propiedades_disponibles')  # Redirigir a la página de éxito después de guardar la propiedad
     else:
         form = CapturarPropiedadForm()
     # Obtener todos los clientes y empleados
     clientes = Cliente.objects.all()
     empleados = Empleado.objects.all()
-    return render(request, 'captar_propiedad.html', {'form': form, 'propiedad': propiedad, 'clientes': clientes, 'empleados': empleados})
+    return render(request, 'propiedades_disponibles', {'form': form, 'propiedad': propiedad, 'clientes': clientes, 'empleados': empleados})
