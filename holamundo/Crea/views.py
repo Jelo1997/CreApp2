@@ -141,7 +141,7 @@ def ver_propiedaddis(request, codigo_propiedad):
     c = {}
     propiedaddis =  get_object_or_404(Propiedad_disponible, pk=codigo_propiedad)
     cliente = propiedaddis.id_cliente
-    cliente2 = Cliente.objects.all()
+    cliente2 = Cliente.objects.filter(estado='Comprador')
     empleados = Empleado.objects.all()
     contenido ={
         'propiedad': propiedaddis,
