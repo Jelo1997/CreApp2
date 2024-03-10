@@ -454,23 +454,15 @@ def agregar_observaciones(request, id):
 
 
 def captar_propiedad2(request, propiedad_id):
+    propiedad = Propiedad_disponible.objects.get(id=propiedad_id)
     if request.method == 'POST':
         form = CapturarPropiedadForm(request.POST)
         if form.is_valid():
-            # Guardar la información en la tabla Procesos
-            proceso = form.save(commit=False)
-            proceso.save()
-            # Redirigir a alguna página de éxito o mostrar un mensaje de éxito
-            return redirect('pagina_de_exito')  # Cambia 'pagina_de_exito' con el nombre de la URL de tu página de éxito
+            form.save()
+            return redirect('pagina_de_exito')  # Redirigir a la página de éxito después de guardar la propiedad
     else:
         form = CapturarPropiedadForm()
-    propiedad = Propiedad_disponible.objects.get(id=propiedad_id)
+    # Obtener todos los clientes y empleados
     clientes = Cliente.objects.all()
     empleados = Empleado.objects.all()
-    contenido = {
-        'form': form,
-        'propiedad': propiedad,
-        'clientes': clientes,
-        'empleados': empleados,
-    }
-    return render(request, 'captar_propiedad.html', contenido)
+    return render(request, 'captar_propiedad.html', {'form': form, 'propiedad': propiedad, 'clientes': clientes, 'empleados': empleados})
