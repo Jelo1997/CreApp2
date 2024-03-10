@@ -43,7 +43,7 @@
   </table>
 
   <hr>
-  <table class="table table-striped" style="text-align: center">
+  <table class="table table-striped" style="text-align: center" id="tcliente">
 
     <tr>
       <th><h2>ID</h2></th>
@@ -77,6 +77,27 @@
 
     
 </body>
+<script>
+  $(document).ready(function(){
+      $('#tcliente').DataTable({
+          "language": {
+              "lengthMenu": "Mostrar _MENU_ registros",
+              "zeroRecords": "No se encontraron resultados",
+              "info": "Registros del _START_ al _END_ de un total de _TOTAL_ registros",
+              "infoEmpty": "Registros del 0 al 0",
+              "infoFiltered": "(Total de _MAX_ registros)",
+              "sSearch": "Buscar:",
+              "oPaginate": {
+                  "sFirst": "Primero",
+                  "sLast":"Último",
+                  "sNext":"Siguiente",
+                  "sPrevious": "Anterior"
+         },
+         "sProcessing":"Procesando...",
+          }
+      });
+  });
+</script>
 </html>
 
 {% endblock %}
