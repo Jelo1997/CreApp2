@@ -120,7 +120,7 @@
                     <label for="cliente">Cliente:</label>
                     <select name="cliente" id="cliente" class="form-control">
                         {% for cliente in clientes %}
-                            <option value="{{ cliente.pk }}">{{ cliente.nombre }} {{ cliente.apellido }}</option>
+                            <option value="{{ cliente.id }}">{{ cliente.nombre }} {{ cliente.apellido }}</option>
                         {% endfor %}
                     </select>
                 </div>
@@ -128,7 +128,7 @@
                     <label for="vendedor">Vendedor:</label>
                     <select name="vendedor" id="vendedor" class="form-control">
                         {% for empleado in empleados %}
-                            <option value="{{ empleado.pk }}">{{ empleado.nombre }} {{ empleado.apellido }}</option>
+                            <option value="{{ empleado.id }}">{{ empleado.nombre }} {{ empleado.apellido }}</option>
                         {% endfor %}
                     </select>
                 </div>
