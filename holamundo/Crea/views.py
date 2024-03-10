@@ -8,7 +8,7 @@ from django.core.validators import ValidationError
 from django.contrib.auth.decorators import login_required
 from django.shortcuts import get_object_or_404, redirect, render
 from django.views.generic import DetailView
-from .models import Propiedad_posible, Propiedad_disponible, Cliente, Empleado
+from .models import Propiedad_posible, Propiedad_disponible, Cliente, Empleado, Proceso
 from .forms import PropiedadForm , CaptarPropiedadForm, ClienteForm, EmpleadoForm, BuscarPersonaForm, ObservacionesForm
 from django.http import HttpResponse
 
@@ -396,9 +396,11 @@ def propiedades_por_usuario(request, cedula):
 def procesos_propiedades(request):
     cliente = Cliente.objects.all
     propiedades_disponibles = Propiedad_disponible.objects.all
+    empleado = Empleado.objects.all
     context={
         "cliente": cliente,
         "propd": propiedades_disponibles,
+        "emple": empleado
     }
     return render(request, "procesos.html", context) 
 
@@ -451,3 +453,22 @@ def agregar_observaciones(request, id):
     return render(request, "ppcliente.html", context)
 
 
+def guardar_propiedad(request):
+    if request.method == 'POST':
+        # Obtener los datos del formulario
+        propiedad_id = request.POST.get('propiedad_id')
+        cliente_id = request.POST.get('cliente')
+        vendedor_id = request.POST.get('vendedor')
+        # Aquí puedes obtener otros campos del formulario
+        # Por ejemplo, descripción, ubicación, etc.
+
+        # Crear una nueva instancia de Propiedad con los datos del formulario
+        nueva_propiedad = Proceso(id_cliente= cliente_id, id_propiedad=propiedad_id, id_vendedor=vendedor_id)
+        # Guardar la nueva propiedad en la base de datos
+        nueva_propiedad.save()
+
+        # Redirigir a alguna página de éxito o mostrar un mensaje de éxito
+        return redirect('pagina_de_exito')  # Cambia 'pagina_de_exito' con el nombre de la URL de tu página de éxito
+
+    # Si la solicitud no es POST, redirigir a alguna página de error o mostrar un mensaje de error
+    return redirect('pagina_de_error')  # Cambia 'pagina_de_error' con el nombre de la URL de tu página de error

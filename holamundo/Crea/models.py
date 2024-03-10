@@ -88,12 +88,53 @@ class Propiedad_posible(models.Model):
     
 
 
+#MODELO EMPLEADO    
 
+class Empleado(models.Model):
+    user = models.OneToOneField(User, related_name='empleado', on_delete=models.CASCADE, null=True)
+    nombre = models.CharField(max_length=144, blank= False, null= True)
+    apellido = models.CharField(max_length=144, blank= False, null= True)
+    correo  = models.EmailField(max_length=144, blank= False, null= True)
+    areas = (
+        ("Aprovicionamiento", "Aprovicionamiento"),
+        ("Ventas", "Ventas"),
+        ("Tramites", "Tramites"),
+        ("Gerencia", "Gerencia"),
+    )
+    area = models.CharField(max_length=50, choices=areas, blank= False, null= True)
+    celular = models.CharField(max_length=144, blank= False, null= True)
+    foto = models.FileField(
+      upload_to="foto_empleado/",
+      blank=True,
+    )
+    def __str__(self) -> str:
+       return f'{self.nombre}'
+    
+    def get_absolute_url(self):
+      return reverse("detalle_empleado", kwargs={'codigo_empleado' : self.id})
+   
+    def get_edit_url(self):
+      return reverse("editar_empleado", kwargs={'codigo_empleado' : self.id})
+   
+    def get_delete_url(self):
+      return reverse("eliminar_empleado", kwargs={'codigo_empleado' : self.id})
+
+    def es_aprovicionamiento(self):
+      return self.area == "Aprovicionamiento"
+
+    def es_ventas(self):
+      return self.area == "Ventas"
+
+    def es_tramites(self):
+        return self.area == "Tramites"
+    
+    def es_gerencia(self):
+        return self.area == "Gerencia"
   
 #MODELO PROPIEDAD DISPONIBLE
 
 
-       return reverse("eliminar_cliente", kwargs={'codigo_cliente' : self.id})
+       
 
 class Propiedad_disponible(models.Model):
     foto_propiedad = models.FileField(
@@ -155,51 +196,13 @@ class Propiedad_disponible(models.Model):
     proceso_venta = models.CharField(max_length=60, choices=proc2, null=True)
     observaciones_procesos = models.TextField(max_length=500, blank= False, null= True)
     id_cliente = models.ForeignKey(Cliente, related_name ='pk', on_delete=models.CASCADE, null= True)
-    id_comprador = models.ForeignKey(Cliente, related_name ='pk', on_delete=models.CASCADE, null= True)
     def __str__(self) -> str:
        return f'{self.codigo}'
 
-#MODELO EMPLEADO    
-
-class Empleado(models.Model):
-    user = models.OneToOneField(User, related_name='empleado', on_delete=models.CASCADE, null=True)
-    nombre = models.CharField(max_length=144, blank= False, null= True)
-    apellido = models.CharField(max_length=144, blank= False, null= True)
-    correo  = models.EmailField(max_length=144, blank= False, null= True)
-    areas = (
-        ("Aprovicionamiento", "Aprovicionamiento"),
-        ("Ventas", "Ventas"),
-        ("Tramites", "Tramites"),
-        ("Gerencia", "Gerencia"),
-    )
-    area = models.CharField(max_length=50, choices=areas, blank= False, null= True)
-    celular = models.CharField(max_length=144, blank= False, null= True)
-    foto = models.FileField(
-      upload_to="foto_empleado/",
-      blank=True,
-    )
-    def __str__(self) -> str:
-       return f'{self.nombre}'
-    
-    def get_absolute_url(self):
-      return reverse("detalle_empleado", kwargs={'codigo_empleado' : self.id})
-   
-    def get_edit_url(self):
-      return reverse("editar_empleado", kwargs={'codigo_empleado' : self.id})
-   
-    def get_delete_url(self):
-      return reverse("eliminar_empleado", kwargs={'codigo_empleado' : self.id})
-
-    def es_aprovicionamiento(self):
-      return self.area == "Aprovicionamiento"
-
-    def es_ventas(self):
-      return self.area == "Ventas"
-
-    def es_tramites(self):
-        return self.area == "Tramites"
-    
-    def es_gerencia(self):
-        return self.area == "Gerencia"
-     
+class Proceso(models.Model):
+   id_cliente = models.ForeignKey(Cliente, related_name ='id_procesocliente', on_delete=models.CASCADE, null= True)
+   id_empleado = models.ForeignKey(Empleado, related_name ='id_procesoempleado', on_delete=models.CASCADE, null= True)
+   id_propiedad = models.ForeignKey(Propiedad_disponible, related_name ='id_procesopropiedad', on_delete=models.CASCADE, null= True)
+   def __str__(self) -> str:
+    return f'{self.id_cliente}'
      
