@@ -486,19 +486,3 @@ def captar_propiedad2(request, propiedad_id):
     print(empleados)  # Imprimir empleados en la consola para verificar
     return render(request, 'detalle_propiedaddis.html', {'form': form, 'propiedad': propiedad, 'cliente': clientes, 'empleado': empleados})
 
-@login_required
-def capturar_proceso(request, propiedad_id):
-    propiedad = Propiedad_disponible.objects.get(id=propiedad_id)
-
-    if request.method == 'POST':
-        form = CapturarProcesoForm(request.POST)
-        if form.is_valid():
-            proceso = form.save(commit=False)
-            proceso.id_propiedad = propiedad
-            proceso.id_empleado = request.user.empleado  # Suponiendo que el usuario logueado tiene un perfil de Empleado
-            proceso.save()
-            return redirect('propiedades_disponibles')  # Redirigir a la página de propiedades disponibles después de guardar el proceso
-    else:
-        form = CapturarProcesoForm()
-
-    return render(request, 'capturar_proceso.html', {'form': form, 'propiedad': propiedad})

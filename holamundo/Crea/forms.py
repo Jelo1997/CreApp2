@@ -106,7 +106,7 @@ class ObservacionesForm(forms.Form):
 class CapturarPropiedadForm(forms.ModelForm):
     class Meta:
         model = Proceso
-        fields = ['id_cliente', 'id_empleado', 'id_propiedad']
+        fields = ['id_cliente', 'id_empleado']
 
 
 class CapturarProcesoForm(forms.ModelForm):
