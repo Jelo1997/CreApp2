@@ -483,7 +483,6 @@ def captar_propiedad2(request, propiedad_id):
     clientes = Cliente.objects.all()
     empleados = Empleado.objects.all()
     return render(request, 'detalle_propiedaddis.html', {'form': form, 'propiedad': propiedad, 'clientes': clientes, 'empleados': empleados, 'propiedad_id': propiedad_id})
-
 def captarpro_view(request, propiedad_id):
     # Render captarpro.html with the provided propiedad_id
     return render(request, 'captarpro.html', {'propiedad_id': propiedad_id})
