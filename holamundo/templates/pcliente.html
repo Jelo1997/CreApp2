@@ -84,14 +84,15 @@
 <script src="https://cdn.datatables.net/buttons/3.0.1/js/buttons.colVis.min.js"></script>
 
 
-
-
-
-
-
-
-
-
+<script>
+new DataTable('#tcliente', {
+  layout: {
+      topStart: {
+          buttons: ['copy', 'excel', 'pdf', 'colvis']
+      }
+  }
+});
+</script>
 
 <script>
   $(document).ready(function(){
@@ -111,10 +112,6 @@
          },
          "sProcessing":"Procesando...",
           }
-          layout: {
-            topStart: {
-                buttons: ['copy', 'excel', 'pdf', 'colvis']
-            }
       });
   });
 </script>
