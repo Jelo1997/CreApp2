@@ -26,10 +26,10 @@
       <th>Código</th>
       <th>Tipo</th>
       <th>Ubicación</th>
-      <th>Cédula del vendedor</th>
-      <th>Contacto del vendedor</th>
-      <th>Cédula del comprador</th>
-      <th>Contacto del comprador</th>
+      <th>Cédula del Comprador</th>
+      <th>Contacto del Comprador</th>
+      <th>Cédula del Vendedor</th>
+      <th>Contacto del Comprador</th>
       <th>Estado del proceso</th>
       <th>Observaciones del estado</th>
       <th> </th>
@@ -47,8 +47,9 @@
             {% if propiedad.id_cliente %}
                 <td>{{ propiedad.id_cliente.cedula }}</td>
                 <td>{{ propiedad.id_cliente.telefono }}</td>
-            {% else %}
-                <td>No asignado</td>
+            {% endif %}
+            {% if pro.id_empleado %}
+                <td>{{ pro.id_empleado }}</td>
                 <td>No asignado</td>
             {% endif %}
             <td>  </td>
