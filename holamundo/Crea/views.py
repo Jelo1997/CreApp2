@@ -406,15 +406,15 @@ def procesos_propiedades(request):
     detalles_procesos = []
     
     for proceso in procesos:
-        propiedad = Propiedad_disponible.objects.get(id=proceso.id_propiedad)
-        cliente = Cliente.objects.get(id=proceso.id_cliente)
-        empleado = Empleado.objects.get(id=proceso.id_empleado)
+        propiedad = proceso.id_propiedad  # Accede directamente al objeto Propiedad_disponible
+        cliente = proceso.id_cliente
+        empleado = proceso.id_empleado
         
         detalles_proceso = {
             'proceso': proceso,
-            'propiedad': propiedad,
-            'cliente': cliente,
-            'empleado': empleado
+            'propiedad': propiedad,  # Accede al campo 'id' de la propiedad
+            'cliente': cliente ,  # Accede al campo 'id' del cliente
+            'empleado': empleado  # Accede al campo 'id' del empleado
         }
         
         detalles_procesos.append(detalles_proceso)
