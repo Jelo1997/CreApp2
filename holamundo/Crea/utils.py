@@ -13,11 +13,11 @@ def enviar_mensaje_whatsapp(destinatario, mensaje):
         message = client.messages.create(
             from_=TWILIO_WHATSAPP_NUMBER,
             body=mensaje,
-            to=destinatario
+            to= +593995980319
         )
         
         # Retorna el SID del mensaje si se envía correctamente
-        print (message.sid)
+        return message.sid
     except Exception as e:
         # Maneja cualquier excepción que pueda ocurrir durante el envío del mensaje
         print(f"Error al enviar mensaje de WhatsApp: {str(e)}")
