@@ -18,6 +18,7 @@
         <div class="row justify-content-end mb-3">
             <div class="col-auto">
                 <a href="{% url 'ver_pcliente' %}" class="btn btn-primary">Regresar</a>
+                <a href="{{ cliente.get_edit_url }}" class="btn btn-warning">Editar</a> 
             </div>
         </div>
         <div class="card">
@@ -86,16 +87,6 @@
     
     <hr>
     
-    <div class="container mt-4">
-        <div class="row justify-content-center">
-            <div class="col-auto">
-                <a href="{{ cliente.get_edit_url }}" class="btn btn-warning">Editar</a> 
-            </div>
-        </div>
-    </div>
-    
-    
-
     <script>
         document.addEventListener('DOMContentLoaded', function() {
     // Evitar envío automático del formulario
