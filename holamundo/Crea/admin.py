@@ -1,5 +1,5 @@
 from django.contrib import admin
-from .models import Cliente, Propiedad_posible, Propiedad_disponible, Empleado, Proceso
+from .models import Cliente, Propiedad_posible, Propiedad_disponible, Empleado, Proceso, Observaciones
 
 @admin.register(Cliente)
 class ClienteAdmin(admin.ModelAdmin):
@@ -61,3 +61,7 @@ class EmpleadoAdmin(admin.ModelAdmin):
 @admin.register(Proceso)
 class ProcesoAdmin(admin.ModelAdmin):
     list_display=('id', 'id_cliente','id_empleado', 'id_propiedad')
+    
+@admin.register(Observaciones)
+class ObservacionesAdmin(admin.ModelAdmin):
+    list_display=('id_cliente','observacion', 'fecha_creacion')
