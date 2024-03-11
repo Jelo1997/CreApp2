@@ -50,7 +50,7 @@
                 <td>{{ propiedad.id_cliente.telefono }}</td>
             {% endif %}
             
-            {% if propiedad.pro.id_propiedad == propiedad.codigo %}
+            {% if propiedad.pro %}
                 <td>{{ propiedad.pro.id_empleado }}</td>
                 <td>No asignado</td>
             {% endif %}
