@@ -17,7 +17,7 @@ def enviar_mensaje_whatsapp(destinatario, mensaje):
         )
         
         # Retorna el SID del mensaje si se envía correctamente
-        return message.sid
+        print (message.sid)
     except Exception as e:
         # Maneja cualquier excepción que pueda ocurrir durante el envío del mensaje
         print(f"Error al enviar mensaje de WhatsApp: {str(e)}")
