@@ -49,9 +49,11 @@
                 <td>{{ propiedad.id_cliente.cedula }}</td>
                 <td>{{ propiedad.id_cliente.telefono }}</td>
             {% endif %}
+            {% if propiedad.pro %}
             {% if propiedad.pro.id_propiedad == propiedad.codigo %}
                 <td>{{ propiedad.pro.id_empleado }}</td>
                 <td>No asignado</td>
+            {% endif %}
             {% endif %}
             <td>  </td>
             <td>  </td>
