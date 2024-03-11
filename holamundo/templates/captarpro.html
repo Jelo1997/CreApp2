@@ -1,66 +1,26 @@
 {% extends 'partials/base.html' %}
+{% load crispy_forms_tags %}
 {% block content %}
-<!DOCTYPE html>
-<html lang="en">
-<head>
-    <meta charset="UTF-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>CreApp-Propiedad</title>
-    <style>
-        /* Your CSS styles */
-    </style>
-    <link href="https://maxcdn.bootstrapcdn.com/bootstrap/4.5.2/css/bootstrap.min.css" rel="stylesheet">
-</head>
-<body>
-    <div class="container">
-        <!-- Property Details -->
-        <div class="card">
-            <div class="card-header">
-                <h1>Datos Propiedad</h1>
-            </div>
-            <div class="card-body">
-                <!-- Display Property Details -->
-            </div>
-        </div>
 
-        <!-- Property Capture Form -->
+    <div class="container mt-4">
         <div class="card">
             <div class="card-header">
-                <h2>Capturar Propiedad</h2>
+                <h1>Captar propiedad</h1>
             </div>
-            <div class="card-body">
-                <!-- Property Capture Form -->
-                <form method="post" action="{% url 'captar_propiedad2' propiedad.id %}">
-                    {% csrf_token %}
-                    {{ form.as_p }}
-                    <!-- Hidden Field for Property ID -->
-                    <input type="hidden" name="id_propiedad" value="{{ propiedad.id }}">
-                    <!-- Dropdown for Clients -->
-                    <div class="form-group">
-                        <label for="cliente">Cliente:</label>
-                        <select name="id_cliente" id="cliente" class="form-control">
-                            {% for cliente in clientes %}
-                                <option value="{{ cliente.id }}">{{ cliente.nombre }} {{ cliente.apellido }}</option>
-                            {% endfor %}
-                        </select>
-                    </div>
-                    <!-- Dropdown for Employees -->
-                    <div class="form-group">
-                        <label for="vendedor">Vendedor:</label>
-                        <select name="id_empleado" id="vendedor" class="form-control">
-                            {% for empleado in empleados %}
-                                <option value="{{ empleado.id }}">{{ empleado.nombre }} {{ empleado.apellido }}</option>
-                            {% endfor %}
-                        </select>
-                    </div>
-                    <button type="submit" class="btn btn-success">Guardar Propiedad</button>
-                </form>
-            </div>
+            <form method="post" enctype="multipart/form-data">
+                {% csrf_token %}
+                {{ form|crispy }}
+                <center>
+                    <button type="submit">Captar</button>
+                    
+                </center>
+                
+            </form>
         </div>
     </div>
-    <script src="https://code.jquery.com/jquery-3.6.0.min.js"></script>
-    <script src="https://cdnjs.cloudflare.com/ajax/libs/popper.js/1.14.7/umd/popper.min.js"></script>
-    <script src="https://stackpath.bootstrapcdn.com/bootstrap/4.3.1/js/bootstrap.min.js"></script>
-</body>
-</html>
+
+
+
+
+
 {% endblock %}
