@@ -466,7 +466,7 @@ def agregar_observaciones(request, codigo_cliente):
         if form.is_valid():
             # Crea una instancia de Observaciones con los datos del formulario
             observacion = form.cleaned_data['observacion']
-            nueva_observacion = Observaciones(cliente=cliente, observacion=observacion)
+            nueva_observacion = Observaciones(id_cliente=cliente, observacion=observacion)
             nueva_observacion.save()
             return redirect('detalle_cliente', codigo_cliente=codigo_cliente)
     else:
