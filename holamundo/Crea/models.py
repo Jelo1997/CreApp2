@@ -202,7 +202,7 @@ class Proceso(models.Model):
     return f'{self.id_cliente}'
 
 class Observaciones(models.Model):
-    id_cliente = models.ForeignKey(Cliente, on_delete=models.CASCADE, related_name='observaciones')
+    id_cliente = models.ForeignKey(Cliente, on_delete=models.CASCADE, related_name='observaciones_adicionales')
     observacion = models.TextField()
     fecha_creacion = models.DateTimeField(default=timezone.now)
 
