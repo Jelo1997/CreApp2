@@ -430,7 +430,7 @@ def actualizar_proceso(request, propiedad_id):
         propiedad.save()
         
         # Llama a la función para enviar mensajes de WhatsApp
-        cliente = propiedad.cliente  # Suponiendo que tienes una relación con el cliente en tu modelo
+        cliente = propiedad.id_cliente  # Suponiendo que tienes una relación con el cliente en tu modelo
         destinatario = cliente.telefono  # Suponiendo que tienes un campo 'telefono' en tu modelo de cliente
         mensaje = f"El proceso de venta de tu propiedad ha sido actualizado a {nuevo_proceso_etiqueta}."
         enviar_mensaje_whatsapp(destinatario, mensaje)
