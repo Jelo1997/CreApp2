@@ -274,6 +274,22 @@
                             </div>
                         </div>
                         <!-- end row -->
+                        <div class="ct-chart" id="bar-chart"></div>
+
+<script>
+var data = {
+  labels: ['Lunes', 'Martes', 'Miércoles', 'Jueves', 'Viernes'],
+  series: [
+    [5, 2, 4, 2, 0]
+  ]
+};
+
+var options = {
+  seriesBarDistance: 15
+};
+
+new Chartist.Bar('#bar-chart', data, options);
+</script>
 
 {% endblock %}
 {% block extra_javascript %}
