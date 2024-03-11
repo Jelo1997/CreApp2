@@ -124,7 +124,7 @@
                             {% csrf_token %}
                             {{ form.as_p }}
                             <!-- Campo oculto para la ID de la propiedad -->
-                            <input type="hidden" name="propiedad" value="{{ propiedad.id }}">
+                            <input type="hidden" name="id_propiedad" value="{{ propiedad.id }}">
                             <div class="form-group">
                                 <label for="cliente">Cliente:</label>
                                 <select name="id_cliente" id="cliente" class="form-control">
