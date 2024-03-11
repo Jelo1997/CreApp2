@@ -467,17 +467,19 @@ def agregar_observaciones(request, id):
     context = {'cliente': cliente, 'form': form}
     return render(request, "ppcliente.html", context)
 
+
 def captar_propiedad2(request, propiedad_id):
     propiedad = Propiedad_disponible.objects.get(id=propiedad_id)
     if request.method == 'POST':
-        form = CapturarProcesoForm(request.POST)
+        form = CapturarPropiedadForm(request.POST)
         if form.is_valid():
-            proceso = form.save(commit=False)  # No guardes el formulario aún
-            proceso.id_propiedad = propiedad  # Asigna la propiedad al proceso
-            proceso.save()  # Guarda el proceso
-            return redirect(reverse('detalle_propiedaddis', args=[propiedad_id]))
+            proceso = form.save(commit=False)  # Obtener una instancia del proceso sin guardar en la base de datos
+            proceso.id_propiedad = propiedad  # Asignar la propiedad relacionada al proceso
+            proceso.save()  # Guardar el proceso en la base de datos
+            return redirect(reverse('detalle_propiedaddis', args=[propiedad_id]))  # Redirigir a la página de éxito después de guardar la propiedad
     else:
-        form = CapturarProcesoForm()
+        form = CapturarPropiedadForm()
+    # Obtener todos los clientes y empleados
     clientes = Cliente.objects.all()
     empleados = Empleado.objects.all()
     return render(request, 'detalle_propiedaddis.html', {'form': form, 'propiedad': propiedad, 'clientes': clientes, 'empleados': empleados})
