@@ -94,5 +94,6 @@ urlpatterns = [
     path('propiedaddis/<int:propiedad_id>/', captar_propiedad2, name='captar_propiedad2'),
     path('enviar-mensaje-whatsapp/', enviar_mensaje_whatsapp, name='enviar_mensaje_whatsapp'),
     path('captarpro/<int:propiedad_id>', captar_propiedad2, name='captarpro'),
+    #path('captar-propiedad/<int:propiedad_id>/', captar_propiedad2, name='captar_propiedad'),
 ]
 urlpatterns += static (settings.MEDIA_URL, document_root=settings.MEDIA_ROOT)

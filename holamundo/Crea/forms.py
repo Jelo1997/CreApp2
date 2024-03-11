@@ -107,6 +107,9 @@ class CapturarPropiedadForm(forms.ModelForm):
     class Meta:
         model = Proceso
         fields = ['id_cliente', 'id_empleado', 'id_propiedad']
+        widgets = {
+            'id_propiedad': forms.HiddenInput(),
+        }
 
 
 class CapturarProcesoForm(forms.ModelForm):

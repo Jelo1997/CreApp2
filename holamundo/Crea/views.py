@@ -402,15 +402,27 @@ def propiedades_por_usuario(request, cedula):
     return render(request, "consulta.html", context) 
 
 def procesos_propiedades(request):
-    cliente = Cliente.objects.all
-    propiedades_disponibles = Propiedad_disponible.objects.all
-    empleado = Empleado.objects.all
-    context={
-        "cliente": cliente,
-        "propd": propiedades_disponibles,
-        "emple": empleado
+    procesos = Proceso.objects.all()
+    detalles_procesos = []
+    
+    for proceso in procesos:
+        propiedad = Propiedad_disponible.objects.get(id=proceso.id_propiedad)
+        cliente = Cliente.objects.get(id=proceso.id_cliente)
+        empleado = Empleado.objects.get(id=proceso.id_empleado)
+        
+        detalles_proceso = {
+            'proceso': proceso,
+            'propiedad': propiedad,
+            'cliente': cliente,
+            'empleado': empleado
+        }
+        
+        detalles_procesos.append(detalles_proceso)
+    
+    context = {
+        "detalles_procesos": detalles_procesos,
     }
-    return render(request, "procesos.html", context) 
+    return render(request, "procesos.html", context)
 
 
 def actualizar_proceso(request, propiedad_id):
@@ -472,18 +484,17 @@ def agregar_observaciones(request, codigo_cliente):
 def captar_propiedad2(request, propiedad_id):
     propiedad = Propiedad_disponible.objects.get(id=propiedad_id)
     if request.method == 'POST':
-        form = CapturarPropiedadForm(request.POST, instance=propiedad)
+        form = CapturarPropiedadForm(request.POST)
         if form.is_valid():
             proceso = form.save(commit=False)
             proceso.id_propiedad = propiedad
             proceso.save()
-            # Redirect to captarpro view after successful form submission
             return redirect('captarpro', propiedad_id=propiedad_id)
     else:
-        form = CapturarPropiedadForm(instance=propiedad)  # Pass the instance here
-    clientes = Cliente.objects.all()
+        form = CapturarPropiedadForm(initial={'id_propiedad': propiedad})
+    clientes = Cliente.objects.all()  # Asegúrate de importar Cliente y Empleado
     empleados = Empleado.objects.all()
-    return render(request, 'detalle_propiedaddis.html', {'form': form, 'propiedad': propiedad, 'clientes': clientes, 'empleados': empleados, 'propiedad_id': propiedad_id})
+    return render(request, 'captarpro.html', {'form': form, 'propiedad': propiedad, 'clientes': clientes, 'empleados': empleados, 'propiedad_id': propiedad_id})
 
 def captarpro_view(request, propiedad_id):
     propiedad = Propiedad_disponible.objects.get(id=propiedad_id)
