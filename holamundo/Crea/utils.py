@@ -1,16 +1,17 @@
 from .models import *
 
-# utils.py
 from twilio.rest import Client
 
-def enviar_mensaje_whatsapp(account_sid, auth_token, whatsapp_number, destinatario, mensaje):
+from holamundo.settings import TWILIO_ACCOUNT_SID, TWILIO_AUTH_TOKEN, TWILIO_WHATSAPP_NUMBER
+
+def enviar_mensaje_whatsapp(destinatario, mensaje):
     try:
-        # Inicializa el cliente de Twilio con las credenciales proporcionadas
-        client = Client(account_sid, auth_token)
+        # Inicializa el cliente de Twilio con tus credenciales
+        client = Client(TWILIO_ACCOUNT_SID, TWILIO_AUTH_TOKEN)
         
         # Crea el mensaje de WhatsApp
         message = client.messages.create(
-            from_=whatsapp_number,
+            from_=TWILIO_WHATSAPP_NUMBER,
             body=mensaje,
             to=destinatario
         )
