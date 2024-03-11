@@ -85,16 +85,6 @@
 
 
 <script>
-new DataTable('#tcliente', {
-  layout: {
-      topStart: {
-          buttons: ['copy', 'excel', 'pdf', 'colvis']
-      }
-  }
-});
-</script>
-
-<script>
   $(document).ready(function(){
       $('#tcliente').DataTable({
           "language": {
@@ -109,8 +99,13 @@ new DataTable('#tcliente', {
                   "sLast":"Último",
                   "sNext":"Siguiente",
                   "sPrevious": "Anterior"
-         },
-         "sProcessing":"Procesando...",
+             },
+             "sProcessing":"Procesando...",
+          },
+          layout: {
+              topStart: {
+                  buttons: ['copy', 'excel', 'pdf', 'colvis']
+              }
           }
       });
   });
