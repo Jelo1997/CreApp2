@@ -66,7 +66,7 @@ class CaptarPropiedadForm(forms.ModelForm):
       ),
       Submit('submit', 'Captar'),
     )
-    self.fields['id_cliente'].queryset = Cliente.objects.filter(estado="Comprador")
+    self.fields['id_cliente'].queryset = Cliente.objects.filter(estado="Vendedores")
 
         
 class ClienteForm(forms.ModelForm):
