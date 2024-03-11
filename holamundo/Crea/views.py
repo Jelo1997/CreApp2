@@ -10,7 +10,7 @@ from django.contrib.auth.decorators import login_required
 from django.shortcuts import get_object_or_404, redirect, render
 from django.views.generic import DetailView
 from .models import Propiedad_posible, Propiedad_disponible, Cliente, Empleado, Proceso
-from .forms import PropiedadForm , CaptarPropiedadForm, ClienteForm, EmpleadoForm, BuscarPersonaForm, ObservacionesForm, CapturarPropiedadForm
+from .forms import CapturarProcesoForm, PropiedadForm , CaptarPropiedadForm, ClienteForm, EmpleadoForm, BuscarPersonaForm, ObservacionesForm, CapturarPropiedadForm
 from django.http import HttpResponse
 
 #generar pdf
@@ -469,15 +469,32 @@ def agregar_observaciones(request, id):
 def captar_propiedad2(request, propiedad_id):
     propiedad = Propiedad_disponible.objects.get(id=propiedad_id)
     if request.method == 'POST':
-        form = CapturarPropiedadForm(request.POST)
+        form = CapturarProcesoForm(request.POST)
         if form.is_valid():
             form.save()
             return redirect(reverse('detalle_propiedaddis', args=[propiedad_id]))  # Redirigir a la página de éxito después de guardar la propiedad
     else:
-        form = CapturarPropiedadForm()
+        form = CapturarProcesoForm()
     # Obtener todos los clientes y empleados
     clientes = Cliente.objects.all()
     empleados = Empleado.objects.all()
     print(clientes)  # Imprimir clientes en la consola para verificar
     print(empleados)  # Imprimir empleados en la consola para verificar
     return render(request, 'detalle_propiedaddis.html', {'form': form, 'propiedad': propiedad, 'cliente': clientes, 'empleado': empleados})
+
+@login_required
+def capturar_proceso(request, propiedad_id):
+    propiedad = Propiedad_disponible.objects.get(id=propiedad_id)
+
+    if request.method == 'POST':
+        form = CapturarProcesoForm(request.POST)
+        if form.is_valid():
+            proceso = form.save(commit=False)
+            proceso.id_propiedad = propiedad
+            proceso.id_empleado = request.user.empleado  # Suponiendo que el usuario logueado tiene un perfil de Empleado
+            proceso.save()
+            return redirect('propiedades_disponibles')  # Redirigir a la página de propiedades disponibles después de guardar el proceso
+    else:
+        form = CapturarProcesoForm()
+
+    return render(request, 'capturar_proceso.html', {'form': form, 'propiedad': propiedad})

@@ -107,3 +107,13 @@ class CapturarPropiedadForm(forms.ModelForm):
     class Meta:
         model = Proceso
         fields = ['id_cliente', 'id_empleado', 'id_propiedad']
+
+
+class CapturarProcesoForm(forms.ModelForm):
+    class Meta:
+        model = Proceso
+        fields = ['id_cliente']
+
+    def __init__(self, *args, **kwargs):
+        super(CapturarProcesoForm, self).__init__(*args, **kwargs)
+        self.fields['id_cliente'].queryset = Cliente.objects.all()  # Limitar opciones de cliente a todos los clientes disponibles
