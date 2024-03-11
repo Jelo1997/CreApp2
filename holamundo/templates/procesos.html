@@ -51,9 +51,12 @@
             {% endif %}
             
             {% if propiedad.pro %}
-                <td>{{ propiedad.pro.id_empleado }}</td>
-                <td>No asignado</td>
-            {% endif %}
+            <td>{{ propiedad.pro.id_empleado }}</td>
+            <td>No asignado</td>
+        {% else %}
+            <td>No asignado</td>
+            <td>No asignado</td>
+        {% endif %}
             <td>  </td>
             <td>  </td>
             <td> {{propiedad.proceso_venta}} </td>
