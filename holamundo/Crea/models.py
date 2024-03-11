@@ -32,16 +32,12 @@ class Cliente(models.Model):
        return f'{self.nombre}'
 
     def get_absolute_url(self):
-
-
        return reverse("detalle_cliente", kwargs={'codigo_cliente' : self.id})
    
     def get_edit_url(self):
        return reverse("editar_cliente", kwargs={'codigo_cliente' : self.id})
    
     def get_delete_url(self):
-
-
        return reverse("eliminar_cliente", kwargs={'codigo_cliente' : self.id})
 
 
