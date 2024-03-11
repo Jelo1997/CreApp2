@@ -14,7 +14,6 @@ class Cliente(models.Model):
     cedula = models.CharField(max_length=144, blank= False, null= False)
     telefono = models.CharField(max_length=144, blank= False, null= False)
     correo = models.EmailField(max_length=144, blank= False, null= False)
-    observaciones = models.CharField(max_length=144, blank= False, null= False)
     estados = (
         ("Comprador", "Comprador"),
         ("Vendedor", "Vendedor"),
