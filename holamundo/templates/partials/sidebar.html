@@ -77,10 +77,14 @@
                                         </ul>
                                     </li>
                                     <li>
-                                        <a href="{% url 'procesos propiedades' %}" class=" waves-effect">
-                                            <i class="ti-calendar"></i>
-                                            <span key="Calendar">Tramites</span>
+                                        <a href="javascript: void(0);" class="has-arrow waves-effect">
+                                            <i class="ti-email"></i>
+                                            <span key="Email">Tramites</span>
                                         </a>
+                                        <ul class="sub-menu" aria-expanded="false">
+                                            <li><a href="{% url 'procesos propiedades' %}" >Tramites</a></li>
+                                            <li><a href="{% url 'ventas' %}" key="Inbox">Ventas</a></li>
+                                        </ul>
                                     </li>
                                     <li>
                                         <a href="{% url 'ver_empleado' %}" class=" waves-effect">

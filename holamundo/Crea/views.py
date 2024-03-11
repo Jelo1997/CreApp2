@@ -414,6 +414,12 @@ def procesos_propiedades(request):
     }
     return render(request, "procesos.html", context) 
 
+def procesos_venta(request):
+    proceso = Proceso.objects.all()
+    context={
+        "pro":proceso
+    }
+    return render(request, "ventas.html", context) 
 
 def actualizar_proceso(request, propiedad_id):
     if request.method == 'POST':

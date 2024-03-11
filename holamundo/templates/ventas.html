@@ -1,0 +1,41 @@
+{% extends 'partials/base.html' %}
+{% load static %}
+{% block content %}
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Procesos</title>
+    <link rel="stylesheet" href="{% static 'css/bootstrap.min.css' %}">
+    <link rel="stylesheet" href="https://cdn.datatables.net/1.11.5/css/dataTables.bootstrap5.min.css">
+</head>
+<body>
+    <h1>Listado de Procesos</h1>
+    <table class="table">
+        <thead>
+            <tr>
+                <th>ID</th>
+                <th>Cliente</th>
+                <th>Propiedad</th>
+                <th>Empleado</th>
+                <th>Vendedor</th>
+                <!-- Agrega más columnas según sea necesario -->
+            </tr>
+        </thead>
+        <tbody>
+            {% for proceso in pro %}
+                <tr>
+                    <td>{{ proceso.id }}</td>
+                    <td>{{ proceso.id_cliente }}</td>
+                    <td>{{ proceso.id_propiedad }}</td>
+                    <td>{{ proceso.id_empleado }}</td>
+                    <td>{{ proceso.id_vendedor }}</td>  <!-- Añade la columna para el vendedor -->
+                    <!-- Agrega más celdas con la información relacionada -->
+                </tr>
+            {% endfor %}
+        </tbody>
+    </table>
+</body>
+</html>
+{% endblock %}
