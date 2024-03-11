@@ -402,15 +402,27 @@ def propiedades_por_usuario(request, cedula):
     return render(request, "consulta.html", context) 
 
 def procesos_propiedades(request):
-    cliente = Cliente.objects.all
-    propiedades_disponibles = Propiedad_disponible.objects.all
-    empleado = Empleado.objects.all
-    context={
-        "cliente": cliente,
-        "propd": propiedades_disponibles,
-        "emple": empleado
+    procesos = Proceso.objects.all()
+    detalles_procesos = []
+    
+    for proceso in procesos:
+        propiedad = Propiedad_disponible.objects.get(id=proceso.id_propiedad)
+        cliente = Cliente.objects.get(id=proceso.id_cliente)
+        empleado = Empleado.objects.get(id=proceso.id_empleado)
+        
+        detalles_proceso = {
+            'proceso': proceso,
+            'propiedad': propiedad,
+            'cliente': cliente,
+            'empleado': empleado
+        }
+        
+        detalles_procesos.append(detalles_proceso)
+    
+    context = {
+        "detalles_procesos": detalles_procesos,
     }
-    return render(request, "procesos.html", context) 
+    return render(request, "procesos.html", context)
 
 
 def actualizar_proceso(request, propiedad_id):
