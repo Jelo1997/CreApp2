@@ -471,7 +471,7 @@ def agregar_observaciones(request, id):
 def captar_propiedad2(request, propiedad_id):
     propiedad = Propiedad_disponible.objects.get(id=propiedad_id)
     if request.method == 'POST':
-        form = CapturarPropiedadForm(request.POST)
+        form = CapturarPropiedadForm(request.POST, instance=propiedad)
         if form.is_valid():
             proceso = form.save(commit=False)
             proceso.id_propiedad = propiedad
@@ -479,10 +479,11 @@ def captar_propiedad2(request, propiedad_id):
             # Redirect to captarpro view after successful form submission
             return redirect('captarpro', propiedad_id=propiedad_id)
     else:
-        form = CapturarPropiedadForm()
+        form = CapturarPropiedadForm(instance=propiedad)  # Pass the instance here
     clientes = Cliente.objects.all()
     empleados = Empleado.objects.all()
     return render(request, 'detalle_propiedaddis.html', {'form': form, 'propiedad': propiedad, 'clientes': clientes, 'empleados': empleados, 'propiedad_id': propiedad_id})
+
 def captarpro_view(request, propiedad_id):
     propiedad = Propiedad_disponible.objects.get(id=propiedad_id)
     return render(request, 'captarpro.html', {'propiedad_id': propiedad})
