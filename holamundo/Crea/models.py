@@ -190,7 +190,7 @@ class Propiedad_disponible(models.Model):
     proceso_venta = models.CharField(max_length=60, choices=proc2, null=True)
     observaciones_procesos = models.TextField(max_length=500, blank= False, null= True)
     id_cliente = models.ForeignKey(Cliente, related_name ='pk', on_delete=models.CASCADE, null= True)
-    id_empleado = models.ForeignKey(Empleado, related_name ='idempleado', on_delete=models.CASCADE, null= True)
+    id_empleado = models.ForeignKey(Empleado, related_name ='idempleados', on_delete=models.CASCADE, null= True)
     def __str__(self) -> str:
        return f'{self.codigo}'
 
