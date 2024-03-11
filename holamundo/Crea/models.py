@@ -202,12 +202,12 @@ class Proceso(models.Model):
     return f'{self.id_cliente}'
 
 class Observaciones(models.Model):
-    cliente = models.ForeignKey(Cliente, on_delete=models.CASCADE, related_name='observaciones')
+    id_cliente = models.ForeignKey(Cliente, on_delete=models.CASCADE, related_name='observaciones_adicionales')
     observacion = models.TextField()
     fecha_creacion = models.DateTimeField(default=timezone.now)
 
     def __str__(self):
-        return f'Observación de {self.cliente.nombre} - {self.fecha_creacion}'
+        return f'Observación de {self.id_cliente.nombre} - {self.fecha_creacion}'
 
     class Meta:
         ordering = ['-fecha_creacion']
