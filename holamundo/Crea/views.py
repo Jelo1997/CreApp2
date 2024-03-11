@@ -206,11 +206,9 @@ def ver_pcliente(request):
     else:
         cliente = Cliente.objects.all()
     
-    total_clientes = cliente.count()
-    
     contenido = {
-        'cliente' : cliente,
-        'total_clientes': total_clientes
+        'cliente' : cliente
+        
     }
     template = "pcliente.html"
     return render(request, template, contenido)
