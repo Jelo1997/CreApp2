@@ -5,6 +5,72 @@
 {% endblock  %}
 
 {% block content %}
+<h1>Dashboard</h1>
+
+    <!-- Gráfico de Clientes -->
+    <canvas id="clientesChart" width="400" height="400"></canvas>
+
+    <!-- Gráfico de Propiedades Posibles -->
+    <canvas id="propiedadesPosiblesChart" width="400" height="400"></canvas>
+
+    <!-- Gráfico de Propiedades Disponibles -->
+    <canvas id="propiedadesDisponiblesChart" width="400" height="400"></canvas>
+
+    <script>
+        document.addEventListener("DOMContentLoaded", function () {
+            var ctxClientes = document.getElementById('clientesChart').getContext('2d');
+            var ctxPropiedadesPosibles = document.getElementById('propiedadesPosiblesChart').getContext('2d');
+            var ctxPropiedadesDisponibles = document.getElementById('propiedadesDisponiblesChart').getContext('2d');
+
+            var clientesData = {
+                labels: ['Clientes'],
+                datasets: [{
+                    label: 'Número de Clientes',
+                    data: [{{ Cliente.objects.count }}],
+                    backgroundColor: 'rgba(255, 99, 132, 0.6)',
+                    borderColor: 'rgba(255, 99, 132, 1)',
+                    borderWidth: 1
+                }]
+            };
+
+            var propiedadesPosiblesData = {
+                labels: ['Propiedades Posibles'],
+                datasets: [{
+                    label: 'Número de Propiedades Posibles',
+                    data: [{{ Propiedad_posible.objects.count }}],
+                    backgroundColor: 'rgba(54, 162, 235, 0.6)',
+                    borderColor: 'rgba(54, 162, 235, 1)',
+                    borderWidth: 1
+                }]
+            };
+
+            var propiedadesDisponiblesData = {
+                labels: ['Propiedades Disponibles'],
+                datasets: [{
+                    label: 'Número de Propiedades Disponibles',
+                    data: [{{ Propiedad_disponible.objects.count }}],
+                    backgroundColor: 'rgba(75, 192, 192, 0.6)',
+                    borderColor: 'rgba(75, 192, 192, 1)',
+                    borderWidth: 1
+                }]
+            };
+
+            var clientesChart = new Chart(ctxClientes, {
+                type: 'bar',
+                data: clientesData
+            });
+
+            var propiedadesPosiblesChart = new Chart(ctxPropiedadesPosibles, {
+                type: 'bar',
+                data: propiedadesPosiblesData
+            });
+
+            var propiedadesDisponiblesChart = new Chart(ctxPropiedadesDisponibles, {
+                type: 'bar',
+                data: propiedadesDisponiblesData
+            });
+        });
+    </script>
 
                         <div class="row">
                             <div class="col-xl-3 col-md-6">
