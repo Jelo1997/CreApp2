@@ -47,8 +47,9 @@
             {% if propiedad.id_cliente %}
                 <td>{{ propiedad.id_cliente.cedula }}</td>
                 <td>{{ propiedad.id_cliente.telefono }}</td>
-            {% else %}
-                <td>No asignado</td>
+            {% endif %}
+            {% if pro.id_empleado %}
+                <td>{{ pro.id_empleado }}</td>
                 <td>No asignado</td>
             {% endif %}
             <td>  </td>
