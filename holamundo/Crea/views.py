@@ -406,15 +406,15 @@ def procesos_propiedades(request):
     detalles_procesos = []
     
     for proceso in procesos:
-        propiedad = proceso.id_propiedad  # Accede directamente al objeto Propiedad_disponible
-        cliente = proceso.id_cliente
-        empleado = proceso.id_empleado
+        propiedad = Propiedad_disponible.objects.get(id=proceso.id_propiedad)
+        cliente = Cliente.objects.get(id=proceso.id_cliente)
+        empleado = Empleado.objects.get(id=proceso.id_empleado)
         
         detalles_proceso = {
             'proceso': proceso,
-            'propiedad': propiedad,  # Accede al campo 'id' de la propiedad
-            'cliente': cliente ,  # Accede al campo 'id' del cliente
-            'empleado': empleado  # Accede al campo 'id' del empleado
+            'propiedad': propiedad,
+            'cliente': cliente,
+            'empleado': empleado
         }
         
         detalles_procesos.append(detalles_proceso)
@@ -462,7 +462,7 @@ class ClienteDetailView(DetailView):
 
 def agregar_observaciones(request, codigo_cliente):
     # Obtiene la instancia del cliente o muestra un error 404 si no se encuentra
-    cliente = get_object_or_404(Cliente, pk=codigo_cliente)
+    cliente = get_object_or_404(Cliente, id=codigo_cliente)
 
     if request.method == 'POST':
         # Crea una instancia del formulario ObservacionesForm con los datos del POST
