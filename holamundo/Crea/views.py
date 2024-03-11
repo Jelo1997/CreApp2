@@ -471,7 +471,7 @@ def captar_propiedad2(request, propiedad_id):
         form = CapturarPropiedadForm(request.POST)
         if form.is_valid():
             form.save()
-            return redirect('propiedades_disponibles')  # Redirigir a la página de éxito después de guardar la propiedad
+            return redirect('ver_propiedades_disponible')  # Redirigir a la página de éxito después de guardar la propiedad
     else:
         form = CapturarPropiedadForm()
     # Obtener todos los clientes y empleados
