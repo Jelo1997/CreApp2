@@ -25,7 +25,7 @@ class Cliente(models.Model):
         ("En Seguimiento", "En Seguimiento"),
         ("Descartado", "Descartado"),
     )
-    
+    caracteristica = models.CharField(max_length=45, choices=caracteristicas, null=True)  
     observaciones_adicionales = models.TextField(blank=True, null=True, default='')
     def __str__(self) -> str:
        return f'{self.nombre}'
