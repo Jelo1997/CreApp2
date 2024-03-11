@@ -3,6 +3,7 @@ from django.http import HttpResponse
 from django.contrib import messages
 
 from django.shortcuts import redirect, render, redirect , get_object_or_404
+from django.urls import reverse
 from django.views.generic import DetailView, FormView
 from django.core.validators import ValidationError
 from django.contrib.auth.decorators import login_required
@@ -471,7 +472,7 @@ def captar_propiedad2(request, propiedad_id):
         form = CapturarPropiedadForm(request.POST)
         if form.is_valid():
             form.save()
-            return redirect('ver_propiedades_disponible')  # Redirigir a la página de éxito después de guardar la propiedad
+            return redirect(reverse('detalle_propiedaddis', args=[propiedad_id]))  # Redirigir a la página de éxito después de guardar la propiedad
     else:
         form = CapturarPropiedadForm()
     # Obtener todos los clientes y empleados
