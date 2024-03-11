@@ -19,7 +19,7 @@
                     {{ form|crispy }}
                     <center>
                         <input type="submit" class="mt-10 btn btn-primary" value="Registrar">
-                        <a href="{% url 'detalle_cliente' %}" class="btn btn-primary">Regresar</a>
+                        <a href="{% url 'detalle_cliente' codigo_cliente=cliente.id %}" class="btn btn-primary">Regresar</a>
                     </center>
                     
                     
