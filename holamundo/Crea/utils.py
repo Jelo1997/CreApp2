@@ -11,9 +11,9 @@ def enviar_mensaje_whatsapp(destinatario, mensaje):
         
         # Crea el mensaje de WhatsApp
         message = client.messages.create(
-            from_=+14155238886,
+            from_= 'whatsapp:+14155238886',
             body=mensaje,
-            to= +593995980319
+            to= 'whatsapp:+593995980319'
         )
         
         # Retorna el SID del mensaje si se envía correctamente
