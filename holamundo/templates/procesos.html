@@ -36,16 +36,7 @@
     </tr>
     </thead>
     <tbody>
-        {% for proceso in pro %}
-        <tr>
 
-            <td>{{ proceso.id_cliente }}</td>
-            <td>{{ proceso.id_empleado }}</td>
-            <td>{{ proceso.id_propiedad }}</td>
-
-            <!-- Agrega más celdas con la información relacionada -->
-        </tr>
-    {% endfor %}
         {% for propiedad in propd %}
 
      
@@ -58,8 +49,8 @@
                 <td>{{ propiedad.id_cliente.cedula }}</td>
                 <td>{{ propiedad.id_cliente.telefono }}</td>
             {% endif %}
-            {% if propiedad.pro %}
-                <td>{{ pro.id_empleado }}</td>
+            {% if propiedad.pro.id_propiedad = propiedad.codigo %}
+                <td>{{ propiedad.pro.id_empleado }}</td>
                 <td>No asignado</td>
             {% endif %}
             <td>  </td>
