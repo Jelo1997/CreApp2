@@ -43,6 +43,10 @@
             margin-top: 0;
         }
 
+        img {
+            max-width: 100%;
+            height: auto;
+        }
     </style>
 <link href="https://maxcdn.bootstrapcdn.com/bootstrap/4.5.2/css/bootstrap.min.css" rel="stylesheet">
 </head>
@@ -62,7 +66,7 @@
                 <h5>Descripcion: {{ propiedad.descripcion }}</h5>
                 <h5>Foto: 
                     {% if propiedad.foto_propiedad %}
-                        <img src="{{ propiedad.foto_propiedad.url }}" alt=""  >
+                        <img src="{{ propiedad.foto_propiedad.url }}" alt="">
                     {% endif %}
                 </h5>
             </div>
