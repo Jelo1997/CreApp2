@@ -435,7 +435,7 @@ def actualizar_proceso(request, propiedad_id):
         mensaje = f"El proceso de venta de tu propiedad ha sido actualizado a {nuevo_proceso_etiqueta}."
         enviar_mensaje_whatsapp(destinatario, mensaje)
         
-        return redirect('procesos_propiedades')
+        return redirect('procesos propiedades')
 
 class ClienteDetailView(DetailView):
     model = Cliente
