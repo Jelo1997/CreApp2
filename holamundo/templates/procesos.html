@@ -53,7 +53,7 @@
                                 </button>
                             </div>
                             <div class="modal-body">
-                                <form method="post" action="{% url 'capturar_propiedad'%}">
+                                <form method="post" action="{% url 'ruta_para_actualizar_proceso' propiedad.id %}">
                                     {% csrf_token %}
                                     <div class="form-group">
                                         <label for="proceso{{ propiedad.id }}">Proceso:</label>
@@ -67,12 +67,12 @@
                                         <label for="observaciones{{ propiedad.id }}">Observaciones:</label>
                                         <textarea class="form-control" id="observaciones{{ propiedad.id }}" name="observaciones">{{ propiedad.observaciones_procesos }}</textarea>
                                     </div>
-                                    <form method="post" action="{% url 'enviar_mensaje_whatsapp' %}">
-                                        {% csrf_token %}
-                                        <input type="text" name="destinatario" placeholder="Destinatario (ej. whatsapp:+123456789)">
-                                        <textarea name="mensaje" placeholder="Mensaje"></textarea>
-                                        <button type="submit">Enviar Mensaje</button>
-                                    </form>
+                                                                    <form method="post" action="{% url 'enviar_mensaje_whatsapp' %}">
+                                    {% csrf_token %}
+                                    <input type="text" name="destinatario" placeholder="Destinatario (ej. whatsapp:+123456789)">
+                                    <textarea name="mensaje" placeholder="Mensaje"></textarea>
+                                    <button type="submit">Enviar Mensaje</button>
+                                </form>
                                     <button type="submit" class="btn btn-primary">Guardar Cambios</button>
                                 </form>
 
