@@ -7,14 +7,11 @@
             <div class="card-header">
                 <h1>Captar propiedad</h1>
             </div>
-            <form method="post" enctype="multipart/form-data">
+            <form method="post">
                 {% csrf_token %}
-                {{ form|crispy }}
-                <center>
-                    <button type="submit">Captar</button>
-                    
-                </center>
-                
+                {{ form.as_p }}
+                <input type="hidden" name="id_propiedad" value="{{ id_propiedad }}">
+                <button type="submit">Agregar Proceso</button>
             </form>
         </div>
     </div>
