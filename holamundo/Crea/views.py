@@ -488,4 +488,4 @@ def captar_propiedad2(request, propiedad_id):
 
 def captarpro_view(request, propiedad_id):
     # Any additional context you want to pass to captarpro.html
-    return render(request, 'captarpro.html', propiedad_id)
+    return render(request, 'captarpro.html', {'propiedad_id': propiedad_id})
