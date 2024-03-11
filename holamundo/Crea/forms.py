@@ -73,7 +73,7 @@ class ClienteForm(forms.ModelForm):
     
     class Meta:
         model = Cliente
-        fields = ['nombre', 'apellido', 'cedula', 'telefono', 'correo', 'observaciones', 'estado', 'caracteristica']
+        fields = ['nombre', 'apellido', 'cedula', 'telefono', 'correo', 'estado', 'caracteristica']
     def __init__(self, *args, **kwargs):
         user = kwargs.pop('user', None) 
         super(ClienteForm, self).__init__(*args, **kwargs)

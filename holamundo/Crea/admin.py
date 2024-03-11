@@ -10,7 +10,6 @@ class ClienteAdmin(admin.ModelAdmin):
         'cedula',
         'telefono',
         'correo',
-        'observaciones',
         'estado',
     )
 
