@@ -1,25 +1,37 @@
 {% extends 'partials/base.html' %}
 
 {% block content %}
-<div class="container mt-4">
-    <center>
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>CreApp-Propiedad</title>
+</head>
+<body>
+   <center>
         <h1>Datos Propiedad</h1>
         {% if propiedad.foto_propiedad %}
+
         <img src="{{propiedad.foto_propiedad.url}}" alt="" width="150px">
+        
         {% endif %}
-    </center>
+   </center>
+<div class="container mt-4">
     <div class="card">
         <div class="card-header">
-            <h2>{{propiedad.tipo}}</h2>
-            <h5>Codigo : {{propiedad.codigo}}</h5>
-        </div>
-        <div class="card-body">
-            <h5>Fecha de Registro: {{propiedad.fecha_registro}}</h5>
-            <h5>Ubicacion : {{propiedad.ubicacion}}</h5>
-            <h5>Precio : {{propiedad.precio}}</h5>
-            <h5>Precio Avaluo: {{propiedad.precio_avaluo}}</h5>
-            <h5>Descripcion: {{propiedad.descripcion}}</h5>
-        </div>
+            <h2> {{propiedad.tipo}} </h2>
+            <h5>Codigo : {{propiedad.codigo}} </h5>
+        </div>       
+        
+        <h5>Fecha de Registro: {{propiedad.fecha_registro}} </h5>
+        <h5>Ubicacion : {{propiedad.ubicacion}} </h5>
+        <h5>Precio : {{propiedad.precio}} </h5>
+        <h5>Precio Avaluo: {{propiedad.precio_avaluo}} </h5>
+        <h5>Descripcion: {{propiedad.descripcion}} </h5>
+        
+
+        
     </div>
 </div>
 <div class="container mt-4">
@@ -27,12 +39,11 @@
         <div class="card-header">
             <h2>Dueño de la Propiedad</h2>
         </div>
-        <div class="card-body">
-            <h5>Nombre: {{cliente.nombre}} {{cliente.apellido}}</h5>
-            <h5>Telefono: {{cliente.telefono}}</h5>
-            <h5>Email: {{cliente.correo}}</h5>
-            <h5>Observaciones {{cliente.observaciones}}</h5>
-        </div>
+
+        <h5>Nombre: {{cliente.nombre}} {{cliente.apellido}} </h5>
+        <h5>Telefono: {{cliente.telefono}} </h5>
+        <h5>Email: {{cliente.correo}} </h5>
+        <h5>Observaciones {{cliente.observaciones}} </h5>
     </div>
 </div>
 <div class="container mt-4">
@@ -40,10 +51,17 @@
         <center>
             <form action="/captar_propiedad/{{propiedad.pk}} ">
                 <button type="submit" class="btn btn-success">Captar</button>
-            </form>
-            <a href="{{ propiedad.get_edit_url }}" class="btn btn-warning">Editar</a>
+            <a type="button" href="{{ propiedad.get_edit_url }}" class="btn btn-warning">Editar</a>
             <a href="{% url 'ver_propiedades_posible' %}" class="btn btn-primary">Regresar</a>
+            </form>
         </center>
+
+        
     </div>
 </div>
+    
+    
+</body>
+</html>
+
 {% endblock %}
