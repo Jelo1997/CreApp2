@@ -406,9 +406,10 @@ def procesos_propiedades(request):
     detalles_procesos = []
     
     for proceso in procesos:
-        propiedad = Propiedad_disponible.objects.get(id=proceso.id_propiedad)
+        # Obtener los objetos relacionados
         cliente = Cliente.objects.get(id=proceso.id_cliente)
         empleado = Empleado.objects.get(id=proceso.id_empleado)
+        propiedad = Propiedad_disponible.objects.get(id=proceso.id_propiedad)
         
         detalles_proceso = {
             'proceso': proceso,
