@@ -402,28 +402,15 @@ def propiedades_por_usuario(request, cedula):
     return render(request, "consulta.html", context) 
 
 def procesos_propiedades(request):
-    procesos = Proceso.objects.all()
-    detalles_procesos = []
-    
-    for proceso in procesos:
-        # Obtener los objetos relacionados
-        cliente = Cliente.objects.get(nombre=proceso.id_cliente)
-        empleado = Empleado.objects.get(nombre=proceso.id_empleado)
-        propiedad = Propiedad_disponible.objects.get(codigo=proceso.id_propiedad)
-        
-        detalles_proceso = {
-            'proceso': proceso,
-            'propiedad': propiedad,
-            'cliente': cliente,
-            'empleado': empleado
-        }
-        
-        detalles_procesos.append(detalles_proceso)
-    
-    context = {
-        "detalles_procesos": detalles_procesos,
+    cliente = Cliente.objects.all
+    propiedades_disponibles = Propiedad_disponible.objects.all
+    empleado = Empleado.objects.all
+    context={
+        "cliente": cliente,
+        "propd": propiedades_disponibles,
+        "emple": empleado
     }
-    return render(request, "procesos.html", context)
+    return render(request, "procesos.html", context) 
 
 
 def actualizar_proceso(request, propiedad_id):
@@ -461,9 +448,9 @@ class ClienteDetailView(DetailView):
         context['form'] = ObservacionesForm()
         return context
 
-def agregar_observaciones(request, codigo_cliente):
+def agregar_observaciones(request, cliente_id):
     # Obtiene la instancia del cliente o muestra un error 404 si no se encuentra
-    cliente = get_object_or_404(Cliente, id=codigo_cliente)
+    cliente = get_object_or_404(Cliente, id=cliente_id)
 
     if request.method == 'POST':
         # Crea una instancia del formulario ObservacionesForm con los datos del POST
@@ -471,9 +458,9 @@ def agregar_observaciones(request, codigo_cliente):
         if form.is_valid():
             # Crea una instancia de Observaciones con los datos del formulario
             observacion = form.cleaned_data['observacion']
-            nueva_observacion = Observaciones(id_cliente=cliente, observacion=observacion)
+            nueva_observacion = Observaciones(cliente=cliente, observacion=observacion)
             nueva_observacion.save()
-            return redirect('detalle_cliente', codigo_cliente=codigo_cliente)
+            return redirect('detalle_cliente', codigo_cliente=cliente_id)
     else:
         # Si la solicitud no es POST, crea un formulario en blanco
         form = ObservacionesForm()
@@ -495,7 +482,7 @@ def captar_propiedad2(request, propiedad_id):
         form = CapturarPropiedadForm(initial={'id_propiedad': propiedad})
     clientes = Cliente.objects.all()  # Asegúrate de importar Cliente y Empleado
     empleados = Empleado.objects.all()
-    return render(request, 'captarpro.html', {'form': form, 'propiedad': propiedad, 'clientes': clientes, 'empleados': empleados, 'propiedad_id': propiedad_id})
+    return render(request, 'detalle_propiedaddis.html', {'form': form, 'propiedad': propiedad, 'clientes': clientes, 'empleados': empleados, 'propiedad_id': propiedad_id})
 
 def captarpro_view(request, propiedad_id):
     propiedad = Propiedad_disponible.objects.get(id=propiedad_id)
