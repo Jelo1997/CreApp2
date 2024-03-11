@@ -105,48 +105,11 @@
                 <h5>Estado: {{ propiedad.proceso }}</h5>
             </div>
         </div>   
-        <button type="button" class="btn btn-primary" data-toggle="modal" data-target="#modalCapturarPropiedad">
+        <button type="button" class="btn btn-primary" href="/templates/captarpro.html">
             Capturar Propiedad
         </button>  
         <!-- Modal -->
-        <div class="modal fade" id="modalCapturarPropiedad" tabindex="-1" role="dialog" aria-labelledby="modalCapturarPropiedadLabel" aria-hidden="true">
-            <div class="modal-dialog" role="document">
-                <div class="modal-content">
-                    <div class="modal-header">
-                        <h5 class="modal-title" id="modalCapturarPropiedadLabel">Capturar Propiedad</h5>
-                        <button type="button" class="close" data-dismiss="modal" aria-label="Close">
-                            <span aria-hidden="true">&times;</span>
-                        </button>
-                    </div>
-                    <div class="modal-body">
-                        <!-- Formulario de captura de propiedad -->
-                        <form method="post" action="{% url 'captar_propiedad2' propiedad.id %}">
-                            {% csrf_token %}
-                            {{ form.as_p }}
-                            <!-- Campo oculto para la ID de la propiedad -->
-                            <input type="hidden" name="id_propiedad" value="{{ propiedad.id }}">
-                            <div class="form-group">
-                                <label for="cliente">Cliente:</label>
-                                <select name="id_cliente" id="cliente" class="form-control">
-                                    {% for cliente in cliente2 %}
-                                        <option value="{{ cliente.id }}">{{ cliente.nombre }} {{ cliente.apellido }}</option>
-                                    {% endfor %}
-                                </select>
-                            </div>
-                            <div class="form-group">
-                                <label for="vendedor">Vendedor:</label>
-                                <select name="id_empleado" id="vendedor" class="form-control">
-                                    {% for empleado in empleados %}
-                                        <option value="{{ empleado.id }}">{{ empleado.nombre }} {{ empleado.apellido }}</option>
-                                    {% endfor %}
-                                </select>
-                            </div>
-                            <button type="submit" class="btn btn-success">Guardar Propiedad</button>
-                        </form>
-                    </div>
-                </div>
-            </div>
-        </div>
+        
         <!-- Modal -->
 
 
