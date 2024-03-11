@@ -2,6 +2,7 @@ from django import forms
 from django.db import models
 from django.urls import reverse
 from django.contrib.auth.models import User
+from django.utils import timezone
 # Create your models here.
 
 
@@ -26,7 +27,6 @@ class Cliente(models.Model):
         ("Descartado", "Descartado"),
     )
     caracteristica = models.CharField(max_length=45, choices=caracteristicas, null=True)  
-    observaciones_adicionales = models.TextField(blank=True, null=True, default='')
     def __str__(self) -> str:
        return f'{self.nombre}'
 
@@ -200,4 +200,15 @@ class Proceso(models.Model):
    id_propiedad = models.ForeignKey(Propiedad_disponible, related_name ='id_procesopropiedad1', on_delete=models.CASCADE, null= True)
    def __str__(self) -> str:
     return f'{self.id_cliente}'
+
+class Observaciones(models.Model):
+    cliente = models.ForeignKey(Cliente, on_delete=models.CASCADE, related_name='observaciones')
+    observacion = models.TextField()
+    fecha_creacion = models.DateTimeField(default=timezone.now)
+
+    def __str__(self):
+        return f'Observación de {self.cliente.nombre} - {self.fecha_creacion}'
+
+    class Meta:
+        ordering = ['-fecha_creacion']
      

@@ -117,3 +117,8 @@ class CapturarProcesoForm(forms.ModelForm):
     def __init__(self, *args, **kwargs):
         super(CapturarProcesoForm, self).__init__(*args, **kwargs)
         self.fields['id_cliente'].queryset = Cliente.objects.all()  # Limitar opciones de cliente a todos los clientes disponibles
+
+class ObservacionesForm(forms.ModelForm):
+    class Meta:
+        model = Observaciones
+        fields = ['observacion']

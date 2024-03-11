@@ -9,7 +9,7 @@ from django.core.validators import ValidationError
 from django.contrib.auth.decorators import login_required
 from django.shortcuts import get_object_or_404, redirect, render
 from django.views.generic import DetailView
-from .models import Propiedad_posible, Propiedad_disponible, Cliente, Empleado, Proceso
+from .models import Propiedad_posible, Propiedad_disponible, Cliente, Empleado, Proceso, Observaciones
 from .forms import CapturarProcesoForm, PropiedadForm , CaptarPropiedadForm, ClienteForm, EmpleadoForm, BuscarPersonaForm, ObservacionesForm, CapturarPropiedadForm
 from django.http import HttpResponse
 
@@ -448,24 +448,25 @@ class ClienteDetailView(DetailView):
         context['form'] = ObservacionesForm()
         return context
 
-def agregar_observaciones(request, id):
-    cliente = get_object_or_404(Cliente, id=id)
+def agregar_observaciones(request, cliente_id):
+    # Obtiene la instancia del cliente o muestra un error 404 si no se encuentra
+    cliente = get_object_or_404(Cliente, id=cliente_id)
 
     if request.method == 'POST':
+        # Crea una instancia del formulario ObservacionesForm con los datos del POST
         form = ObservacionesForm(request.POST)
-
         if form.is_valid():
-            print(form.cleaned_data) 
-            observacion = form.cleaned_data['observaciones_adicionales']
-            cliente.observaciones_adicionales += observacion + '\n'
-            cliente.save()
-            
+            # Crea una instancia de Observaciones con los datos del formulario
+            observacion = form.cleaned_data['observacion']
+            nueva_observacion = Observaciones(cliente=cliente, observacion=observacion)
+            nueva_observacion.save()
+            return redirect('detalle_cliente', codigo_cliente=cliente_id)
     else:
+        # Si la solicitud no es POST, crea un formulario en blanco
         form = ObservacionesForm()
-        print(form.errors)
 
-    context = {'cliente': cliente, 'form': form}
-    return render(request, "ppcliente.html", context)
+    # Renderiza la plantilla con el formulario y el cliente
+    return render(request, 'agregar_observaciones.html', {'form': form, 'cliente': cliente})
 
 
 def captar_propiedad2(request, propiedad_id):

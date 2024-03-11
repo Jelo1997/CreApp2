@@ -11,7 +11,6 @@ class ClienteAdmin(admin.ModelAdmin):
         'telefono',
         'correo',
         'observaciones',
-        'observaciones_adicionales',
         'estado',
     )
 
