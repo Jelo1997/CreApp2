@@ -405,12 +405,12 @@ def procesos_propiedades(request):
     cliente = Cliente.objects.all
     propiedades_disponibles = Propiedad_disponible.objects.all
     empleado = Empleado.objects.all
-    procesos = Proceso.objects.filter(id_propiedad__in=propiedades_disponibles)
+    proceso = Proceso.objects.all()
     context={
         "cliente": cliente,
         "propd": propiedades_disponibles,
         "emple": empleado,
-        "pro":procesos
+        "pro":proceso
     }
     return render(request, "procesos.html", context) 
 
