@@ -462,7 +462,7 @@ class ClienteDetailView(DetailView):
 
 def agregar_observaciones(request, codigo_cliente):
     # Obtiene la instancia del cliente o muestra un error 404 si no se encuentra
-    cliente = get_object_or_404(Cliente, id=codigo_cliente)
+    cliente = get_object_or_404(Cliente, pk=codigo_cliente)
 
     if request.method == 'POST':
         # Crea una instancia del formulario ObservacionesForm con los datos del POST
