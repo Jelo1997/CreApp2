@@ -6,10 +6,14 @@ from crispy_forms.layout import Layout, Fieldset, Submit
 
 class PropiedadForm(forms.ModelForm):
     
+    def __init__(self, *args, **kwargs):
+        super(PropiedadForm, self).__init__(*args, **kwargs)
+        self.fields['id_cliente'].queryset = Cliente.objects.filter(estado="Vendedor")
     
     class Meta:
         model = Propiedad_posible
         fields = ['codigo', 'fecha_registro', 'ubicacion', 'precio', 'tipo', 'descripcion', 'precio_avaluo','foto_propiedad', 'id_cliente']
+
 
 class CaptarPropiedadForm(forms.ModelForm):
   class Meta:
