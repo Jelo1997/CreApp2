@@ -36,6 +36,12 @@
     </tr>
     </thead>
     <tbody>
+        <tr>
+            <td>{{ proceso.id_cliente }}</td>
+            <td>{{ proceso.id_empleado }}</td>
+            <td>{{ proceso.id_propiedad }}</td>
+            <!-- Agrega más celdas con la información relacionada -->
+        </tr>
         {% for propiedad in propd %}
 
      
@@ -48,7 +54,7 @@
                 <td>{{ propiedad.id_cliente.cedula }}</td>
                 <td>{{ propiedad.id_cliente.telefono }}</td>
             {% endif %}
-            {% if pro.id_empleado %}
+            {% if propiedad.pro %}
                 <td>{{ pro.id_empleado }}</td>
                 <td>No asignado</td>
             {% endif %}
