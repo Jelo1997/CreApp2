@@ -207,7 +207,7 @@ class Observaciones(models.Model):
     fecha_creacion = models.DateTimeField(default=timezone.now)
 
     def __str__(self):
-        return f'Observación de {self.cliente.nombre} - {self.fecha_creacion}'
+        return f'Observación de {self.id_cliente.nombre} - {self.fecha_creacion}'
 
     class Meta:
         ordering = ['-fecha_creacion']
