@@ -480,14 +480,14 @@ def agregar_observaciones(request, cliente_id):
 def captar_propiedad2(request, propiedad_id):
     propiedad = Propiedad_disponible.objects.get(id=propiedad_id)
     if request.method == 'POST':
-        form = CapturarProcesoForm(request.POST)
+        form = CapturarPropiedadForm(request.POST)
         if form.is_valid():
             proceso = form.save(commit=False)
             proceso.id_propiedad = propiedad
             proceso.save()
             return redirect('captarpro', propiedad_id=propiedad_id)
     else:
-        form = CapturarProcesoForm(initial={'id_propiedad': propiedad})
+        form = CapturarPropiedadForm(initial={'id_propiedad': propiedad})
     clientes = Cliente.objects.all()  # Asegúrate de importar Cliente y Empleado
     empleados = Empleado.objects.all()
     return render(request, 'captarpro.html', {'form': form, 'propiedad': propiedad, 'clientes': clientes, 'empleados': empleados, 'propiedad_id': propiedad_id})
