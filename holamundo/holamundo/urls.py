@@ -69,7 +69,7 @@ urlpatterns = [
     
     path('pcliente/', ver_pcliente, name="ver_pcliente"),
     path('cliente/<int:codigo_cliente>/', ver_pocliente, name="detalle_cliente"),
-    path('cliente/agregar_observaciones/<int:cliente_id>/', agregar_observaciones, name='agregar_observaciones'),
+    path('cliente/agregar_observaciones/<int:codigo_cliente>/', agregar_observaciones, name='agregar_observaciones'),
     path('cliente/nuevo', nuevo_cliente ,name="nuevo_cliente"),
     path('cliente/editar/<int:codigo_cliente>/', editar_cliente ,name="editar_cliente"),
     path('cliente/eliminar/<int:codigo_cliente>/', eliminar_cliente ,name="eliminar_cliente"),
