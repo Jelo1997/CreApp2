@@ -456,9 +456,9 @@ class ClienteDetailView(DetailView):
         context['form'] = ObservacionesForm()
         return context
 
-def agregar_observaciones(request, codigo_cliente):
+def agregar_observaciones(request, cliente_id):
     # Obtiene la instancia del cliente o muestra un error 404 si no se encuentra
-    cliente = get_object_or_404(Cliente, id=codigo_cliente)
+    cliente = get_object_or_404(Cliente, id=cliente_id)
 
     if request.method == 'POST':
         # Crea una instancia del formulario ObservacionesForm con los datos del POST
@@ -468,7 +468,7 @@ def agregar_observaciones(request, codigo_cliente):
             observacion = form.cleaned_data['observacion']
             nueva_observacion = Observaciones(cliente=cliente, observacion=observacion)
             nueva_observacion.save()
-            return redirect('detalle_cliente', codigo_cliente=codigo_cliente)
+            return redirect('detalle_cliente', codigo_cliente=cliente_id)
     else:
         # Si la solicitud no es POST, crea un formulario en blanco
         form = ObservacionesForm()
