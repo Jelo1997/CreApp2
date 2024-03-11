@@ -93,7 +93,7 @@ urlpatterns = [
     path('cliente/<int:id>/agregar_observaciones/', agregar_observaciones, name='agregar_observaciones'),
     path('propiedaddis/<int:propiedad_id>/', captar_propiedad2, name='captar_propiedad2'),
     path('enviar-mensaje-whatsapp/', enviar_mensaje_whatsapp, name='enviar_mensaje_whatsapp'),
-    path('captarpro/<int:propiedad_id>', captarpro_view, name='captarpro'),
+    path('captarpro/<int:propiedad_id>', captar_propiedad2, name='captarpro'),
     #path('captar-propiedad/<int:propiedad_id>/', captar_propiedad2, name='captar_propiedad'),
     path('ventas', procesos_venta, name='venta'),
 ]
