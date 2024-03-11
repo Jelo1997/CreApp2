@@ -90,7 +90,7 @@ urlpatterns = [
     path('procesos', procesos_propiedades, name="procesos propiedades"),
     path('actualizar_proceso/<int:propiedad_id>/', actualizar_proceso, name='ruta_para_actualizar_proceso'),
     path('cliente/<int:id>/agregar_observaciones/', agregar_observaciones, name='agregar_observaciones'),
-    path('capturar_propiedad/<int:propiedad_id>/', captar_propiedad2, name='captar_propiedad2'),
+    path('propiedaddis/<int:propiedad_id>/', captar_propiedad2, name='captar_propiedad2'),
     path('enviar-mensaje-whatsapp/', enviar_mensaje_whatsapp, name='enviar_mensaje_whatsapp'),
 ]
 urlpatterns += static (settings.MEDIA_URL, document_root=settings.MEDIA_ROOT)
