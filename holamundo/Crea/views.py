@@ -485,3 +485,7 @@ def captar_propiedad2(request, propiedad_id):
     print(proceso)
     print(propiedad)
     return render(request, 'detalle_propiedaddis.html', {'form': form, 'propiedad': propiedad, 'clientes': clientes, 'empleados': empleados})
+
+def captarpro_view(request):
+    # Any additional context you want to pass to captarpro.html
+    return render(request, 'captarpro.html')

@@ -22,7 +22,7 @@ from .views import MyPasswordChangeView, MyPasswordSetView
 from django.conf import settings
 from django.conf.urls.static import static
 
-from Crea.views import BuscarPersonaView, ver_propiedades_posible, ver_propiedad, index, captar_propiedad, ver_propiedades_disponibles, ver_propiedaddis, ver_pcliente, ver_pocliente, nueva_propiedad, editar_propiedad, eliminar_propiedad, nuevo_cliente, editar_cliente, eliminar_cliente, ver_empleado, nuevo_empleado, editar_empleado, eliminar_empleado, ver_det_empleado, propiedades_por_usuario,ver_perfil_empleado, generar_convenio_pdf, agregar_observaciones, procesos_propiedades, actualizar_proceso, captar_propiedad2
+from Crea.views import BuscarPersonaView, ver_propiedades_posible, ver_propiedad, index, captar_propiedad, ver_propiedades_disponibles, ver_propiedaddis, ver_pcliente, ver_pocliente, nueva_propiedad, editar_propiedad, eliminar_propiedad, nuevo_cliente, editar_cliente, eliminar_cliente, ver_empleado, nuevo_empleado, editar_empleado, eliminar_empleado, ver_det_empleado, propiedades_por_usuario,ver_perfil_empleado, generar_convenio_pdf, agregar_observaciones, procesos_propiedades, actualizar_proceso, captar_propiedad2, captarpro_view
 from Crea.utils import enviar_mensaje_whatsapp
 
 urlpatterns = [
@@ -92,5 +92,6 @@ urlpatterns = [
     path('cliente/<int:id>/agregar_observaciones/', agregar_observaciones, name='agregar_observaciones'),
     path('propiedaddis/<int:propiedad_id>/', captar_propiedad2, name='captar_propiedad2'),
     path('enviar-mensaje-whatsapp/', enviar_mensaje_whatsapp, name='enviar_mensaje_whatsapp'),
+    path('captarpro/', captarpro_view, name='captarpro'),
 ]
 urlpatterns += static (settings.MEDIA_URL, document_root=settings.MEDIA_ROOT)
