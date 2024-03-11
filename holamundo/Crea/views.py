@@ -15,8 +15,8 @@ from django.http import HttpResponse
 #generar pdf
 from django.template.loader import get_template
 from weasyprint import HTML
-
-
+#whatsapp
+from .utils import enviar_mensaje_whatsapp
 
 # Create your views here.
    
@@ -411,7 +411,7 @@ def procesos_propiedades(request):
 
 
 def actualizar_proceso(request, propiedad_id):
- if request.method == 'POST':
+    if request.method == 'POST':
         propiedad = Propiedad_disponible.objects.get(pk=propiedad_id)
         nuevo_proceso_valor = request.POST.get('proceso')
         nuevo_proceso_etiqueta = None
@@ -428,7 +428,14 @@ def actualizar_proceso(request, propiedad_id):
         propiedad.proceso_venta = nuevo_proceso_etiqueta
         propiedad.observaciones_procesos = nuevas_observaciones
         propiedad.save()
-        return redirect('procesos propiedades')
+        
+        # Llama a la función para enviar mensajes de WhatsApp
+        cliente = propiedad.cliente  # Suponiendo que tienes una relación con el cliente en tu modelo
+        destinatario = cliente.telefono  # Suponiendo que tienes un campo 'telefono' en tu modelo de cliente
+        mensaje = f"El proceso de venta de tu propiedad ha sido actualizado a {nuevo_proceso_etiqueta}."
+        enviar_mensaje_whatsapp(destinatario, mensaje)
+        
+        return redirect('procesos_propiedades')
 
 class ClienteDetailView(DetailView):
     model = Cliente

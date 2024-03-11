@@ -23,7 +23,7 @@ from django.conf import settings
 from django.conf.urls.static import static
 
 from Crea.views import BuscarPersonaView, ver_propiedades_posible, ver_propiedad, index, captar_propiedad, ver_propiedades_disponibles, ver_propiedaddis, ver_pcliente, ver_pocliente, nueva_propiedad, editar_propiedad, eliminar_propiedad, nuevo_cliente, editar_cliente, eliminar_cliente, ver_empleado, nuevo_empleado, editar_empleado, eliminar_empleado, ver_det_empleado, propiedades_por_usuario,ver_perfil_empleado, generar_convenio_pdf, agregar_observaciones, procesos_propiedades, actualizar_proceso, captar_propiedad2
-
+from Crea.utils import enviar_mensaje_whatsapp
 
 urlpatterns = [
 
@@ -91,5 +91,6 @@ urlpatterns = [
     path('actualizar_proceso/<int:propiedad_id>/', actualizar_proceso, name='ruta_para_actualizar_proceso'),
     path('cliente/<int:id>/agregar_observaciones/', agregar_observaciones, name='agregar_observaciones'),
     path('capturar_propiedad/<int:propiedad_id>/', captar_propiedad2, name='captar_propiedad'),
+    path('enviar-mensaje-whatsapp/', enviar_mensaje_whatsapp, name='enviar_mensaje_whatsapp'),
 ]
 urlpatterns += static (settings.MEDIA_URL, document_root=settings.MEDIA_ROOT)
