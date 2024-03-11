@@ -10,7 +10,7 @@ from django.contrib.auth.decorators import login_required
 from django.shortcuts import get_object_or_404, redirect, render
 from django.views.generic import DetailView
 from .models import Propiedad_posible, Propiedad_disponible, Cliente, Empleado, Proceso
-from .forms import CapturarProcesoForm, PropiedadForm , CaptarPropiedadForm, ClienteForm, EmpleadoForm, BuscarPersonaForm, ObservacionesForm, ProcesoForm
+from .forms import CapturarProcesoForm, PropiedadForm , CaptarPropiedadForm, ClienteForm, EmpleadoForm, BuscarPersonaForm, ObservacionesForm, CapturarPropiedadForm
 from django.http import HttpResponse
 
 #generar pdf
@@ -468,15 +468,21 @@ def agregar_observaciones(request, id):
     return render(request, "ppcliente.html", context)
 
 
-def agregar_proceso(request, id_propiedad):
+def captar_propiedad2(request, propiedad_id):
+    propiedad = Propiedad_disponible.objects.get(id=propiedad_id)
     if request.method == 'POST':
-        form = ProcesoForm(request.POST)
+        form = CapturarPropiedadForm(request.POST, instance=propiedad)
         if form.is_valid():
-            form.save()
-            return redirect('pagina_anterior')  # Cambia esto por la página anterior
+            proceso = form.save(commit=False)
+            proceso.id_propiedad = propiedad
+            proceso.save()
+            # Redirect to captarpro view after successful form submission
+            return redirect('captarpro', propiedad_id=propiedad_id)
     else:
-        form = ProcesoForm()
-    return render(request, 'agregar_proceso.html', {'form': form, 'id_propiedad': id_propiedad})
+        form = CapturarPropiedadForm(instance=propiedad)  # Pass the instance here
+    clientes = Cliente.objects.all()
+    empleados = Empleado.objects.all()
+    return render(request, 'detalle_propiedaddis.html', {'form': form, 'propiedad': propiedad, 'clientes': clientes, 'empleados': empleados, 'propiedad_id': propiedad_id})
 
 def captarpro_view(request, propiedad_id):
     propiedad = Propiedad_disponible.objects.get(id=propiedad_id)

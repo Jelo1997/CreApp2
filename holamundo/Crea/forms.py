@@ -103,12 +103,17 @@ class BuscarPersonaForm(forms.Form):
 class ObservacionesForm(forms.Form):
       observaciones_adicionales = forms.CharField(widget=forms.Textarea, label="Observaciones adicionales")
 
-class ProcesoForm(forms.ModelForm):
+class CapturarPropiedadForm(forms.ModelForm):
     class Meta:
         model = Proceso
-        fields = ['empleado', 'cliente', 'id_propiedad']  # Agrega los campos necesarios
+        fields = ['id_cliente', 'id_empleado', 'id_propiedad']
+
+
+class CapturarProcesoForm(forms.ModelForm):
+    class Meta:
+        model = Proceso
+        fields = ['id_cliente']
 
     def __init__(self, *args, **kwargs):
-        super().__init__(*args, **kwargs)
-        self.fields['empleado'].queryset = Empleado.objects.all()
-        self.fields['cliente'].queryset = Cliente.objects.all()
+        super(CapturarProcesoForm, self).__init__(*args, **kwargs)
+        self.fields['id_cliente'].queryset = Cliente.objects.all()  # Limitar opciones de cliente a todos los clientes disponibles
